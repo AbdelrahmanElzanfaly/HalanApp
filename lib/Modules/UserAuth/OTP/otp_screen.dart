@@ -1,6 +1,7 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:halan/Modules/BottomNavigationBarScreen/bottom_navigation_bar_screen.dart';
 import 'package:halan/Utilities/helper.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import '../../../../Theme/theme.dart';
@@ -11,7 +12,6 @@ import '../../../Widgets/animated_alert_dialog.dart';
 import '../../../Widgets/custom_button_widget.dart';
 import '../../../Widgets/pin_code.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import '../../Main_Screen/main_screen.dart';
 import 'otp_controller.dart';
 
 class OtpScreen extends StatefulWidget {
@@ -295,7 +295,7 @@ class _OtpScreenState extends StateMVC<OtpScreen> {
                   GestureDetector(
                     onTap: () {
                       Modular.to.pushNamedAndRemoveUntil(
-                          MainScreen.routeName, (Route<dynamic> route) => false);
+                          BottomNavigationBarScreen.routeName, (Route<dynamic> route) => false);
                     },
                     child: Container(
                       width: 200.w,

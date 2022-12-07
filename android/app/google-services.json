@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "91035654083",
+    "project_id": "halan-5dbf3",
+    "storage_bucket": "halan-5dbf3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:91035654083:android:ad999509385c6971754f76",
+        "android_client_info": {
+          "package_name": "com.halan.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "91035654083-858i60a9ms6r0vc8n4vf99ma712ebveo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWsAa1-Z4NgX6R3Cd2Lr0OmZwAQlQUy7k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "91035654083-858i60a9ms6r0vc8n4vf99ma712ebveo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -2,8 +2,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
+import '../Modules/BottomNavigationBarScreen/bottom_navigation_bar_screen.dart';
 import '../Modules/HomeScreen/home_screen.dart';
-import '../Modules/Main_Screen/main_screen.dart';
+import '../Modules/IntroductionPages/introduction_screen.dart';
 import '../Modules/Splash/splash_screen.dart';
 import '../Modules/UserAuth/Login/login_screen.dart';
 
@@ -42,8 +43,13 @@ class AppModule extends Module {
         child: (_, args) => const LoginScreen(),
         transition: TransitionType.fadeIn,
         duration: const Duration(milliseconds: 300)),
-    ChildRoute(MainScreen.routeName,
-        child: (_, args) => const MainScreen(),
+
+    ChildRoute(IntroductionPagesScreen.routeName,
+        child: (_, args) => const IntroductionPagesScreen(),
+        transition: TransitionType.fadeIn,
+        duration: const Duration(milliseconds: 300)),
+    ChildRoute(BottomNavigationBarScreen.routeName,
+        child: (_, args) => const BottomNavigationBarScreen(),
         transition: TransitionType.fadeIn,
         duration: const Duration(milliseconds: 300)),
 

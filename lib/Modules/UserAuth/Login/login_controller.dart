@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
+import 'package:halan/Modules/BottomNavigationBarScreen/bottom_navigation_bar_screen.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
 
-import '../../../modules/Main_Screen/main_screen.dart';
 import 'login_screen.dart';
 
 class LoginController extends ControllerMVC {
@@ -66,8 +66,10 @@ class LoginController extends ControllerMVC {
     //     userName: userEmailController.text,
     //     password: passwordController.text);
     // if (result) {
-      Navigator.of(context).pushNamedAndRemoveUntil(MainScreen.routeName,(Route<dynamic> route) => false);
-    // }
+    Navigator.of(context).pushNamedAndRemoveUntil(
+      BottomNavigationBarScreen.routeName,
+          (Route<dynamic> route) => false,
+    );    // }
 
     setState(() {
       loading = false;

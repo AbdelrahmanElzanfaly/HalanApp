@@ -1,4 +1,4 @@
-package com.example.halan
+package com.halan.app
 
 import io.flutter.embedding.android.FlutterActivity
 

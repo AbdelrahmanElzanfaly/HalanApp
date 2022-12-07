@@ -1,11 +1,15 @@
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:mvc_pattern/mvc_pattern.dart';
+
 import '../../Shared/shared_preferances.dart';
-import '../../Utilities/Layout/background_canvas.dart';
-import '../HomeScreen/home_screen.dart';
-import '../Main_Screen/main_screen.dart';
+import '../../Utilities/connection_status.dart';
+import '../../Utilities/toast_helper.dart';
+import '../BottomNavigationBarScreen/bottom_navigation_bar_screen.dart';
+import '../IntroductionPages/introduction_controller.dart';
+import '../IntroductionPages/introduction_screen.dart';
 import '../UserAuth/Login/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -18,40 +22,64 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  // _SplashScreenState() : super(IntroductionController()) {
+  //   con = IntroductionController();
+  // }
+  //
+  // late IntroductionController con;
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
+    log('_SplashScreenState');
+    ToastHelper.init(context);
+    ConnectivityHelper().initialize();
     init();
+
     super.initState();
   }
 
   Future init() async {
-    await Future.delayed(const Duration(seconds: 2));
-if (SharedPref.isUserLogIn()) {
-      Modular.to.pushNamed(HomeScreen.routeName);
+    await Future.delayed(const Duration(milliseconds: 3500));
+    if (!SharedPref.isWatchIntro()) {
+      Navigator.of(context).pushNamed(IntroductionPagesScreen.routeName);
+    } else if (SharedPref.isUserLogIn()) {
+      Navigator.of(context)
+          .pushReplacementNamed(BottomNavigationBarScreen.routeName);
     } else {
-      Modular.to.pushNamed(LoginScreen.routeName);
+      Navigator.of(context).pushNamed(LoginScreen.routeName);
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.yellow,
       key: _scaffoldKey,
-      body: CanvasBackground(
-        child:
-            Center(
-              child: Image.asset(
-                "assets/images/logo.png",
-                width: 130.w,
-                height: 74.57.h,
-                // fit: BoxFit.fitHeight,
-
-        ),
+      backgroundColor: Colors.white,
+      body: Center(
+        child: Row(
+          children: [
+            const Spacer(),
+            Image.asset(
+              "assets/images/logo.png",
+              width: 56.w,
+              height: 80.h,
+              fit: BoxFit.contain,
             ),
+            SizedBox(
+              width: 23.w,
+            ),
+            // Image.asset(
+            //   "assets/images/logoMwardi.png",
+            //   width: 124.w,
+            //   height: 28.h,
+            //   fit: BoxFit.contain,
+            // ),
+            const Spacer(),
+          ],
+        ),
       ),
     );
   }
 }
+

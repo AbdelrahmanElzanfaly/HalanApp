@@ -1,8 +1,13 @@
+import 'dart:async';
+import 'dart:io';
+
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:in_app_update/in_app_update.dart';
 import 'package:provider/provider.dart';
 
 import './Shared/shared_obj.dart';
@@ -10,13 +15,28 @@ import './locale/locales.dart';
 import 'Control/app_languages.dart';
 import 'Control/shared_data_provider.dart';
 import 'Modules/Splash/splash_screen.dart';
-import 'Utilities/Routing.dart';
-// import 'package:firebase_core/firebase_core.dart';
+import 'Theme/theme.dart';
+import 'Utilities/firebase_operation.dart';
+import 'Utilities/helper.dart';
+import 'Utilities/routing.dart';
+import 'firebase_options.dart';
 
 Future<void> main() async {
+
   WidgetsFlutterBinding.ensureInitialized();
-  //await Firebase.initializeApp();
+  // await Helper.localNotification();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  HttpOverrides.global = MyHttpOverrides();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   await SharedObj().init();
+  await FireBaseOperations.init();
+
+  startFlexibleUpdate();
+
   runApp(MultiProvider(
     providers: [
       ChangeNotifierProvider<AppLanguage>(create: (_) => AppLanguage()),
@@ -30,6 +50,7 @@ Future<void> main() async {
   ));
 }
 
+
 class EntryPoint extends StatelessWidget {
   const EntryPoint({Key? key}) : super(key: key);
 
@@ -38,18 +59,22 @@ class EntryPoint extends StatelessWidget {
     final appLan = Provider.of<AppLanguage>(context);
     appLan.fetchLocale();
     return ScreenUtilInit(
-      designSize: const Size(425, 1000),
-      builder: (_, __) => MaterialApp(
-        theme: ThemeData(fontFamily: 'dubai'),
+      designSize: const Size(375, 812),
+      builder: (BuildContext c, w) => MaterialApp(
+        theme: ThemeData(
+          appBarTheme: AppBarTheme(backgroundColor: ThemeClass.primaryColor),
+          primaryColor: ThemeClass.primaryColor,
+          fontFamily: 'Inter',
+        ),
         navigatorKey: SharedObj.navigatorKey,
         debugShowCheckedModeBanner: false,
-        title: appLan.appLanguage == Languages.ar
-            ? 'الصاله الاقتصادية'
-            : "alsala aliqtisadya",
+        title: 'Mwardi',
         initialRoute: SplashScreen.routeName,
-        // locale: appLan.appLocal,
         locale: appLan.appLocal,
-        supportedLocales: Languages.values.map((e) => Locale(e.name)).toList(),
+        supportedLocales: const [
+          Locale('en', 'US'),
+          Locale('ar', ''),
+        ],
         localizationsDelegates: const [
           AppLocalizations.delegate,
           GlobalMaterialLocalizations.delegate,
@@ -60,4 +85,23 @@ class EntryPoint extends StatelessWidget {
       ).modular(),
     );
   }
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+}
+Future<void> startFlexibleUpdate() async {
+  if(!Platform.isAndroid) return;
+  try{
+    final checker = await InAppUpdate.checkForUpdate();
+    if(checker.updateAvailability > 0){
+      await InAppUpdate.startFlexibleUpdate();
+      await InAppUpdate.completeFlexibleUpdate();
+    }
+  }catch(e){}
 }

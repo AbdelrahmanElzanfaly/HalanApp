@@ -56,8 +56,8 @@ class CustomTextFieldWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: width ?? 350.w,
-      height: height ?? 52.h,
+      width: width ?? 327.w,
+      height: height ?? 60.h,
       child: TextFormField(
         readOnly: readOnly ?? false,
         textAlignVertical: TextAlignVertical.center,
@@ -68,27 +68,27 @@ class CustomTextFieldWidget extends StatelessWidget {
         obscureText: obscure ?? false,
         controller: controller,
         decoration: InputDecoration(
-          errorStyle: const TextStyle(height: 0),
+          errorStyle: const TextStyle(height: 100),
           enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(borderRadiusValue ?? 10.w),
+              borderRadius: BorderRadius.circular(borderRadiusValue ?? 5.w),
               borderSide:
                   BorderSide(color: borderColor ?? ThemeClass.blackColor)),
           disabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(borderRadiusValue ?? 10.w),
+              borderRadius: BorderRadius.circular(borderRadiusValue ?? 5.w),
               borderSide:
                   BorderSide(color: borderColor ?? const Color(0xff555555))),
           focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(borderRadiusValue ?? 10.w),
+              borderRadius: BorderRadius.circular(borderRadiusValue ?? 5.w),
               borderSide: BorderSide(color: ThemeClass.primaryColor)),
           border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(borderRadiusValue ?? 10.w),
+              borderRadius: BorderRadius.circular(borderRadiusValue ?? 5.w),
               borderSide:
                   BorderSide(color: borderColor ?? const Color(0xFF555555))),
           isDense: isDense ?? false,
           prefixIconConstraints: BoxConstraints(
-              minWidth: prefixIcon == null ? 0 : 35.w, maxHeight: 20.w),
+              minWidth: prefixIcon == null ? 0 : 35.w, maxHeight: 60.w),
           suffixIconConstraints: BoxConstraints(
-              minWidth: suffixIcon == null ? 0 : 45.w, maxHeight: 40.h),
+              minWidth: suffixIcon == null ? 0 : 45.w, maxHeight: 60.h),
           contentPadding: insidePadding ?? EdgeInsets.symmetric(vertical: 6.h),
           fillColor: backGroundColor,
           filled: backGroundColor != null,
@@ -97,14 +97,14 @@ class CustomTextFieldWidget extends StatelessWidget {
               ? SizedBox(
                   width: 10.w,
                 )
-              : SizedBox(width: 30.w, child: prefixIcon),
+              : prefixIcon,
           suffixIcon: suffixIcon == null
               ? SizedBox(
                   width: 5.w,
                 )
               : InkWell(
                   onTap: onSuffixTap,
-                  child: SizedBox(width: 30.w, child: suffixIcon),
+                  child: SizedBox(width: 30.w,height: 60, child: suffixIcon),
                 ),
           hintStyle: hintStyle ??
               TextStyle(

@@ -9,7 +9,7 @@ import '../../../Utilities/Layout/background_canvas.dart';
 import '../../../Utilities/Layout/loading_screen.dart';
 import '../../../Utilities/toast_helper.dart';
 import '../../../Widgets/animated_alert_dialog.dart';
-import '../../../Widgets/custom_button_widget.dart';
+import '../../../Widgets/custom_button.dart';
 import '../../../Widgets/pin_code.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'otp_controller.dart';

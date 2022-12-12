@@ -2,31 +2,42 @@ import 'package:flutter/material.dart';
 
 import '../Shared/shared_preferances.dart';
 
-enum Languages { ar, en }
-
 class AppLanguage extends ChangeNotifier {
-  Languages defaultLang = Languages.ar;
+  Locale? _appLocale = const Locale("en");
 
-  Locale? _appLocale;
-  Locale get appLocal => _appLocale ?? Locale(defaultLang.name);
-  Languages get appLanguage => SharedPref.getCurrentLang() == null
-      ? Languages
-          .values[Languages.values.map((e) => e.name).toList().indexOf("ar")]
-      : defaultLang;
+  Locale get appLocal => _appLocale ?? const Locale("en");
 
-  Locale fetchLocale() {
-    if (SharedPref.getCurrentLang() != null) {
-      _appLocale = Locale(SharedPref.getCurrentLang()!);
-    } else {
-      _appLocale = Locale(defaultLang.name);
+  fetchLocale() async {
+    if (SharedPref.getCurrentLang() == null) {
+      _appLocale = const Locale("en");
+      return Null;
     }
-    return _appLocale!;
+    _appLocale = Locale(SharedPref.getCurrentLang() ?? "ar");
+    return Null;
   }
 
-  Future changeLanguage({required Languages lang}) async {
-    if (_appLocale == Locale(lang.name)) return;
-    _appLocale = Locale(lang.name);
-    await SharedPref.setCurrentLang(lang: lang.name);
-    notifyListeners();
+  Future changeLanguage(Locale? type) async {
+    if (_appLocale == type) {
+      return;
+    }
+    if (type == null) {
+      if (_appLocale == const Locale("ar")) {
+        _appLocale = const Locale("en");
+        await SharedPref.setCurrentLang(lang: "en");
+      } else {
+        _appLocale = const Locale("ar");
+        await SharedPref.setCurrentLang(lang: "ar");
+      }
+      notifyListeners();
+    } else {
+      if (type == const Locale("ar")) {
+        _appLocale = const Locale("ar");
+        await SharedPref.setCurrentLang(lang: "ar");
+      } else {
+        _appLocale = const Locale("en");
+        await SharedPref.setCurrentLang(lang: "en");
+      }
+      notifyListeners();
+    }
   }
 }

@@ -2,12 +2,14 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:halan/Theme/theme.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
 import '../../Shared/shared_preferances.dart';
 import '../../Utilities/connection_status.dart';
 import '../../Utilities/toast_helper.dart';
 import '../BottomNavigationBarScreen/bottom_navigation_bar_screen.dart';
+import '../ChangeLanguage/choose_language_screen.dart';
 import '../IntroductionPages/introduction_controller.dart';
 import '../IntroductionPages/introduction_screen.dart';
 import '../UserAuth/Login/login_screen.dart';
@@ -42,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Future init() async {
     await Future.delayed(const Duration(milliseconds: 3500));
     if (!SharedPref.isWatchIntro()) {
-      Navigator.of(context).pushNamed(IntroductionPagesScreen.routeName);
+      Navigator.of(context).pushNamed(ChooseLanguageScreen.routeName);
     } else if (SharedPref.isUserLogIn()) {
       Navigator.of(context)
           .pushReplacementNamed(BottomNavigationBarScreen.routeName);
@@ -55,26 +57,20 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Colors.white,
+      backgroundColor: ThemeClass.primaryColor,
       body: Center(
         child: Row(
           children: [
             const Spacer(),
             Image.asset(
               "assets/images/logo.png",
-              width: 56.w,
-              height: 80.h,
+              width: 250.w,
+              height: 250.h,
               fit: BoxFit.contain,
             ),
             SizedBox(
               width: 23.w,
             ),
-            // Image.asset(
-            //   "assets/images/logoMwardi.png",
-            //   width: 124.w,
-            //   height: 28.h,
-            //   fit: BoxFit.contain,
-            // ),
             const Spacer(),
           ],
         ),

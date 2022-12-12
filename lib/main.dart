@@ -15,6 +15,7 @@ import './locale/locales.dart';
 import 'Control/app_languages.dart';
 import 'Control/shared_data_provider.dart';
 import 'Modules/Splash/splash_screen.dart';
+import 'Modules/UserAuth/UserType/user_type.dart';
 import 'Theme/theme.dart';
 import 'Utilities/firebase_operation.dart';
 import 'Utilities/helper.dart';
@@ -59,7 +60,7 @@ class EntryPoint extends StatelessWidget {
     final appLan = Provider.of<AppLanguage>(context);
     appLan.fetchLocale();
     return ScreenUtilInit(
-      designSize: const Size(375, 812),
+      designSize: const Size(375, 834),
       builder: (BuildContext c, w) => MaterialApp(
         theme: ThemeData(
           appBarTheme: AppBarTheme(backgroundColor: ThemeClass.primaryColor),

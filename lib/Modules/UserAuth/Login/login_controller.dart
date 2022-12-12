@@ -26,7 +26,7 @@ class LoginController extends ControllerMVC {
       isHavePin = false;
 
   late TextEditingController userNameController,
-      userEmailController,
+      phoneController,
       passwordController,
       pinCodeController,
       confirmPinCodeController,
@@ -35,7 +35,7 @@ class LoginController extends ControllerMVC {
 
   @override
   void initState() {
-    userEmailController = TextEditingController();
+    phoneController = TextEditingController();
     userNameController = TextEditingController();
     passwordController = TextEditingController();
     pinCodeController = TextEditingController();
@@ -47,7 +47,7 @@ class LoginController extends ControllerMVC {
 
   @override
   void dispose() {
-    userNameController.dispose();
+    phoneController.dispose();
     passwordController.dispose();
     pinCodeController.dispose();
     confirmPinCodeController.dispose();

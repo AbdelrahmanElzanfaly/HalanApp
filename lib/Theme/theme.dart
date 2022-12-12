@@ -2,16 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ThemeClass {
-  static Color primaryColor = const Color(0xff49B65A);
+  static Color primaryColor = const Color(0xffF48C2B);
+  static Color secondPrimaryColor = const Color(0xff004698);
   static Color accentColor = const Color(0xffE93C37);
   static Color whiteColor = const Color(0xffFFFFFF);
+  static Color textColor = const Color(0xff606060);
+  static Color hintColor = const Color(0xff919396);
+
   static Color blackColor = const Color(0xff292929);
-  static Color greyColor = const Color(0xffA5A5A5);
+  static Color greyColor = const Color(0x3da5a5a5);
   static Color blueColor = const Color(0xff22577A);
   static Color lightBlueColor = const Color(0xffDAEAF1);
   static Color yellowColor = const Color(0xffF0C929);
   static Color lightYellowColor = const Color(0xffF4E06D);
-  static Color hintColor = const Color(0xffF4E06D);
   static Color textFieldBackgroundColor = const Color(0xFFEDF8EC);
   static Color containerBackground = const Color(0xFFDDE9DC);
   static Color containerWBackground = const Color(0xFFFAF7EF);

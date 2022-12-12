@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:halan/Modules/UserAuth/UserType/user_type.dart';
 import 'package:halan/Utilities/helper.dart';
+import 'package:halan/Widgets/app_bar_widget.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
 import '../../../Theme/theme.dart';
 import '../../../Utilities/Layout/loading_screen.dart';
-import '../../../Utilities/toast_helper.dart';
-import '../../../Widgets/custom_button_widget.dart';
+import '../../../Widgets/custom_button.dart';
 import '../../../Widgets/custom_textfeild_widget.dart';
+import '../../../modules/UserAuth/Register/register_screen.dart';
 import 'login_controller.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -34,146 +36,245 @@ class _LoginScreenState extends StateMVC<LoginScreen> {
       onWillPop: () async => false,
       child: LoadingScreen(
         loading: con.loading,
+        // child:
+        // UpgradeAlert(
+        //   upgrader: Upgrader(
+        //     platform: TargetPlatform.iOS,
+        //     dialogStyle: UpgradeDialogStyle.cupertino,
+        //     showLater: true,
+        //     showIgnore: false,
+        //     durationUntilAlertAgain: const Duration(days: 1),
+        //   ),
         child: Scaffold(
           backgroundColor: Colors.white,
           body: SingleChildScrollView(
-            child: SizedBox(
-              height: 812.h,
-              width: 375.w,
+            child: Container(
+              height: 700.h,
+              padding: EdgeInsets.symmetric(horizontal: 20.w),
               child: Form(
                 key: _formKey,
                 autovalidateMode: con.autoValidate
                     ? AutovalidateMode.always
                     : AutovalidateMode.disabled,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.w),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SizedBox(
-                        height: 190.h,
-                      ),
-                      Align(
-                          alignment: Alignment.center,
-                          child: Column(
-                            children: [
-                              Text(
-                                "Login Account".tr,
-                                style: TextStyle(
-                                    fontSize: 24.sp,
-                                    fontWeight: FontWeight.w700,
-                                    color: ThemeClass.primaryColor),
-                              ),
-                              SizedBox(
-                                height: 10.h,
-                              ),
-                              Text(
-                                "Stay signed in with your account".tr,
-                                style: TextStyle(
-                                    fontSize: 14.sp,
-                                    color: ThemeClass.blackColor,
-                                    fontWeight: FontWeight.w500),
-                              )
-                            ],
-                          )),
-                      SizedBox(
-                        height: 67.h,
-                      ),
-                      CustomTextFieldWidget(
-                        prefixIcon: const Icon(Icons.email_outlined),
-                        width: 327.w,
-                        borderColor: Colors.grey.shade400,
-                        controller: con.userEmailController,
-                        hint: "email".tr,
-                        validator: (String? v) {
-                          if (v == null || v.isEmpty) return "";
-                          return null;
-                        },
-                        suffixIcon: Padding(
-                            padding: EdgeInsets.symmetric(horizontal: 10.w),
-                            child: const SizedBox()),
-                      ),
-                      SizedBox(
-                        height: 16.h,
-                      ),
-                      CustomTextFieldWidget(
-                        prefixIcon: const Icon(Icons.lock),
-                        width: 327.w,
-                        borderColor: Colors.grey.shade400,
-                        controller: con.passwordController,
-                        obscure: con.showPassword,
-                        suffixIcon: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 10.w),
-                          child: InkWell(
-                            onTap: () => setState(() {
-                              con.showPassword = !con.showPassword;
-                            }),
-                            child: Icon(
-                              Icons.remove_red_eye,
-                              color: !con.showPassword
-                                  ? ThemeClass.primaryColor
-                                  : Colors.grey,
-                              size: 20.w,
-                            ),
-                          ),
-                        ),
-                        hint: "password".tr,
-                        validator: (String? v) {
-                          if (v == null || v.isEmpty) return "";
-                          return null;
-                        },
-                      ),
-                      SizedBox(
-                        height: 15.h,
-                      ),
+                child: Column(
+                  children: [
+                    SizedBox(
+                      height: 52.h,
+                    ),
 
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+
+                    SizedBox(
+                      height: 25.h,
+                    ),
+                    Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
+                          const AppBarWidget(),
                           SizedBox(
-                            width: 30.w,
-                            height: 30.w,
-                            child: Checkbox(
-                                activeColor: ThemeClass.primaryColor,
-                                value: con.acceptTerms,
-                                onChanged: (v) => setState(() {
-                                  con.acceptTerms = v ?? false;
-                                })),
+                            height: 40.h,
                           ),
-                        ],
-                      ),
-                      const Spacer(
-                        flex: 3,
-                      ),
-                      Align(
-                          alignment: Alignment.center,
-                          child: CustomButton(
-                            ontap: () async {
-                              if (_formKey.currentState?.validate() ??
-                                  false) {
-                                  await con.logIn(context);
-
-                              } else {
-                                setState(() {
-                                  con.autoValidate = true;
-                                });
-                              }
+                         Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Sign In",
+                                    style: TextStyle(
+                                        fontSize: 24.sp,
+                                        fontWeight: FontWeight.w700,
+                                        color: ThemeClass.textColor),
+                                  ),
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                  Text(
+                                    "Sign In now to enjoy our privalges, and get the best of our app.",
+                                    style: TextStyle(
+                                        fontSize: 14.sp,
+                                        color: ThemeClass.hintColor,
+                                        fontWeight: FontWeight.w500),
+                                  )
+                                ],
+                              ),
+                          SizedBox(
+                            height: 55.h,
+                          ),
+                          CustomTextFieldWidget(
+                            prefixIcon: Container(
+                              width: 60.w,
+                              height: 60.h,
+                              padding: EdgeInsets.symmetric(horizontal: 5.w),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 5.w,
+                                  ),
+                                  Icon(
+                                    Icons.phone,
+                                    size: 24.w,
+                                    color: ThemeClass.primaryColor,
+                                  ),
+                                  SizedBox(
+                                    width: 5.w,
+                                  ),
+                                  const VerticalDivider(
+                                    width: 5,
+                                    thickness: 1,
+                                    indent: 10,
+                                    endIndent: 10,
+                                  )
+                                ],
+                              ),
+                            ),
+                            isDense: true,
+                            textInputType:TextInputType.number ,
+                            borderColor: Colors.grey.shade400,
+                            controller: con.phoneController,
+                            hint: "Please Enter PhoneNumber".tr,
+                            validator: (String? v) {
+                              if (v == null || v.isEmpty) return "";
+                              return null;
                             },
-                            height: 56.h,
-                            width: 327.2,
-                            name: "logIn".tr,
-                          )),
-                      const Spacer(
-                        flex: 4,
-                      ),
-                    ],
-                  ),
+                          ),
+                          SizedBox(
+                            height: 12.h,
+                          ),
+                          CustomTextFieldWidget(
+                            prefixIcon: Container(
+                              width: 60.w,
+                              height: 40.h,
+                              padding: EdgeInsets.symmetric(horizontal: 5.w),
+                              child: Row(
+                                children: [
+                                  SizedBox(
+                                    width: 5.w,
+                                  ),
+                                  Icon(
+                                    Icons.lock_outline,
+                                    size: 24.w,
+                                    color: ThemeClass.primaryColor,
+                                  ),
+                                  SizedBox(
+                                    width: 5.w,
+                                  ),
+                                  const VerticalDivider(
+                                    width: 5,
+                                    thickness: 1,
+                                    indent: 10,
+                                    endIndent: 10,
+                                  )
+                                ],
+                              ),
+                            ),
+                            isDense: true,
+                            borderColor: Colors.grey.shade400,
+                            controller: con.passwordController,
+                            obscure: con.showPassword,
+                            suffixIcon: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 10.w),
+                              child: InkWell(
+                                onTap: () => setState(() {
+                                  con.showPassword = !con.showPassword;
+                                }),
+                                child: Icon(
+                                  con.showPassword
+                                      ? Icons.visibility_off
+                                      : Icons.remove_red_eye,
+                                  color: Colors.black54,
+                                  size: 20.w,
+                                ),
+                              ),
+                            ),
+                            hint: "Please Enter Password".tr,
+                            validator: (String? v) {
+                              if (v == null || v.isEmpty) return "";
+                              return null;
+                            },
+                          ),
+                        ]),
+                    SizedBox(
+                      height: 18.h,
+                    ),
+                    // Align(
+                    //   alignment: Alignment.centerLeft,
+                    //   child: InkWell(
+                    //     // onTap: () => Navigator.of(context)
+                    //     //     .pushNamed(ForgotPasswordScreen.routeName),
+                    //     child: Padding(
+                    //       padding: const EdgeInsets.only(left: 25.0),
+                    //       child: Text(
+                    //         "forgot_password".tr,
+                    //         style: TextStyle(
+                    //             color: ThemeClass.primaryColor,
+                    //             fontSize: 12.sp,
+                    //             height: 1.0),
+                    //       ),
+                    //     ),
+                    //   ),
+                    // ),
+                    SizedBox(
+                      height: 40.h,
+                    ),
+
+                    CustomButton(
+                      width: 250.w,
+                      height: 50.h,
+                      name: "signin".tr,
+                      ontap: () async {
+                        if (_formKey.currentState?.validate() ?? false) {
+                          await con.logIn(context);
+                        } else {
+                          setState(() {
+                            con.autoValidate = true;
+                          });
+                        }
+                      },
+                    ),
+
+                    SizedBox(
+                      height: 40.h,
+                    ),
+
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Align(
+                            alignment: Alignment.center,
+                            child: Text(
+                              "Don’t have an account?".tr,
+                              style: TextStyle(
+                                color: const Color(0xff97ADB6),
+                                fontSize: 15.sp,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            )),
+                        SizedBox(
+                          width: 10.w,
+                        ),
+                        InkWell(
+                          onTap: () => Navigator.of(context)
+                              .pushNamed(UserType.routeName),
+                          child: Align(
+                              alignment: Alignment.center,
+                              child: Text(
+                                "signUp".tr,
+                                style: TextStyle(
+                                  color: ThemeClass.primaryColor,
+                                  fontSize: 15.sp,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              )),
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                  ],
                 ),
               ),
             ),
           ),
         ),
       ),
+      // ),
     );
   }
 }

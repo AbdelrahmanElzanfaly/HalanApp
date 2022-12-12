@@ -61,7 +61,7 @@ class _AppLocalizationsDelegate
 
   @override
   Future<AppLocalizations> load(Locale locale) async {
-    AppLocalizations localizations = new AppLocalizations(locale);
+    AppLocalizations localizations =  AppLocalizations(locale);
     await localizations.load();
 
     instance = localizations; // set the static instance here

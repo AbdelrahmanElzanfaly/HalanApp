@@ -63,7 +63,7 @@ class _IntroductionPagesScreenState extends StateMVC<IntroductionPagesScreen> {
                         titleTextStyle: TextStyle(
                             fontSize: 22.sp,
                             fontWeight: FontWeight.w600,
-                            color: ThemeClass.primaryColor),
+                            color: ThemeClass.textColor),
                         bodyTextStyle: TextStyle(
                             color: ThemeClass.hintColor, fontSize: 12.sp),
                         pageColor: Colors.white,
@@ -107,6 +107,7 @@ class _IntroductionPagesScreenState extends StateMVC<IntroductionPagesScreen> {
             CustomButton(
               width: 250.w,
               height: 50.h,
+
               name: 'Next'.tr,
               ontap: () {
                 if (con.lastScreen ==0) {

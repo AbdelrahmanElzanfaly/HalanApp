@@ -15,7 +15,6 @@ class MainContainerWidget extends StatelessWidget {
     this.image,
     this.width,
     this.backGroundColor,
-    super.key,
   });
 
   final Widget child;

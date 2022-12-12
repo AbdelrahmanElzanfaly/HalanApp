@@ -5,7 +5,6 @@ class FavAndCommentButtonWidget extends StatelessWidget {
   const FavAndCommentButtonWidget({
     required this.iconName,
     required this.number,
-    super.key,
   });
 
   final IconData iconName;

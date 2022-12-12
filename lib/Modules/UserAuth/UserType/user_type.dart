@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:halan/Theme/theme.dart';
 import 'package:halan/Utilities/helper.dart';
+import 'package:awesome_dialog/awesome_dialog.dart';
 
 import '../../../Widgets/custom_button.dart';
 import '../../../modules/UserAuth/Register/register_screen.dart';
@@ -27,7 +28,10 @@ class _UserTypeState extends State<UserType> {
           SizedBox(
             height: 130.h,
           ),
-          UserTypeWidget(
+      FadeIn(
+        delay: 1,
+        from: SlideFrom.LEFT,
+        child:           UserTypeWidget(
               onTap: () {
                 setState(() {
                   index = 0;
@@ -35,11 +39,14 @@ class _UserTypeState extends State<UserType> {
               },
               isSelected: index == 0,
               image: 'assets/images/Group 26649.png',
-              title: 'Client'.tr),
+              title: 'Client'.tr),),
           SizedBox(
             height: 16.h,
           ),
-          UserTypeWidget(
+      FadeIn(
+        delay: 1,
+        from: SlideFrom.RIGHT,
+        child:      UserTypeWidget(
               onTap: () {
                 setState(() {
                   index = 1;
@@ -47,7 +54,7 @@ class _UserTypeState extends State<UserType> {
               },
               isSelected: index == 1,
               image: 'assets/images/Group 513795.png',
-              title: 'Service_Provider'.tr),
+              title: 'Service_Provider'.tr),),
           const Spacer(),
           CustomButton(
             width: 250.w,

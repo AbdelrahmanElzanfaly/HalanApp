@@ -14,7 +14,6 @@ class AppBarWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final appLan = Provider.of<AppLanguage>(context);
 
     return Container(
         height: height ?? 52.h,

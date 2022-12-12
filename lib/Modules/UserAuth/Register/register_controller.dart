@@ -1,6 +1,9 @@
 import 'dart:developer';
 import 'package:flutter/cupertino.dart';
+import 'package:halan/API/api.dart';
+import 'package:halan/Utilities/helper.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
+import '../../../API/auth_api.dart';
 import '../../../Utilities/toast_helper.dart';
 
 class RegistrationController extends ControllerMVC {
@@ -15,16 +18,18 @@ class RegistrationController extends ControllerMVC {
 
    bool loading = false, autoValidate = false, showPassword = false;
 
-  final GlobalKey<FormState> formKey = GlobalKey();
+  // final GlobalKey<FormState> formKey = GlobalKey();
 
 
-  late TextEditingController nameController,
+  late TextEditingController passwordController,
+      confirmPasswordController,
       emailController,
       phoneController;
 
   @override
   void initState() {
-    nameController = TextEditingController();
+    passwordController = TextEditingController();
+    confirmPasswordController = TextEditingController();
     emailController = TextEditingController();
     phoneController = TextEditingController();
     super.initState();
@@ -32,67 +37,64 @@ class RegistrationController extends ControllerMVC {
 
   @override
   void dispose() {
-    nameController.dispose();
+    passwordController.dispose();
+    confirmPasswordController.dispose();
     emailController.dispose();
     phoneController.dispose();
     super.dispose();
   }
 
-  // Future  register() async {
-  //   setState(() {
-  //     loading = true;
-  //   });
-  //   bool result = await UserApi.registration(
-  //     userName: nameController.text,
-  //     email: emailController.text,
-  //     password: phoneController.text,
-  //   );
-  //   setState(() {
-  //     loading = false;
-  //   });
-  //   if(result) {
-  //
-  //   }
-  // }
-  //
-  // onConfirm(String code) async {
-  //   setState(() {
-  //     loading = true;
-  //   }); //
-  //   bool result = await UserApi.otp(
-  //     email: emailController.text,
-  //     code: code,
-  //   );
-  //   setState(() {
-  //     loading = false;
-  //   });
-  //   if (result) {
-  //     log(result.toString());
-  //     // Navigator.pushNamed(context,HomeScreen.routeName);
-  //   }
-  // }
-  //
-  //
-  //  Future registration({
-  //   required String userName,
-  //   required String email,
-  //   required String password,
-  // }) async {
-  //   var response = await API.postRequest(
-  //     url: API.register,
-  //     body: {
-  //       'email': email,
-  //       'name': userName,
-  //       'password': password,
-  //     },
-  //   );
-  //   if (response == null) return false;
-  //   debugPrint(response.toString());
-  //   if (response["status"] == "success") {
-  //     ToastHelper.showSuccess(message: "otp_sent".tr);
-  //   } else {
-  //     ToastHelper.showError(message: response["message"]);
-  //   }
-  // }
+  Future  register() async {
+    setState(() {
+      loading = true;
+    });
+    bool result = await AuthApi.register(
+      email: emailController.text,
+      password: phoneController.text, name: '', phone: '',
+    );
+    setState(() {
+      loading = false;
+    });
+    if(result) {
+
+    }
+  }
+
+  onConfirm(String code) async {
+    setState(() {
+      loading = true;
+    }); //
+    bool result = await AuthApi.otpVerifying(
+      email: emailController.text,
+       name: '', phone: '', password: '', otpNumber: '',
+    );
+    setState(() {
+      loading = false;
+    });
+    if (result) {
+      log(result.toString());
+      // Navigator.pushNamed(context,HomeScreen.routeName);
+    }
+  }
+
+
+   Future registration() async {
+    var response = await API.postRequest(
+      url: API.register,
+      body: {
+        'email': emailController.text??'',
+        'phoneNumber': phoneController.text??'',
+        'password': passwordController.text??'',
+        'confirm_password': confirmPasswordController.text??'',
+      },
+    );
+    if (response == null) return false;
+    debugPrint(response.toString());
+    if (response["status"] == "success") {
+      ToastHelper.showSuccess(message: "otp_sent".tr);
+    } else {
+      ToastHelper.showError(message: response["message"]);
+    }
+  }
 
 }

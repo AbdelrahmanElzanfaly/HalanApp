@@ -68,7 +68,7 @@ class CustomTextFieldWidget extends StatelessWidget {
         obscureText: obscure ?? false,
         controller: controller,
         decoration: InputDecoration(
-          errorStyle: const TextStyle(height: 100),
+          errorStyle: const TextStyle(height: 0),
           enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(borderRadiusValue ?? 5.w),
               borderSide:
@@ -108,7 +108,7 @@ class CustomTextFieldWidget extends StatelessWidget {
                 ),
           hintStyle: hintStyle ??
               TextStyle(
-                  fontSize: 20.sp,
+                  fontSize: 14.sp,
                   color: const Color(0xFFA5A5A5),
                   fontWeight: FontWeight.w400),
         ),

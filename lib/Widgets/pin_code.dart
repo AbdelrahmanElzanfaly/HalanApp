@@ -42,7 +42,7 @@ class PinCodeWidget extends StatelessWidget {
             selectedFillColor: Colors.transparent,
             borderRadius: BorderRadius.circular(8.w),
           ),
-          hintCharacter: " ",
+          hintCharacter: "_",
           animationDuration: const Duration(milliseconds: 300),
           backgroundColor: Colors.transparent,
           enableActiveFill: true,

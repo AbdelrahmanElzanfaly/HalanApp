@@ -15,6 +15,7 @@ import './locale/locales.dart';
 import 'Control/app_languages.dart';
 import 'Control/shared_data_provider.dart';
 import 'Modules/Splash/splash_screen.dart';
+import 'Modules/UserAuth/OTP/otp_screen.dart';
 import 'Modules/UserAuth/UserType/user_type.dart';
 import 'Theme/theme.dart';
 import 'Utilities/firebase_operation.dart';
@@ -70,7 +71,7 @@ class EntryPoint extends StatelessWidget {
         navigatorKey: SharedObj.navigatorKey,
         debugShowCheckedModeBanner: false,
         title: 'Mwardi',
-        initialRoute: SplashScreen.routeName,
+        initialRoute: OtpScreen.routeName,
         locale: appLan.appLocal,
         supportedLocales: const [
           Locale('en', 'US'),

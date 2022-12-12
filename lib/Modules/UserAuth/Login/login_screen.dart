@@ -4,7 +4,7 @@ import 'package:halan/Modules/UserAuth/UserType/user_type.dart';
 import 'package:halan/Utilities/helper.dart';
 import 'package:halan/Widgets/app_bar_widget.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
-
+import 'package:awesome_dialog/awesome_dialog.dart';
 import '../../../Theme/theme.dart';
 import '../../../Utilities/Layout/loading_screen.dart';
 import '../../../Widgets/custom_button.dart';
@@ -33,8 +33,10 @@ class _LoginScreenState extends StateMVC<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-      onWillPop: () async => false,
-      child: LoadingScreen(
+        onWillPop: () async => false,
+    child: GestureDetector(
+    onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+    child:  LoadingScreen(
         loading: con.loading,
         // child:
         // UpgradeAlert(
@@ -59,136 +61,151 @@ class _LoginScreenState extends StateMVC<LoginScreen> {
                 child: Column(
                   children: [
                     SizedBox(
-                      height: 52.h,
+                      height: 70.h,
                     ),
 
 
-                    SizedBox(
-                      height: 25.h,
-                    ),
                     Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const AppBarWidget(),
+                          const FadeIn(
+                            delay: 1,
+                            from: SlideFrom.LEFT,
+                            child: AppBarWidget(),
+                          ),
                           SizedBox(
                             height: 40.h,
                           ),
-                         Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Sign In",
-                                    style: TextStyle(
-                                        fontSize: 24.sp,
-                                        fontWeight: FontWeight.w700,
-                                        color: ThemeClass.textColor),
-                                  ),
-                                  SizedBox(
-                                    height: 10.h,
-                                  ),
-                                  Text(
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              FadeIn(
+                                delay: 1,
+                                from: SlideFrom.LEFT,
+                                child: Text(
+                                  "Sign In",
+                                  style: TextStyle(
+                                      fontSize: 24.sp,
+                                      fontWeight: FontWeight.w700,
+                                      color: ThemeClass.textColor),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              FadeIn(
+                                  delay: 1,
+                                  from: SlideFrom.LEFT,
+                                  child: Text(
                                     "Sign In now to enjoy our privalges, and get the best of our app.",
                                     style: TextStyle(
                                         fontSize: 14.sp,
                                         color: ThemeClass.hintColor,
                                         fontWeight: FontWeight.w500),
-                                  )
-                                ],
-                              ),
+                                  )),
+                            ],
+                          ),
                           SizedBox(
                             height: 55.h,
                           ),
-                          CustomTextFieldWidget(
-                            prefixIcon: Container(
-                              width: 60.w,
-                              height: 60.h,
-                              padding: EdgeInsets.symmetric(horizontal: 5.w),
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: 5.w,
-                                  ),
-                                  Icon(
-                                    Icons.phone,
-                                    size: 24.w,
-                                    color: ThemeClass.primaryColor,
-                                  ),
-                                  SizedBox(
-                                    width: 5.w,
-                                  ),
-                                  const VerticalDivider(
-                                    width: 5,
-                                    thickness: 1,
-                                    indent: 10,
-                                    endIndent: 10,
-                                  )
-                                ],
+                          FadeIn(
+                            delay: 1,
+                            from: SlideFrom.RIGHT,
+                            child: CustomTextFieldWidget(
+                              prefixIcon: Container(
+                                width: 60.w,
+                                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 5.w,
+                                    ),
+                                    Icon(
+                                      Icons.phone,
+                                      size: 24.w,
+                                      color: ThemeClass.primaryColor,
+                                    ),
+                                    SizedBox(
+                                      width: 5.w,
+                                    ),
+                                    const VerticalDivider(
+                                      width: 5,
+                                      thickness: 1,
+                                      indent: 10,
+                                      endIndent: 10,
+                                    )
+                                  ],
+                                ),
                               ),
+                              isDense: true,
+                              textInputType: TextInputType.number,
+                              borderColor: Colors.grey.shade400,
+                              controller: con.phoneController,
+                              hint: "Please Enter PhoneNumber".tr,
+                              validator: (String? v) {
+                                if (v == null || v.isEmpty) return "";
+                                return null;
+                              },
                             ),
-                            isDense: true,
-                            textInputType:TextInputType.number ,
-                            borderColor: Colors.grey.shade400,
-                            controller: con.phoneController,
-                            hint: "Please Enter PhoneNumber".tr,
-                            validator: (String? v) {
-                              if (v == null || v.isEmpty) return "";
-                              return null;
-                            },
                           ),
                           SizedBox(
                             height: 12.h,
                           ),
-                          CustomTextFieldWidget(
-                            prefixIcon: Container(
-                              width: 60.w,
-                              height: 40.h,
-                              padding: EdgeInsets.symmetric(horizontal: 5.w),
-                              child: Row(
-                                children: [
-                                  SizedBox(
-                                    width: 5.w,
-                                  ),
-                                  Icon(
-                                    Icons.lock_outline,
-                                    size: 24.w,
-                                    color: ThemeClass.primaryColor,
-                                  ),
-                                  SizedBox(
-                                    width: 5.w,
-                                  ),
-                                  const VerticalDivider(
-                                    width: 5,
-                                    thickness: 1,
-                                    indent: 10,
-                                    endIndent: 10,
-                                  )
-                                ],
-                              ),
-                            ),
-                            isDense: true,
-                            borderColor: Colors.grey.shade400,
-                            controller: con.passwordController,
-                            obscure: con.showPassword,
-                            suffixIcon: Padding(
-                              padding: EdgeInsets.symmetric(horizontal: 10.w),
-                              child: InkWell(
-                                onTap: () => setState(() {
-                                  con.showPassword = !con.showPassword;
-                                }),
-                                child: Icon(
-                                  con.showPassword
-                                      ? Icons.visibility_off
-                                      : Icons.remove_red_eye,
-                                  color: Colors.black54,
-                                  size: 20.w,
+                          FadeIn(
+                            delay: 1,
+                            from: SlideFrom.LEFT,
+                            child: CustomTextFieldWidget(
+                              prefixIcon: Container(
+                                width: 60.w,
+                                height: 40.h,
+                                padding: EdgeInsets.symmetric(horizontal: 5.w),
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      width: 5.w,
+                                    ),
+                                    Icon(
+                                      Icons.lock_outline,
+                                      size: 24.w,
+                                      color: ThemeClass.primaryColor,
+                                    ),
+                                    SizedBox(
+                                      width: 5.w,
+                                    ),
+                                    const VerticalDivider(
+                                      width: 5,
+                                      thickness: 1,
+                                      indent: 10,
+                                      endIndent: 10,
+                                    )
+                                  ],
                                 ),
                               ),
+                              isDense: true,
+                              borderColor: Colors.grey.shade400,
+                              controller: con.passwordController,
+                              obscure: con.showPassword,
+                              suffixIcon: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 10.w),
+                                child: InkWell(
+                                  onTap: () => setState(() {
+                                    con.showPassword = !con.showPassword;
+                                  }),
+                                  child: Icon(
+                                    con.showPassword
+                                        ? Icons.visibility_off
+                                        : Icons.remove_red_eye,
+                                    color: Colors.black54,
+                                    size: 20.w,
+                                  ),
+                                ),
+                              ),
+                              hint: "Please Enter Password".tr,
+                              validator: (String? v) {
+                                if (v == null || v.isEmpty) return "";
+                                return null;
+                              },
                             ),
-                            hint: "Please Enter Password".tr,
-                            validator: (String? v) {
-                              if (v == null || v.isEmpty) return "";
-                              return null;
-                            },
                           ),
                         ]),
                     SizedBox(
@@ -234,37 +251,41 @@ class _LoginScreenState extends StateMVC<LoginScreen> {
                       height: 40.h,
                     ),
 
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                              "Don’t have an account?".tr,
-                              style: TextStyle(
-                                color: const Color(0xff97ADB6),
-                                fontSize: 15.sp,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            )),
-                        SizedBox(
-                          width: 10.w,
-                        ),
-                        InkWell(
-                          onTap: () => Navigator.of(context)
-                              .pushNamed(UserType.routeName),
-                          child: Align(
+                    FadeIn(
+                      delay: 1,
+                      from: SlideFrom.BOTTOM,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Align(
                               alignment: Alignment.center,
                               child: Text(
-                                "signUp".tr,
+                                "Don’t have an account?".tr,
                                 style: TextStyle(
-                                  color: ThemeClass.primaryColor,
+                                  color: const Color(0xff97ADB6),
                                   fontSize: 15.sp,
                                   fontWeight: FontWeight.w500,
                                 ),
                               )),
-                        ),
-                      ],
+                          SizedBox(
+                            width: 10.w,
+                          ),
+                          InkWell(
+                            onTap: () => Navigator.of(context)
+                                .pushNamed(UserType.routeName),
+                            child: Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  "signUp".tr,
+                                  style: TextStyle(
+                                    color: ThemeClass.primaryColor,
+                                    fontSize: 15.sp,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                )),
+                          ),
+                        ],
+                      ),
                     ),
                     const Spacer(),
                   ],
@@ -273,7 +294,7 @@ class _LoginScreenState extends StateMVC<LoginScreen> {
             ),
           ),
         ),
-      ),
+      ),),
       // ),
     );
   }

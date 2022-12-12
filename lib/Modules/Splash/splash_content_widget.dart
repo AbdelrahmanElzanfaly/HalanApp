@@ -6,7 +6,6 @@ class SplashContentWidget extends StatelessWidget {
     required this.title,
     required this.icon,
     this.first = false,
-    super.key,
   });
 
   final String title, icon;

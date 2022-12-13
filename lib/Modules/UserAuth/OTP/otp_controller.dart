@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
@@ -21,7 +22,7 @@ class OtpController extends ControllerMVC {
       showConfirmPassword = true,
       activeResend = false,
       showPassword = true;
-  String? email;
+  String? phoneNumber;
 
   Function(String)? onConfirm;
 
@@ -74,10 +75,15 @@ class OtpController extends ControllerMVC {
   }
 
   Future onConfirmPin() async {
+
     setState(() {
       loading = true;
     });
+    await Future.delayed(const Duration(seconds: 2));
+
     if (onConfirm != null) {
+      log('sddswwwwwdssdww');
+
       await onConfirm!(codeController.text);
     }
     setState(() {

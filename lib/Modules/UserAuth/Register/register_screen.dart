@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:halan/Modules/UserAuth/Login/login_screen.dart';
 import 'package:halan/Modules/UserAuth/Register/register_controller.dart';
+import 'package:halan/Utilities/Layout/loading_screen.dart';
 import 'package:halan/Utilities/helper.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import '../../../Theme/theme.dart';
@@ -34,354 +35,362 @@ class _RegisterScreenState extends StateMVC<RegisterScreen> {
   final GlobalKey<FormState> _formKey = GlobalKey();
 
   @override
+  void initState() {
+    con.type = widget.type;
+    super.initState();
+  }
+  @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async => false,
-      child: GestureDetector(
-        onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
-        child: Scaffold(
-          body: SafeArea(
-            child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 25.w),
-              alignment: Alignment.topCenter,
-              child: SingleChildScrollView(
-                child: Form(
-                  key: _formKey,
-                  autovalidateMode: con.autoValidate
-                      ? AutovalidateMode.always
-                      : AutovalidateMode.disabled,
-                  child:Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              height: 50.h,
-                            ),
-
-                            const FadeIn(
-                              delay: 1,
-                              from: SlideFrom.LEFT,
-                              child: AppBarWidget(),
-                            ),
-                            SizedBox(
-                              height: 20.h,
-                            ),
-                            FadeIn(
-                              delay: 1,
-                              from: SlideFrom.LEFT,
-                              child: Text(
-                                "signUp".tr,
-                                style: TextStyle(
-                                    fontSize: 24.sp,
-                                    fontWeight: FontWeight.w700,
-                                    color: ThemeClass.textColor),
+    return LoadingScreen(
+      loading: con.loading,
+      child: WillPopScope(
+        onWillPop: () async => false,
+        child: GestureDetector(
+          onTap: () => FocusManager.instance.primaryFocus?.unfocus(),
+          child: Scaffold(
+            body: SafeArea(
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 25.w),
+                alignment: Alignment.topCenter,
+                child: SingleChildScrollView(
+                  child: Form(
+                    key: _formKey,
+                    autovalidateMode: con.autoValidate
+                        ? AutovalidateMode.always
+                        : AutovalidateMode.disabled,
+                    child:Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                height: 50.h,
                               ),
-                            ),
-                            SizedBox(
-                              height: 10.h,
-                            ),
-                            FadeIn(
+
+                              const FadeIn(
+                                delay: 1,
+                                from: SlideFrom.LEFT,
+                                child: AppBarWidget(),
+                              ),
+                              SizedBox(
+                                height: 20.h,
+                              ),
+                              FadeIn(
                                 delay: 1,
                                 from: SlideFrom.LEFT,
                                 child: Text(
-                                  'Sign Up now to enjoy our privileges, and get the best of our app'
-                                      .tr,
+                                  "signUp".tr,
                                   style: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: ThemeClass.hintColor,
-                                      fontWeight: FontWeight.w500),
-                                )),
-                            SizedBox(
-                              height: 55.h,
-                            ),
-                            FadeIn(
-                              delay: 1,
-                              from: SlideFrom.LEFT,
-                              child: CustomTextFieldWidget(
-                                prefixIcon: Container(
-                                  width: 60.w,
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 5.w),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 5.w,
-                                      ),
-                                      Icon(
-                                        Icons.email_outlined,
-                                        size: 24.w,
-                                        color: ThemeClass.primaryColor,
-                                      ),
-                                      SizedBox(
-                                        width: 5.w,
-                                      ),
-                                      const VerticalDivider(
-                                        width: 5,
-                                        thickness: 1,
-                                        indent: 10,
-                                        endIndent: 10,
-                                      )
-                                    ],
-                                  ),
+                                      fontSize: 24.sp,
+                                      fontWeight: FontWeight.w700,
+                                      color: ThemeClass.textColor),
                                 ),
-                                isDense: true,
-                                textInputType: TextInputType.emailAddress,
-                                borderColor: Colors.grey.shade400,
-                                controller: con.emailController,
-                                hint: "Please Enter Email".tr,
-                                validator: (String? v) {
-                                  if (v == null || v.isEmpty) return "";
-                                  return null;
-                                },
                               ),
-                            ),
-                            SizedBox(
-                              height: 12.h,
-                            ),
-                            FadeIn(
-                              delay: 1,
-                              from: SlideFrom.LEFT,
-                              child: CustomTextFieldWidget(
-                                prefixIcon: Container(
-                                  width: 60.w,
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 5.w),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 5.w,
-                                      ),
-                                      Icon(
-                                        Icons.phone,
-                                        size: 24.w,
-                                        color: ThemeClass.primaryColor,
-                                      ),
-                                      SizedBox(
-                                        width: 5.w,
-                                      ),
-                                      const VerticalDivider(
-                                        width: 5,
-                                        thickness: 1,
-                                        indent: 10,
-                                        endIndent: 10,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                isDense: true,
-                                textInputType: TextInputType.number,
-                                borderColor: Colors.grey.shade400,
-                                controller: con.phoneController,
-                                hint: "Please Enter PhoneNumber".tr,
-                                validator: (String? v) {
-                                  if (v == null || v.isEmpty) return "";
-                                  return null;
-                                },
+                              SizedBox(
+                                height: 10.h,
                               ),
-                            ),
-                            SizedBox(
-                              height: 12.h,
-                            ),
-                            FadeIn(
-                              delay: 1,
-                              from: SlideFrom.LEFT,
-                              child: CustomTextFieldWidget(
-                                prefixIcon: Container(
-                                  width: 60.w,
-                                  height: 40.h,
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 5.w),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 5.w,
-                                      ),
-                                      Icon(
-                                        Icons.lock_outline,
-                                        size: 24.w,
-                                        color: ThemeClass.primaryColor,
-                                      ),
-                                      SizedBox(
-                                        width: 5.w,
-                                      ),
-                                      const VerticalDivider(
-                                        width: 5,
-                                        thickness: 1,
-                                        indent: 10,
-                                        endIndent: 10,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                isDense: true,
-                                borderColor: Colors.grey.shade400,
-                                controller: con.passwordController,
-                                obscure: con.showPassword,
-                                suffixIcon: Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 10.w),
-                                  child: InkWell(
-                                    onTap: () => setState(() {
-                                      con.showPassword = !con.showPassword;
-                                    }),
-                                    child: Icon(
-                                      con.showPassword
-                                          ? Icons.visibility_off
-                                          : Icons.remove_red_eye,
-                                      color: Colors.black54,
-                                      size: 20.w,
-                                    ),
-                                  ),
-                                ),
-                                hint: "Please Enter Password".tr,
-                                validator: (String? v) {
-                                  if (v == null || v.isEmpty) return "";
-                                  return null;
-                                },
+                              FadeIn(
+                                  delay: 1,
+                                  from: SlideFrom.LEFT,
+                                  child: Text(
+                                    'Sign Up now to enjoy our privileges, and get the best of our app'
+                                        .tr,
+                                    style: TextStyle(
+                                        fontSize: 14.sp,
+                                        color: ThemeClass.hintColor,
+                                        fontWeight: FontWeight.w500),
+                                  )),
+                              SizedBox(
+                                height: 55.h,
                               ),
-                            ),
-                            SizedBox(
-                              height: 12.h,
-                            ),
-                            FadeIn(
-                              delay: 1,
-                              from: SlideFrom.LEFT,
-                              child: CustomTextFieldWidget(
-                                prefixIcon: Container(
-                                  width: 60.w,
-                                  height: 40.h,
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 5.w),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                        width: 5.w,
-                                      ),
-                                      Icon(
-                                        Icons.lock_outline,
-                                        size: 24.w,
-                                        color: ThemeClass.primaryColor,
-                                      ),
-                                      SizedBox(
-                                        width: 5.w,
-                                      ),
-                                      const VerticalDivider(
-                                        width: 5,
-                                        thickness: 1,
-                                        indent: 10,
-                                        endIndent: 10,
-                                      )
-                                    ],
-                                  ),
-                                ),
-                                isDense: true,
-                                borderColor: Colors.grey.shade400,
-                                controller: con.confirmPasswordController,
-                                obscure: con.showPassword,
-                                suffixIcon: Padding(
-                                  padding:
-                                      EdgeInsets.symmetric(horizontal: 10.w),
-                                  child: InkWell(
-                                    onTap: () => setState(() {
-                                      con.showPassword = !con.showPassword;
-                                    }),
-                                    child: Icon(
-                                      con.showPassword
-                                          ? Icons.visibility_off
-                                          : Icons.remove_red_eye,
-                                      color: Colors.black54,
-                                      size: 20.w,
-                                    ),
-                                  ),
-                                ),
-                                hint: "Please Enter Confirm Password".tr,
-                                validator: (String? v) {
-                                  if (v == null || v.isEmpty) return "";
-                                  return null;
-                                },
-                              ),
-                            ),
-                            SizedBox(
-                              height: 40.h,
-                            ),
-
-                            CustomButton(
-                              width: 250.w,
-                              height: 50.h,
-                              name: "signUp".tr,
-                              ontap: () async {
-                                if (_formKey.currentState?.validate() ?? false) {
-                                  await con.registration();
-                                } else {
-                                  setState(() {
-                                    con.autoValidate = true;
-                                  });
-                                }
-                              },
-                            ),
-
-                            SizedBox(
-                              height: 40.h,
-                            ),
-
-                            FadeIn(
-                              delay: 1,
-                              from: SlideFrom.BOTTOM,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Align(
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        "Have An Account".tr,
-                                        style: TextStyle(
-                                          color: const Color(0xff97ADB6),
-                                          fontSize: 15.sp,
-                                          fontWeight: FontWeight.w500,
+                              FadeIn(
+                                delay: 1,
+                                from: SlideFrom.LEFT,
+                                child: CustomTextFieldWidget(
+                                  prefixIcon: Container(
+                                    width: 60.w,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 5.w),
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 5.w,
                                         ),
-                                      )),
-                                  SizedBox(
-                                    width: 10.w,
+                                        Icon(
+                                          Icons.email_outlined,
+                                          size: 24.w,
+                                          color: ThemeClass.primaryColor,
+                                        ),
+                                        SizedBox(
+                                          width: 5.w,
+                                        ),
+                                        const VerticalDivider(
+                                          width: 5,
+                                          thickness: 1,
+                                          indent: 10,
+                                          endIndent: 10,
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                  InkWell(
-                                    onTap: () => Navigator.of(context)
-                                        .pushNamed(LoginScreen.routeName),
-                                    child: Align(
+                                  isDense: true,
+                                  textInputType: TextInputType.emailAddress,
+                                  borderColor: Colors.grey.shade400,
+                                  controller: con.emailController,
+                                  hint: "Please Enter Email".tr,
+                                  validator: (String? v) {
+                                    if (v == null || v.isEmpty) return "";
+                                    return null;
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height: 12.h,
+                              ),
+                              FadeIn(
+                                delay: 1,
+                                from: SlideFrom.LEFT,
+                                child: CustomTextFieldWidget(
+                                  prefixIcon: Container(
+                                    width: 60.w,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 5.w),
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 5.w,
+                                        ),
+                                        Icon(
+                                          Icons.phone,
+                                          size: 24.w,
+                                          color: ThemeClass.primaryColor,
+                                        ),
+                                        SizedBox(
+                                          width: 5.w,
+                                        ),
+                                        const VerticalDivider(
+                                          width: 5,
+                                          thickness: 1,
+                                          indent: 10,
+                                          endIndent: 10,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  isDense: true,
+                                  textInputType: TextInputType.number,
+                                  borderColor: Colors.grey.shade400,
+                                  controller: con.phoneController,
+                                  hint: "Please Enter PhoneNumber".tr,
+                                  validator: (String? v) {
+                                    if (v == null || v.isEmpty) return "";
+                                    return null;
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height: 12.h,
+                              ),
+                              FadeIn(
+                                delay: 1,
+                                from: SlideFrom.LEFT,
+                                child: CustomTextFieldWidget(
+                                  prefixIcon: Container(
+                                    width: 60.w,
+                                    height: 40.h,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 5.w),
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 5.w,
+                                        ),
+                                        Icon(
+                                          Icons.lock_outline,
+                                          size: 24.w,
+                                          color: ThemeClass.primaryColor,
+                                        ),
+                                        SizedBox(
+                                          width: 5.w,
+                                        ),
+                                        const VerticalDivider(
+                                          width: 5,
+                                          thickness: 1,
+                                          indent: 10,
+                                          endIndent: 10,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  isDense: true,
+                                  borderColor: Colors.grey.shade400,
+                                  controller: con.passwordController,
+                                  obscure: con.showPassword,
+                                  suffixIcon: Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 10.w),
+                                    child: InkWell(
+                                      onTap: () => setState(() {
+                                        con.showPassword = !con.showPassword;
+                                      }),
+                                      child: Icon(
+                                        con.showPassword
+                                            ? Icons.visibility_off
+                                            : Icons.remove_red_eye,
+                                        color: Colors.black54,
+                                        size: 20.w,
+                                      ),
+                                    ),
+                                  ),
+                                  hint: "Please Enter Password".tr,
+                                  validator: (String? v) {
+                                    if (v == null || v.isEmpty) return "";
+                                    return null;
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height: 12.h,
+                              ),
+                              FadeIn(
+                                delay: 1,
+                                from: SlideFrom.LEFT,
+                                child: CustomTextFieldWidget(
+                                  prefixIcon: Container(
+                                    width: 60.w,
+                                    height: 40.h,
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 5.w),
+                                    child: Row(
+                                      children: [
+                                        SizedBox(
+                                          width: 5.w,
+                                        ),
+                                        Icon(
+                                          Icons.lock_outline,
+                                          size: 24.w,
+                                          color: ThemeClass.primaryColor,
+                                        ),
+                                        SizedBox(
+                                          width: 5.w,
+                                        ),
+                                        const VerticalDivider(
+                                          width: 5,
+                                          thickness: 1,
+                                          indent: 10,
+                                          endIndent: 10,
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  isDense: true,
+                                  borderColor: Colors.grey.shade400,
+                                  controller: con.confirmPasswordController,
+                                  obscure: con.showPassword,
+                                  suffixIcon: Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 10.w),
+                                    child: InkWell(
+                                      onTap: () => setState(() {
+                                        con.showPassword = !con.showPassword;
+                                      }),
+                                      child: Icon(
+                                        con.showPassword
+                                            ? Icons.visibility_off
+                                            : Icons.remove_red_eye,
+                                        color: Colors.black54,
+                                        size: 20.w,
+                                      ),
+                                    ),
+                                  ),
+                                  hint: "Please Enter Confirm Password".tr,
+                                  validator: (String? v) {
+                                    if (v == null || v.isEmpty) return "";
+                                    return null;
+                                  },
+                                ),
+                              ),
+                              SizedBox(
+                                height: 40.h,
+                              ),
+
+                              CustomButton(
+                                width: 250.w,
+                                height: 50.h,
+                                name: "signUp".tr,
+                                ontap: () async {
+                                  if (_formKey.currentState?.validate() ?? false) {
+                                    await con.register(context);
+                                  } else {
+                                    setState(() {
+                                      con.autoValidate = true;
+                                    });
+                                  }
+                                },
+                              ),
+
+                              SizedBox(
+                                height: 40.h,
+                              ),
+
+                              FadeIn(
+                                delay: 1,
+                                from: SlideFrom.BOTTOM,
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Align(
                                         alignment: Alignment.center,
                                         child: Text(
-                                          "signin".tr,
+                                          "Have An Account".tr,
                                           style: TextStyle(
-                                            color: ThemeClass.primaryColor,
+                                            color: const Color(0xff97ADB6),
                                             fontSize: 15.sp,
                                             fontWeight: FontWeight.w500,
                                           ),
                                         )),
-                                  ),
-                                ],
+                                    SizedBox(
+                                      width: 10.w,
+                                    ),
+                                    InkWell(
+                                      onTap: () => Navigator.of(context)
+                                          .pushNamed(LoginScreen.routeName),
+                                      child: Align(
+                                          alignment: Alignment.center,
+                                          child: Text(
+                                            "signin".tr,
+                                            style: TextStyle(
+                                              color: ThemeClass.primaryColor,
+                                              fontSize: 15.sp,
+                                              fontWeight: FontWeight.w500,
+                                            ),
+                                          )),
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                            SizedBox(
-                              height: 20.h,
-                            )
-                          ]),
+                              SizedBox(
+                                height: 20.h,
+                              )
+                            ]),
 
-                      // Align(
-                      //   alignment: Alignment.centerLeft,
-                      //   child: InkWell(
-                      //     // onTap: () => Navigator.of(context)
-                      //     //     .pushNamed(ForgotPasswordScreen.routeName),
-                      //     child: Padding(
-                      //       padding: const EdgeInsets.only(left: 25.0),
-                      //       child: Text(
-                      //         "forgot_password".tr,
-                      //         style: TextStyle(
-                      //             color: ThemeClass.primaryColor,
-                      //             fontSize: 12.sp,
-                      //             height: 1.0),
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
+                        // Align(
+                        //   alignment: Alignment.centerLeft,
+                        //   child: InkWell(
+                        //     // onTap: () => Navigator.of(context)
+                        //     //     .pushNamed(ForgotPasswordScreen.routeName),
+                        //     child: Padding(
+                        //       padding: const EdgeInsets.only(left: 25.0),
+                        //       child: Text(
+                        //         "forgot_password".tr,
+                        //         style: TextStyle(
+                        //             color: ThemeClass.primaryColor,
+                        //             fontSize: 12.sp,
+                        //             height: 1.0),
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
 
+                  ),
                 ),
               ),
             ),

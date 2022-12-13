@@ -15,6 +15,8 @@ import './locale/locales.dart';
 import 'Control/app_languages.dart';
 import 'Control/shared_data_provider.dart';
 import 'Modules/Splash/splash_screen.dart';
+import 'Modules/UserAuth/AddressDetails/address_details_screen.dart';
+import 'Modules/UserAuth/CompleteProfile/complete_profile_screen.dart';
 import 'Modules/UserAuth/OTP/otp_screen.dart';
 import 'Modules/UserAuth/UserType/user_type.dart';
 import 'Theme/theme.dart';
@@ -26,7 +28,6 @@ import 'firebase_options.dart';
 Future<void> main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
-  // await Helper.localNotification();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -71,7 +72,7 @@ class EntryPoint extends StatelessWidget {
         navigatorKey: SharedObj.navigatorKey,
         debugShowCheckedModeBanner: false,
         title: 'Mwardi',
-        initialRoute: OtpScreen.routeName,
+        initialRoute: SplashScreen.routeName,
         locale: appLan.appLocal,
         supportedLocales: const [
           Locale('en', 'US'),

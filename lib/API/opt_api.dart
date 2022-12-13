@@ -1,4 +1,5 @@
-import '../Models/user_model.dart';
+import 'package:halan/Models/user_model.dart';
+
 import '../Shared/shared_preferances.dart';
 import '../Utilities/helper.dart';
 import '../Utilities/toast_helper.dart';

@@ -8,9 +8,10 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:provider/provider.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 
+import '../../../../Control/shared_data_provider.dart';
+import '../../../../Widgets/app_bar_widget.dart';
 
-import '../../../Control/shared_data_provider.dart';
-import '../../../Widgets/app_bar_widget.dart';
+
 
 class PickLocationScreen extends StatefulWidget {
   static const String routeName = "/PickLocationScreen";

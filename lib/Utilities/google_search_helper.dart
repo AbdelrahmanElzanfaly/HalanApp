@@ -1,8 +1,8 @@
-import 'package:badia/Utilities/toast_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_google_places/flutter_google_places.dart';
 import 'package:google_api_headers/google_api_headers.dart';
 import 'package:google_maps_webservice/places.dart';
+import 'package:halan/Utilities/toast_helper.dart';
 
 class GoogleSearchHelper {
   static const String _googleApiKey = 'AIzaSyDE9edvEd4aB5Lku2Uf86k2Tq2Nr-HyqTo';

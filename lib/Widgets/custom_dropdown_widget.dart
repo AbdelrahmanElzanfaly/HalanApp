@@ -31,7 +31,7 @@ class CustomDropDownWidget<T> extends StatelessWidget {
 
       width: width??350.w,
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(5.w),
+        borderRadius: BorderRadius.circular(0.w),
         child: DropdownButtonFormField<T>(
           validator: validate,
           iconSize: 0.0,
@@ -44,10 +44,11 @@ class CustomDropDownWidget<T> extends StatelessWidget {
           decoration: InputDecoration(
             errorStyle: const TextStyle(height: 0),
             border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.w),
+
+                borderRadius: BorderRadius.circular(4.w),
                 borderSide: BorderSide(color: ThemeClass.primaryColor)),
             contentPadding:
-                EdgeInsets.symmetric(vertical: 12.w, horizontal: 10.w),
+                EdgeInsets.symmetric(vertical: 18.w, horizontal: 10.w),
             enabled: true,
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.w),

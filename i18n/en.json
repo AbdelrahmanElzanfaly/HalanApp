@@ -55,5 +55,23 @@
   "email": "Email",
   "already_have_account": "Already Have Account?",
   "invitationCode": "Invitation Code (Optional)",
-  "accept_terms": "please accept terms and condition and privacy policy"
+  "accept_terms": "please accept terms and condition and privacy policy",
+  "Home": "Home",
+  "Reservations": "Reservations",
+  "Settings": "Settings",
+  "Address Details": "Address Details",
+
+  "Pick Location": "Pick Location",
+  "Postal/Zip code": "Postal/Zip code",
+  "Street Address": "Street Address",
+  "Address Name": "Address Name",
+  "city": "City",
+  "Save & Continue": "Save & Continue",
+  "State/Province": "State/Province",
+  "Country": "Country",
+  "Confirm": "Confirm",
+  "Tell Us About Your Self": "Tell Us About YourSelf",
+  "Years Of Experience": "Years Of Experience",
+  "Full Name": "Full Name",
+  "Complete your profile": "Complete your profile"
 }

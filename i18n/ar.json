@@ -62,5 +62,24 @@
   "signin": "تسجل الدخول",
   "already_have_account": "لدي حساب بالفعل؟",
   "invitationCode": "كود الدعوة (اختياري)",
-  "accept_terms": "يرجي قبول سياسة الخصوصية والشروط والاحكام"
+  "accept_terms": "يرجي قبول سياسة الخصوصية والشروط والاحكام",
+  "Home": "الصفحة الرئيسية",
+  "Reservations": "الحجز",
+  "Settings": "إعدادات",
+  "Address Details": "تفاصيل العنوان",
+  "Pick Location": "اختر الموقع",
+  "Postal/Zip code": "الرمز البريدي",
+  "Street Address": "عنوان الشارع",
+  "Address Name": "اسم العنوان",
+  "city": "مدينة",
+  "Save & Continue": "حفظ ومتابعة",
+  "State/Province": "الولاية / الإقليم",
+  "Country": "دولة",
+  "Confirm": "تأكيد",
+  "Tell Us About Your Self": "أخبرنا عن نفسك",
+  "Years Of Experience": "سنوات من الخبرة",
+  "Full Name": "الاسم كامل",
+  "Complete your profile": "أكمل ملفك الشخصي"
+
+
 }

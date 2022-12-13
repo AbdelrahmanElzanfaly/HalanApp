@@ -62,6 +62,8 @@ class LoginController extends ControllerMVC {
     setState(() {
       loading = true;
     });
+    await Future.delayed(const Duration(seconds: 2));
+
     // bool result = await AuthApi.login(
     //     userName: userEmailController.text,
     //     password: passwordController.text);

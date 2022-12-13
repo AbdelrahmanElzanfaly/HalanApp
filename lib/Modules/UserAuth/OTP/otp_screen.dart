@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -19,9 +21,9 @@ class OtpScreen extends StatefulWidget {
   static String routeName = "/otpScreen";
 
   final Function(String)? onConfirm;
-  final String? email;
+  final String? phoneNumber;
 
-  const OtpScreen({Key? key, this.email, this.onConfirm}) : super(key: key);
+  const OtpScreen({Key? key, this.phoneNumber,  this.onConfirm,}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -38,7 +40,7 @@ class _OtpScreenState extends StateMVC<OtpScreen> {
   @override
   void initState() {
     con.onConfirm = widget.onConfirm;
-    con.email = widget.email;
+    con.phoneNumber = widget.phoneNumber;
     super.initState();
   }
 
@@ -113,10 +115,12 @@ class _OtpScreenState extends StateMVC<OtpScreen> {
                       CustomButton(
                         width: 250.w,
                         name: "Verify",
-                        ontap: () {
-                          if (con.formKey.currentState?.validate() ?? false) {
+                        ontap: () async {
+                          if (con.codeController.text.length == 4) {
+
+                            await con.onConfirmPin();
                           } else {
-                            ToastHelper.showError(message: "otp_error".tr);
+                            ToastHelper.showError(message: "write_otp_desc".tr);
                           }
                         },
                       ),

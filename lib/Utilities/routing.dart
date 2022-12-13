@@ -7,6 +7,9 @@ import '../Modules/ChangeLanguage/choose_language_screen.dart';
 import '../Modules/HomeScreen/home_screen.dart';
 import '../Modules/IntroductionPages/introduction_screen.dart';
 import '../Modules/Splash/splash_screen.dart';
+import '../Modules/UserAuth/AddressDetails/PickLocationScreen/pick_location_screen.dart';
+import '../Modules/UserAuth/AddressDetails/address_details_screen.dart';
+import '../Modules/UserAuth/CompleteProfile/complete_profile_screen.dart';
 import '../Modules/UserAuth/Login/login_screen.dart';
 import '../Modules/UserAuth/OTP/otp_screen.dart';
 import '../Modules/UserAuth/UserType/user_type.dart';
@@ -34,7 +37,9 @@ class AppModule extends Module {
         transition: TransitionType.fadeIn,
         duration: const Duration(milliseconds: 300)),
     ChildRoute(OtpScreen.routeName,
-        child: (_, args) => const OtpScreen(),
+        child: (_, args) =>
+            OtpScreen(
+                onConfirm: args.data[0], phoneNumber: args.data[1]),
         transition: TransitionType.fadeIn,
         duration: const Duration(milliseconds: 300)),
     ChildRoute(LoginScreen.routeName,
@@ -55,6 +60,18 @@ class AppModule extends Module {
         duration: const Duration(milliseconds: 300)),
     ChildRoute(ChooseLanguageScreen.routeName,
         child: (_, args) =>  ChooseLanguageScreen(),
+        transition: TransitionType.fadeIn,
+        duration: const Duration(milliseconds: 300)),
+    ChildRoute(AddressDetailsScreen.routeName,
+        child: (_, args) =>  AddressDetailsScreen(),
+        transition: TransitionType.fadeIn,
+        duration: const Duration(milliseconds: 300)),
+    ChildRoute(PickLocationScreen.routeName,
+        child: (_, args) =>  const PickLocationScreen(),
+        transition: TransitionType.fadeIn,
+        duration: const Duration(milliseconds: 300)),
+    ChildRoute(CompleteProfileScreen.routeName,
+        child: (_, args) =>  const CompleteProfileScreen(),
         transition: TransitionType.fadeIn,
         duration: const Duration(milliseconds: 300)),
   ];

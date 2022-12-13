@@ -81,7 +81,7 @@ class _BottomNavigationBarScreenState
               initialSelectedTab: "Home".tr,
               useSafeArea: true,
               // default: true, apply safe area wrapper
-              labels: ["Home".tr, "requests".tr, "attendance".tr],
+              labels: ["Reservations".tr,"Home".tr, "Settings".tr],
               icons: const [
                 Icons.home,
                 Icons.ios_share,

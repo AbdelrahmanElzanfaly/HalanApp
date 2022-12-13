@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Your Location will be used to determine your current location, which will allow you to accept nearest requests </string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Your Location will be used to determine your current location, which will allow you to accept nearest requests </string>
 	<key>CADisableMinimumFrameDurationOnPhone</key>
 	<true/>
 	<key>CFBundleDevelopmentRegion</key>

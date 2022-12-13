@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'package:halan/Modules/UserAuth/OTP/otp_screen.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
 import '../../../Theme/theme.dart';
+import '../../../Utilities/helper.dart';
 import '../../BottomNavigationBarScreen/bottom_navigation_bar_screen.dart';
 
 class CompleteProfileController extends ControllerMVC {
@@ -22,35 +25,32 @@ class CompleteProfileController extends ControllerMVC {
 
   // final GlobalKey<FormState> formKey = GlobalKey();
   String? countryName, locationName;
-  late TextEditingController countryController,
-      confirmPasswordController,
-      emailController,
-      phoneController;
+  late TextEditingController fullNameController,
+      yearsExperienceController,
+      aboutYourSelfController;
+  File? userImage;
 
   @override
   void initState() {
-    countryController = TextEditingController();
-    confirmPasswordController = TextEditingController();
-    emailController = TextEditingController();
-    phoneController = TextEditingController();
+    fullNameController = TextEditingController();
+    yearsExperienceController = TextEditingController();
+    aboutYourSelfController = TextEditingController();
+
     super.initState();
   }
 
   @override
   void dispose() {
-    countryController.dispose();
-    confirmPasswordController.dispose();
-    emailController.dispose();
-    phoneController.dispose();
+    fullNameController.dispose();
+    yearsExperienceController.dispose();
+    aboutYourSelfController.dispose();
+
     super.dispose();
   }
-
-
 
   getCountry(context) {
     showCountryPicker(
       context: context,
-
       showPhoneCode: false,
       onSelect: (Country country) {
         countryName = country.displayNameNoCountryCode;
@@ -61,7 +61,6 @@ class CompleteProfileController extends ControllerMVC {
           topLeft: Radius.circular(40.0),
           topRight: Radius.circular(40.0),
         ),
-
         inputDecoration: InputDecoration(
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: ThemeClass.primaryColor),
@@ -90,10 +89,32 @@ class CompleteProfileController extends ControllerMVC {
     );
   }
 
-
-
-  Future onSave(BuildContext context)async {
+  Future onSave(BuildContext context) async {
     Modular.to.pushNamed(BottomNavigationBarScreen.routeName);
-
   }
+
+  updateImage(BuildContext context) async {
+    userImage = await Helper.pickImage(context: context);
+
+    setState(() {
+      loading = true;
+    });
+
+    // bool result = await EditProfileApi.updatePicture(
+    //   file: userImage,
+    // );
+
+    setState(() {
+      loading = false;
+    });
+    // if (result) {
+
+    // }
+  }
+
+//  con.userImage == null? NetworkImage(
+//                               SharedPref.getUserObg()?.employee?.profile ??
+//                                   'https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg')
+//                               :
+//                           FileImage(File(con.userImage!.path))as ImageProvider,
 }

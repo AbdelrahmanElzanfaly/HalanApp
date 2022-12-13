@@ -73,5 +73,10 @@
   "Tell Us About Your Self": "Tell Us About YourSelf",
   "Years Of Experience": "Years Of Experience",
   "Full Name": "Full Name",
-  "Complete your profile": "Complete your profile"
+  "Complete your profile": "Complete your profile",
+
+
+  "choose_image_source": "choose image source ",
+  "from_gallery": "Gallery",
+  "from_camera": "Camera"
 }

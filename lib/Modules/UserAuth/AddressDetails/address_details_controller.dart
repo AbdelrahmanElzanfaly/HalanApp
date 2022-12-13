@@ -23,26 +23,29 @@ class AddressDetailsController extends ControllerMVC {
 
   // final GlobalKey<FormState> formKey = GlobalKey();
   String? countryName, locationName;
-  late TextEditingController countryController,
-      confirmPasswordController,
-      emailController,
-      phoneController;
+  late TextEditingController addressNameController,
+      streetController,
+      cityController,
+      zipCodeController,
+      stateProvinceController;
 
   @override
   void initState() {
-    countryController = TextEditingController();
-    confirmPasswordController = TextEditingController();
-    emailController = TextEditingController();
-    phoneController = TextEditingController();
+    addressNameController = TextEditingController();
+    streetController = TextEditingController();
+    cityController = TextEditingController();
+    zipCodeController = TextEditingController();
+    stateProvinceController = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
-    countryController.dispose();
-    confirmPasswordController.dispose();
-    emailController.dispose();
-    phoneController.dispose();
+    addressNameController.dispose();
+    streetController.dispose();
+    cityController.dispose();
+    zipCodeController.dispose();
+    stateProvinceController.dispose();
     super.dispose();
   }
 

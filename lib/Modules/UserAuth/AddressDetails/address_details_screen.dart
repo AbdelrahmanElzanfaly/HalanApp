@@ -87,7 +87,7 @@ class _AddressDetailsScreenState extends StateMVC<AddressDetailsScreen> {
                               suffixIcon: const SizedBox(),
                               textInputType: TextInputType.emailAddress,
                               borderColor: Colors.grey.shade400,
-                              controller: con.emailController,
+                              controller: con.addressNameController,
                               hint: "Address Name".tr,
                               validator: (String? v) {
                                 if (v == null || v.isEmpty) return "";
@@ -106,7 +106,7 @@ class _AddressDetailsScreenState extends StateMVC<AddressDetailsScreen> {
                               isDense: true,
                               textInputType: TextInputType.number,
                               borderColor: Colors.grey.shade400,
-                              controller: con.phoneController,
+                              controller: con.streetController,
                               hint: "Street Address".tr,
                               validator: (String? v) {
                                 if (v == null || v.isEmpty) return "";
@@ -128,7 +128,7 @@ class _AddressDetailsScreenState extends StateMVC<AddressDetailsScreen> {
                                   isDense: true,
                                   textInputType: TextInputType.number,
                                   borderColor: Colors.grey.shade400,
-                                  controller: con.phoneController,
+                                  controller: con.cityController,
                                   hint: "city".tr,
                                   validator: (String? v) {
                                     if (v == null || v.isEmpty) return "";
@@ -148,7 +148,7 @@ class _AddressDetailsScreenState extends StateMVC<AddressDetailsScreen> {
                                   isDense: true,
                                   textInputType: TextInputType.number,
                                   borderColor: Colors.grey.shade400,
-                                  controller: con.phoneController,
+                                  controller: con.stateProvinceController,
                                   hint: "State/Province".tr,
                                   validator: (String? v) {
                                     if (v == null || v.isEmpty) return "";
@@ -215,8 +215,7 @@ class _AddressDetailsScreenState extends StateMVC<AddressDetailsScreen> {
                               suffixIcon: const SizedBox(),
                               isDense: true,
                               borderColor: Colors.grey.shade400,
-                              // controller: con.passwordController,
-                              obscure: con.showPassword,
+                              controller: con.zipCodeController,
                               hint: "Postal/Zip code".tr,
                               validator: (String? v) {
                                 if (v == null || v.isEmpty) return "";

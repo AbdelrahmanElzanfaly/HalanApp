@@ -79,7 +79,9 @@
   "Tell Us About Your Self": "أخبرنا عن نفسك",
   "Years Of Experience": "سنوات من الخبرة",
   "Full Name": "الاسم كامل",
-  "Complete your profile": "أكمل ملفك الشخصي"
+  "Complete your profile": "أكمل ملفك الشخصي",
 
-
+  "choose_image_source": "اختيار صوره",
+  "from_gallery": "المعرض",
+  "from_camera": "الكاميرا"
 }

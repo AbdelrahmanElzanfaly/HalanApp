@@ -89,7 +89,7 @@ class _RegisterScreenState extends StateMVC<RegisterScreen> {
                               ),
                               FadeIn(
                                   delay: 1,
-                                  from: SlideFrom.LEFT,
+                                  from: SlideFrom.RIGHT,
                                   child: Text(
                                     'Sign Up now to enjoy our privileges, and get the best of our app'
                                         .tr,
@@ -147,7 +147,7 @@ class _RegisterScreenState extends StateMVC<RegisterScreen> {
                               ),
                               FadeIn(
                                 delay: 1,
-                                from: SlideFrom.LEFT,
+                                from: SlideFrom.RIGHT,
                                 child: CustomTextFieldWidget(
                                   prefixIcon: Container(
                                     width: 60.w,
@@ -191,7 +191,7 @@ class _RegisterScreenState extends StateMVC<RegisterScreen> {
                               ),
                               FadeIn(
                                 delay: 1,
-                                from: SlideFrom.LEFT,
+                                from: SlideFrom.RIGHT,
                                 child: CustomTextFieldWidget(
                                   prefixIcon: Container(
                                     width: 60.w,
@@ -252,7 +252,7 @@ class _RegisterScreenState extends StateMVC<RegisterScreen> {
                               ),
                               FadeIn(
                                 delay: 1,
-                                from: SlideFrom.LEFT,
+                                from: SlideFrom.BOTTOM,
                                 child: CustomTextFieldWidget(
                                   prefixIcon: Container(
                                     width: 60.w,
@@ -312,7 +312,10 @@ class _RegisterScreenState extends StateMVC<RegisterScreen> {
                                 height: 40.h,
                               ),
 
-                              CustomButton(
+                    FadeIn(
+                        delay: 1,
+                        from: SlideFrom.BOTTOM,
+                        child:    CustomButton(
                                 width: 250.w,
                                 height: 50.h,
                                 name: "signUp".tr,
@@ -326,7 +329,7 @@ class _RegisterScreenState extends StateMVC<RegisterScreen> {
                                   }
                                 },
                               ),
-
+                    ),
                               SizedBox(
                                 height: 40.h,
                               ),

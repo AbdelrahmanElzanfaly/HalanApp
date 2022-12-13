@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -7,6 +9,7 @@ import 'package:halan/Utilities/helper.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
 import '../../../Theme/theme.dart';
+import '../../../Utilities/toast_helper.dart';
 import '../../../Widgets/app_bar_widget.dart';
 import '../../../Widgets/custom_button.dart';
 import '../../../Widgets/custom_textfeild_widget.dart';
@@ -83,7 +86,7 @@ class _CompleteProfileScreenState extends StateMVC<CompleteProfileScreen> {
                               suffixIcon: const SizedBox(),
                               textInputType: TextInputType.emailAddress,
                               borderColor: Colors.grey.shade400,
-                              controller: con.emailController,
+                              controller: con.fullNameController,
                               hint: "Full Name".tr,
                               validator: (String? v) {
                                 if (v == null || v.isEmpty) return "";
@@ -100,8 +103,10 @@ class _CompleteProfileScreenState extends StateMVC<CompleteProfileScreen> {
                             delay: 1,
                             from: SlideFrom.LEFT,
                             child: InkWell(
-                              onTap: () {
-                                con.getCountry(context);
+                              onTap: () async {
+
+                                  await con.updateImage(context);
+
                               },
                               child: Container(
                                 width: 350.w,
@@ -122,9 +127,12 @@ class _CompleteProfileScreenState extends StateMVC<CompleteProfileScreen> {
                                           color: ThemeClass.hintColor),
                                     ),
                                     const Spacer(),
-                                    const CircleAvatar(
-                                      backgroundImage: NetworkImage(
-                                          'https://picsum.photos/id/237/200/300'),
+                                    CircleAvatar(
+                                      backgroundImage: con.userImage == null
+                                          ? const NetworkImage(
+                                              'https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg')
+                                          : FileImage(File(con.userImage!.path))
+                                              as ImageProvider,
                                     ),
                                     SizedBox(
                                       width: 10.w,
@@ -201,7 +209,7 @@ class _CompleteProfileScreenState extends StateMVC<CompleteProfileScreen> {
                               suffixIcon: const SizedBox(),
                               textInputType: TextInputType.number,
                               borderColor: Colors.grey.shade400,
-                              controller: con.emailController,
+                              controller: con.yearsExperienceController,
                               hint: "Years Of Experience".tr,
                               validator: (String? v) {
                                 if (v == null || v.isEmpty) return "";
@@ -221,8 +229,7 @@ class _CompleteProfileScreenState extends StateMVC<CompleteProfileScreen> {
                               isDense: false,
                               maxLine: 100,
                               borderColor: Colors.grey.shade400,
-                              // controller: con.passwordController,
-                              obscure: con.showPassword,
+                              controller: con.aboutYourSelfController,
                               hint: "Tell Us About Your Self".tr,
                               validator: (String? v) {
                                 if (v == null || v.isEmpty) return "";
@@ -239,7 +246,14 @@ class _CompleteProfileScreenState extends StateMVC<CompleteProfileScreen> {
                             name: "Save & Continue".tr,
                             ontap: () async {
                               if (_formKey.currentState?.validate() ?? false) {
-                                await con.onSave(context);
+                                if (con.userImage != null) {
+                                  await con.onSave(context);
+
+                                } else {
+                                  ToastHelper.showError(
+                                      message: 'please add photo');
+                                }
+
                               } else {
                                 setState(() {
                                   con.autoValidate = true;

@@ -23,15 +23,33 @@ class _UserTypeState extends State<UserType> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           SizedBox(
             height: 130.h,
           ),
-      FadeIn(
-        delay: 1,
-        from: SlideFrom.LEFT,
-        child:           UserTypeWidget(
+
+          FadeIn(
+            delay: 1,
+            from: SlideFrom.LEFT,
+            child: Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 50.w),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Please choose',
+                  style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.w700,
+                      color: ThemeClass.textColor),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 16.h,
+          ),
+          UserTypeWidget(
               onTap: () {
                 setState(() {
                   index = 0;
@@ -39,14 +57,11 @@ class _UserTypeState extends State<UserType> {
               },
               isSelected: index == 0,
               image: 'assets/images/Group 26649.png',
-              title: 'Client'.tr),),
+              title: 'Client'.tr),
           SizedBox(
             height: 16.h,
           ),
-      FadeIn(
-        delay: 1,
-        from: SlideFrom.RIGHT,
-        child:      UserTypeWidget(
+          UserTypeWidget(
               onTap: () {
                 setState(() {
                   index = 1;
@@ -54,7 +69,7 @@ class _UserTypeState extends State<UserType> {
               },
               isSelected: index == 1,
               image: 'assets/images/Group 513795.png',
-              title: 'Service_Provider'.tr),),
+              title: 'Service_Provider'.tr),
           const Spacer(),
           CustomButton(
             width: 250.w,
@@ -97,6 +112,8 @@ class UserTypeWidget extends StatelessWidget {
           height: 200.h,
           width: 276.w,
           decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.w),
+
             border: Border.all(
                 color: isSelected
                     ? ThemeClass.primaryColor
@@ -106,21 +123,27 @@ class UserTypeWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
+              FadeIn(
+              delay: 1,
+              from: SlideFrom.LEFT,
+              child:   Padding(
                   padding: EdgeInsets.symmetric(horizontal: 14.w),
                   child: Text(
                     title,
                     style:
                         TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400),
                   ),
-                ),
-                Center(
+                ),),
+          FadeIn(
+              delay: 1,
+              from: SlideFrom.RIGHT,
+              child:  Center(
                   child: Image.asset(
                     image,
                     width: 188.w,
                     height: 140.h,
                   ),
-                ),
+                ),),
               ]),
         ),
       ),

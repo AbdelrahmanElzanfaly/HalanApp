@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 // ignore: depend_on_referenced_packages
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../Theme/theme.dart';
+
 class LoadingScreen extends StatelessWidget {
   final Widget child;
   final bool loading;
@@ -23,11 +25,11 @@ class LoadingScreen extends StatelessWidget {
             width: 100.w,
             height: 100.h,
             decoration: BoxDecoration(
-              color: Colors.grey.shade400.withOpacity(0.9),
+              color: Colors.grey.withOpacity(0.1),
               borderRadius: BorderRadius.circular(10.w),
             ),
             alignment: Alignment.center,
-            child: const CircularProgressIndicator(),
+            child:  CircularProgressIndicator( color: ThemeClass.primaryColor,),
           ),
         ):const SizedBox(),
       ],

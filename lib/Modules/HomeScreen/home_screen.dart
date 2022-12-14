@@ -104,7 +104,7 @@ class _HomeScreenState extends StateMVC<HomeScreen> {
                     delay: 1,
                     from: SlideFrom.LEFT,
                     child: Text(
-                      'Reservation Type',
+                      'Reservation Type'.tr,
                       style: TextStyle(
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w700,
@@ -144,13 +144,12 @@ class _HomeScreenState extends StateMVC<HomeScreen> {
                           fontSize: 14.sp,
                           fontWeight: FontWeight.w700,
                           color: ThemeClass.blackColor),
-                    ),
-                  ),
+                    ),),
+                  SizedBox(height: 16.h,),
+                  const FadeIn(delay: 1, from: SlideFrom.BOTTOM, child: NoReservations()),
                   SizedBox(
-                    height: 16.h,
+                    height: 40.h,
                   ),
-                  const FadeIn(
-                      delay: 1, from: SlideFrom.BOTTOM, child: NoReservations())
                 ],
               ),
             ),

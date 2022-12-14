@@ -25,7 +25,7 @@ class LoadingScreen extends StatelessWidget {
             width: 100.w,
             height: 100.h,
             decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(0.1),
+              color: Colors.grey.withOpacity(0.3),
               borderRadius: BorderRadius.circular(10.w),
             ),
             alignment: Alignment.center,

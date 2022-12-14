@@ -6,6 +6,8 @@ import '../Modules/BottomNavigationBarScreen/bottom_navigation_bar_screen.dart';
 import '../Modules/ChangeLanguage/choose_language_screen.dart';
 import '../Modules/HomeScreen/home_screen.dart';
 import '../Modules/IntroductionPages/introduction_screen.dart';
+import '../Modules/ReservationsScreen/reservations_screen.dart';
+import '../Modules/SettingScreen/setting_screen.dart';
 import '../Modules/Splash/splash_screen.dart';
 import '../Modules/UserAuth/AddressDetails/PickLocationScreen/pick_location_screen.dart';
 import '../Modules/UserAuth/AddressDetails/address_details_screen.dart';
@@ -72,6 +74,14 @@ class AppModule extends Module {
         duration: const Duration(milliseconds: 300)),
     ChildRoute(CompleteProfileScreen.routeName,
         child: (_, args) =>  const CompleteProfileScreen(),
+        transition: TransitionType.fadeIn,
+        duration: const Duration(milliseconds: 300)),
+    ChildRoute(ReservationsScreen.routeName,
+        child: (_, args) =>  const ReservationsScreen(),
+        transition: TransitionType.fadeIn,
+        duration: const Duration(milliseconds: 300)),
+    ChildRoute(SettingScreen.routeName,
+        child: (_, args) =>  const SettingScreen(),
         transition: TransitionType.fadeIn,
         duration: const Duration(milliseconds: 300)),
   ];

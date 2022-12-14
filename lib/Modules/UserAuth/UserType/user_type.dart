@@ -37,7 +37,7 @@ class _UserTypeState extends State<UserType> {
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  'Please choose',
+                  'Please choose'.tr,
                   style: TextStyle(
                       fontSize: 18.sp,
                       fontWeight: FontWeight.w700,

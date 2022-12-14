@@ -65,6 +65,17 @@
   "accept_terms": "يرجي قبول سياسة الخصوصية والشروط والاحكام",
   "Home": "الصفحة الرئيسية",
   "Reservations": "الحجز",
+  "Log Out": "تسجيل خروج",
+
+  "About app": "حول التطبيق",
+  "Support Center": "مركز الدعم",
+  "Refer to a friend": "قم بالإشارة إلى صديق",
+  "Vouchers": "القسائم",
+  "Payment": "دفع",
+  "Edit Profile": "تعديل الملف الشخصي",
+  "Change Password": "غير كلمة السر",
+  "Change Language": "تغيير اللغة",
+  "Verified": "تم التحقق",
   "Settings": "إعدادات",
   "Address Details": "تفاصيل العنوان",
   "Pick Location": "اختر الموقع",
@@ -89,6 +100,7 @@
   "choose_image_source": "اختيار صوره",
   "from_gallery": "المعرض",
   "from_camera": "الكاميرا",
+  "Please choose": "اختر من فضلك",
   "Sign In now to enjoy our privalges, and get the best of our app.": "قم بتسجيل الدخول الآن للاستمتاع بامتيازاتنا والحصول على أفضل ما في تطبيقنا.",
   "please add photo": "الرجاء إضافة الصورة"
 }

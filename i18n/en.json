@@ -58,7 +58,24 @@
   "accept_terms": "please accept terms and condition and privacy policy",
   "Home": "Home",
   "Reservations": "Reservations",
+
+
+
+
+  "Log Out": "Log Out",
+
+  "About app": "About app",
+  "Support Center": "Support Center",
+  "Refer to a friend": "Refer to a friend",
+  "Vouchers": "Vouchers",
+  "Payment": "Payment",
+  "Edit Profile": "Edit Profile",
+  "Change Password": "Change Password",
+  "Change Language": "Change Language",
+  "Verified": "Verified",
   "Settings": "Settings",
+
+
   "Address Details": "Address Details",
 
   "Pick Location": "Pick Location",
@@ -86,6 +103,7 @@
   "choose_image_source": "choose image source ",
   "from_gallery": "Gallery",
   "from_camera": "Camera",
+  "Please choose": "Please choose",
   "Sign In now to enjoy our privileges, and get the best of our app.": "Sign In now to enjoy our privalges, and get the best of our app.",
   "please add photo": "please add photo"
 }

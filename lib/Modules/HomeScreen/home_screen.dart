@@ -33,6 +33,7 @@ class _HomeScreenState extends StateMVC<HomeScreen> {
         onWillPop: () async => false,
         child: Scaffold(
           body: SingleChildScrollView(
+            physics: const BouncingScrollPhysics(),
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: Column(

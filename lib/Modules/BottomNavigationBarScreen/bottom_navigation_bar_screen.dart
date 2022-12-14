@@ -5,12 +5,15 @@ import 'package:halan/Utilities/helper.dart';
 import 'package:motion_tab_bar_v2/motion-tab-bar.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../Control/shared_data_provider.dart';
 import '../../Theme/theme.dart';
 import '../../Utilities/Layout/connectivity_checker.dart';
 import '../../Utilities/toast_helper.dart';
 import '../../modules/HomeScreen/home_screen.dart';
+import '../ReservationsScreen/reservations_screen.dart';
+import '../SettingScreen/setting_screen.dart';
 import 'bottomn_navigation_bar_controller.dart';
 
 class BottomNavigationBarScreen extends StatefulWidget
@@ -38,7 +41,6 @@ class _BottomNavigationBarScreenState
 
   @override
   void didChangeDependencies() {
-
     ToastHelper.init(context);
 
     super.didChangeDependencies();
@@ -63,7 +65,6 @@ class _BottomNavigationBarScreenState
 
   @override
   Widget build(BuildContext context) {
-
     return DoubleBack(
         condition: allowClose!,
         onConditionFail: () {
@@ -80,24 +81,24 @@ class _BottomNavigationBarScreenState
               initialSelectedTab: "Home".tr,
               useSafeArea: true,
               // default: true, apply safe area wrapper
-              labels: ["Home".tr,"Reservations".tr, "Settings".tr],
+              labels: ["Home".tr, "Reservations".tr, "Settings".tr],
               icons: const [
                 Icons.home,
-
-                Icons.ios_share,
-                Icons.event_note_sharp
+                Icons.date_range_outlined,
+                Icons.settings
               ],
-              tabSize: 46,
-              tabBarHeight: 55,
+              tabSize: 46.sp,
+              tabBarHeight: 55.h,
+
               textStyle: TextStyle(
-                fontSize: 12,
-                color: ThemeClass.primaryColor,
+                fontSize: 12.sp,
+                color: ThemeClass.secondPrimaryColor,
                 fontWeight: FontWeight.w500,
               ),
-              tabIconColor: ThemeClass.hintColor,
-              tabIconSize: 28.0,
-              tabIconSelectedSize: 22.0,
-              tabSelectedColor: ThemeClass.primaryColor,
+              tabIconColor: ThemeClass.secondPrimaryColor,
+              tabIconSize: 28.sp,
+              tabIconSelectedSize: 22.sp,
+              tabSelectedColor: ThemeClass.secondPrimaryColor,
               tabIconSelectedColor: Colors.white,
               tabBarColor: ThemeClass.whiteColor,
 
@@ -110,18 +111,16 @@ class _BottomNavigationBarScreenState
           ),
           // SharedPref.getCurrentLang() == "en"
           body: ConnectivityChecker(
-            onLoading: () {
-            },
+            onLoading: () {},
             child: TabBarView(
-              physics: const NeverScrollableScrollPhysics(),
+              // physics: const NeverScrollableScrollPhysics(),
               // swipe navigation handling is not supported
               controller: _tabController,
               // ignore: prefer_const_literals_to_create_immutables
               children: [
                 const HomeScreen(),
-                const LoginScreen(),
-                const HomeScreen(),
-
+                const ReservationsScreen(),
+                const SettingScreen(),
               ],
             ),
           ),

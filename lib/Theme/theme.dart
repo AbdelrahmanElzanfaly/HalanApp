@@ -9,6 +9,7 @@ class ThemeClass {
   static Color whiteColor = const Color(0xffFFFFFF);
   static Color textColor = const Color(0xff606060);
   static Color hintColor = const Color(0xff919396);
+  static Color hint = const Color(0x13919396);
 
   static Color blackColor = const Color(0xff292929);
   static Color greyColor = const Color(0x3da5a5a5);
@@ -18,7 +19,7 @@ class ThemeClass {
   static Color lightYellowColor = const Color(0xffF4E06D);
   static Color textFieldBackgroundColor = const Color(0xFFEDF8EC);
   static Color containerBackground = const Color(0xFFF5F5F5);
-  static Color containerWBackground = const Color(0xFFFAF7EF);
+  static Color containerWBackground = const Color(0x28004698);
   static Color backgroundAppBar = Colors.transparent;
 
   static LinearGradient gradientBtn = LinearGradient(

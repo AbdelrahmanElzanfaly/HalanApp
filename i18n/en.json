@@ -70,6 +70,12 @@
   "State/Province": "State/Province",
   "Country": "Country",
   "Confirm": "Confirm",
+
+  "Contract Reservation": "Contract Reservation",
+  "Package Reservation": "Package Reservation",
+  "Single Reservation": "Single Reservation",
+  "Latest Reservations": "Latest Reservations",
+
   "Tell Us About Your Self": "Tell Us About YourSelf",
   "Years Of Experience": "Years Of Experience",
   "Full Name": "Full Name",
@@ -78,5 +84,7 @@
 
   "choose_image_source": "choose image source ",
   "from_gallery": "Gallery",
-  "from_camera": "Camera"
+  "from_camera": "Camera",
+  "Sign In now to enjoy our privileges, and get the best of our app.": "Sign In now to enjoy our privalges, and get the best of our app.",
+  "please add photo": "please add photo"
 }

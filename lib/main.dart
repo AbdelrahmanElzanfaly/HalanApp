@@ -14,6 +14,7 @@ import './Shared/shared_obj.dart';
 import './locale/locales.dart';
 import 'Control/app_languages.dart';
 import 'Control/shared_data_provider.dart';
+import 'Modules/HomeScreen/home_screen.dart';
 import 'Modules/Splash/splash_screen.dart';
 import 'Modules/UserAuth/AddressDetails/address_details_screen.dart';
 import 'Modules/UserAuth/CompleteProfile/complete_profile_screen.dart';

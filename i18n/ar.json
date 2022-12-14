@@ -76,6 +76,10 @@
   "State/Province": "الولاية / الإقليم",
   "Country": "دولة",
   "Confirm": "تأكيد",
+  "Latest Reservations": "أحدث الحجوزات",
+  "Contract Reservation": "حجز العقد",
+  "Package Reservation": "حجز الباقة",
+  "Single Reservation": "الحجز الفردي",
   "Tell Us About Your Self": "أخبرنا عن نفسك",
   "Years Of Experience": "سنوات من الخبرة",
   "Full Name": "الاسم كامل",
@@ -83,5 +87,7 @@
 
   "choose_image_source": "اختيار صوره",
   "from_gallery": "المعرض",
-  "from_camera": "الكاميرا"
+  "from_camera": "الكاميرا",
+  "Sign In now to enjoy our privalges, and get the best of our app.": "قم بتسجيل الدخول الآن للاستمتاع بامتيازاتنا والحصول على أفضل ما في تطبيقنا.",
+  "please add photo": "الرجاء إضافة الصورة"
 }

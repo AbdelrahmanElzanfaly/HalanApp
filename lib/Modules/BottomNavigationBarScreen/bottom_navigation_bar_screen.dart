@@ -63,7 +63,6 @@ class _BottomNavigationBarScreenState
 
   @override
   Widget build(BuildContext context) {
-    final provider = Provider.of<SharedDataProvider>(context, listen: false);
 
     return DoubleBack(
         condition: allowClose!,
@@ -81,9 +80,10 @@ class _BottomNavigationBarScreenState
               initialSelectedTab: "Home".tr,
               useSafeArea: true,
               // default: true, apply safe area wrapper
-              labels: ["Reservations".tr,"Home".tr, "Settings".tr],
+              labels: ["Home".tr,"Reservations".tr, "Settings".tr],
               icons: const [
                 Icons.home,
+
                 Icons.ios_share,
                 Icons.event_note_sharp
               ],

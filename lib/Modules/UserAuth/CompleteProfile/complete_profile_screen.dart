@@ -251,7 +251,7 @@ class _CompleteProfileScreenState extends StateMVC<CompleteProfileScreen> {
 
                                 } else {
                                   ToastHelper.showError(
-                                      message: 'please add photo');
+                                      message: 'please add photo'.tr);
                                 }
 
                               } else {

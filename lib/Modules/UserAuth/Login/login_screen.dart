@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:halan/Modules/UserAuth/UserType/user_type.dart';
 import 'package:halan/Utilities/helper.dart';
 import 'package:halan/Widgets/app_bar_widget.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import '../../../Theme/theme.dart';
 import '../../../Utilities/Layout/loading_screen.dart';
 import '../../../Widgets/custom_button.dart';
@@ -76,35 +77,30 @@ class _LoginScreenState extends StateMVC<LoginScreen> {
                           SizedBox(
                             height: 40.h,
                           ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              FadeIn(
-                                delay: 1,
-                                from: SlideFrom.LEFT,
-                                child: Text(
-                                  "Sign In",
-                                  style: TextStyle(
-                                      fontSize: 24.sp,
-                                      fontWeight: FontWeight.w700,
-                                      color: ThemeClass.textColor),
-                                ),
-                              ),
-                              SizedBox(
-                                height: 10.h,
-                              ),
-                              FadeIn(
-                                  delay: 1,
-                                  from: SlideFrom.LEFT,
-                                  child: Text(
-                                    "Sign In now to enjoy our privalges, and get the best of our app.",
-                                    style: TextStyle(
-                                        fontSize: 14.sp,
-                                        color: ThemeClass.hintColor,
-                                        fontWeight: FontWeight.w500),
-                                  )),
-                            ],
+                          FadeIn(
+                            delay: 1,
+                            from: SlideFrom.LEFT,
+                            child: Text(
+                              "signin".tr,
+                              style: TextStyle(
+                                  fontSize: 24.sp,
+                                  fontWeight: FontWeight.w700,
+                                  color: ThemeClass.textColor),
+                            ),
                           ),
+                          SizedBox(
+                            height: 10.h,
+                          ),
+                          FadeIn(
+                              delay: 1,
+                              from: SlideFrom.LEFT,
+                              child: Text(
+                                "Sign In now to enjoy our privalges, and get the best of our app.".tr,
+                                style: TextStyle(
+                                    fontSize: 14.sp,
+                                    color: ThemeClass.hintColor,
+                                    fontWeight: FontWeight.w500),
+                              )),
                           SizedBox(
                             height: 55.h,
                           ),

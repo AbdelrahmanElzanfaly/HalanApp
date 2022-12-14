@@ -1,11 +1,14 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:halan/Models/offer_items.dart';
 
 import '../Theme/theme.dart';
 
 class CarouselWidget extends StatefulWidget {
+  final List<OfferItem>? productItem;
   final List<String>? caroselList;
   final bool isCarouseDot;
 
@@ -13,6 +16,7 @@ class CarouselWidget extends StatefulWidget {
     Key? key,
     this.caroselList,
     this.isCarouseDot = true,
+    this.productItem,
   }) : super(key: key);
 
   @override
@@ -30,8 +34,8 @@ class _CarouselWidgetState extends State<CarouselWidget> {
           options: CarouselOptions(
             autoPlay: true,
             enlargeCenterPage: false,
-            viewportFraction: (widget.caroselList != null) ? 1 : 0.85,
-            aspectRatio: 2.9,
+            viewportFraction: (widget.caroselList != null) ? 1 : 1.1,
+            aspectRatio: 2.4,
             initialPage: 0,
             onPageChanged: (index, reason) {
               setState(() {
@@ -39,35 +43,148 @@ class _CarouselWidgetState extends State<CarouselWidget> {
               });
             },
           ),
-          items:  widget.caroselList
-                  ?.map((e) => Container(
-                      width: 370.w,
-                      height: 159.h,
-                      decoration: BoxDecoration(
-                          color: ThemeClass.whiteColor,
-                          borderRadius: BorderRadius.circular(10.sp),
-                          boxShadow: [
-                            BoxShadow(
-                              color: const Color.fromRGBO(0, 0, 0, 0.17),
-                              blurRadius: 2.w,
-                            )
-                          ]),
+          items: widget.productItem?.map((e) {
+            return GestureDetector(
+              onTap: () {
+                // Navigator.pushNamed(context, ProductDetailsScreen.routeName);
+              },
+              child: Container(
+                width: 327.w,
+                decoration: BoxDecoration(
+                  color: ThemeClass.containerBackground,
+                  borderRadius: BorderRadius.circular(10.sp),
+                ),
+                child: Row(
+                  children: [
+                  FadeIn(
+                  delay: 1,
+                  from: SlideFrom.RIGHT,
+                  child:  ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
                       child: Image.network(
-                        e,
-                        fit: BoxFit.contain,
-                      )))
-                  .toList(),
+                        "https://cdn.shopify.com/s/files/1/0554/0737/8621/files/Espresso_Beans_Mobile_Header_900_x_1500_px_1600x.png?v=1655845308",
+                        fit: BoxFit.fill,
+                        height: 170.h,
+                      ),
+                    ),),
+                    // const Spacer(),
+                    SizedBox(
+                      width: 245.w,
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              SizedBox(
+                                width: 10.w,
+                              ),
+                              Column(
+                                children: [
+                                  SizedBox(
+                                    height: 10.h,
+                                  ),
+                                  FadeIn(
+                                    delay: 1,
+                                    from: SlideFrom.LEFT,
+                                    child: Text(
+                                      'Full House Cleaning',
+                                      style: TextStyle(
+                                          fontSize: 14.sp,
+                                          fontWeight: FontWeight.w500,
+                                          color: ThemeClass.textColor),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              const Spacer(),
+                              Container(
+                                width: 85.w,
+                                height: 32.h,
+                                decoration: BoxDecoration(
+                                  color: ThemeClass.secondPrimaryColor,
+                                  borderRadius: const BorderRadius.only(
+                                      topRight: Radius.circular(10),
+                                      bottomLeft: Radius.circular(10)),
+                                ),
+                                alignment: Alignment.center,
+                                child: FadeIn(
+                                  delay: 1,
+                                  from: SlideFrom.RIGHT,
+                                  child: Text(
+                                    'AED 1000.00',
+                                    style: TextStyle(
+                                        fontSize: 10.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color: ThemeClass.whiteColor),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          SizedBox(
+                            height: 8.h,
+                          ),
+                          FadeIn(
+                            delay: 1,
+                            from: SlideFrom.LEFT,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 8.w),
+                              child: Text(
+                                'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+                                style: TextStyle(
+                                    fontSize: 10.sp,
+                                    fontWeight: FontWeight.w600,
+                                    color: ThemeClass.hintColor),
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 17.h,
+                          ),
+                          FadeIn(
+                            delay: 1,
+                            from: SlideFrom.BOTTOM,
+                            child: Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 8.w),
+                              child: Row(
+                                children: [
+                                  Icon(
+                                    Icons.info_outline,
+                                    size: 13.h,
+                                    color: ThemeClass.primaryColor,
+                                  ),
+                                  SizedBox(
+                                    width: 5.w,
+                                  ),
+                                  Text(
+                                    'This Offer Ends In 3 Days.',
+                                    style: TextStyle(
+                                        fontSize: 10.sp,
+                                        fontWeight: FontWeight.w600,
+                                        color: ThemeClass.primaryColor),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            );
+          }).toList(),
         ),
         if (widget.isCarouseDot)
-
           SizedBox(
-          height: 36.h,
-        ),
+            height: 14.h,
+          ),
         if (widget.isCarouseDot)
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: List.generate(
-              widget.caroselList?.length ?? 0,
+              widget.productItem?.length ?? 0,
               (index) => buildDot(index, context),
             ),
           )
@@ -77,18 +194,15 @@ class _CarouselWidgetState extends State<CarouselWidget> {
 
   Container buildDot(int index, BuildContext context) {
     return Container(
-      height: 10.h,
-      width: currentIndex == index ? 20.w : 10.w,
+      height: currentIndex == index ? 15.w : 10.w,
+      width: currentIndex == index ? 15.w : 10.w,
       margin: EdgeInsets.only(right: 5.w),
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: currentIndex == index
-              ? ThemeClass.lightYellowColor
-              : Colors.transparent,
-          border: Border.all(
-              color: currentIndex == index
-                  ? Colors.transparent
-                  : ThemeClass.blackColor)),
+        borderRadius: BorderRadius.circular(10),
+        color: currentIndex == index
+            ? ThemeClass.primaryColor
+            : ThemeClass.primaryColor2,
+      ),
     );
   }
 }

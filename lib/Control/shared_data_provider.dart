@@ -13,6 +13,9 @@ class SharedDataProvider with ChangeNotifier, DiagnosticableTreeMixin {
 
   List<Marker> _markersList = [];
   List<Marker> get markersList => _markersList;
+  String? _choiceLanguage = 'en';
+
+  String? get choiceLanguage => _choiceLanguage;
 
   GoogleMapController? _googleMapController;
   GoogleMapController? get googleMapController => _googleMapController;
@@ -25,6 +28,11 @@ class SharedDataProvider with ChangeNotifier, DiagnosticableTreeMixin {
   Future getData()async{
     await Future.delayed(const Duration(seconds: 3));
     _appVersion = 10;
+    notifyListeners();
+  }
+
+  void setChoiceLanguage(String? lang) {
+    _choiceLanguage = lang;
     notifyListeners();
   }
 

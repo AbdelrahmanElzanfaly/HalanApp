@@ -26,7 +26,7 @@
   "Don’t have an account?": "Don’t have an account?",
   "Have An Account": "Have An Account ?",
   "app_name": "Mr Musllaha",
-  "Registered_Get_OTP": "Please enter your registered email address.An email notification with a password reset code will then be sent to you.",
+  "Registered_Get_OTP": "Please enter your registered mobile number. A message with a password reset code will then be sent to you.",
   "create_account": "Did Not have Account? SignUp now",
   "forgot_password": "Forgot Password ?",
   "accept_terms_privacy": "Agree Terms & Conditions",
@@ -99,11 +99,18 @@
   "Full Name": "Full Name",
   "Complete your profile": "Complete your profile",
 
+  "SendOTP": "Send OTP",
+  "Location": "Location :",
+  "Special Mark": "Special Mark :",
 
   "choose_image_source": "choose image source ",
   "from_gallery": "Gallery",
   "from_camera": "Camera",
   "Please choose": "Please choose",
   "Sign In now to enjoy our privileges, and get the best of our app.": "Sign In now to enjoy our privalges, and get the best of our app.",
-  "please add photo": "please add photo"
+  "please add photo": "please add photo",
+  "Basic Info": "Basic Info",
+  "Add Address": "Add Address",
+  "Saved Addresses": "Saved Addresses",
+  "Service Details": "Service Details"
 }

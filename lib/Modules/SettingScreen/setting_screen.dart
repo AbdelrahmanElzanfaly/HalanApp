@@ -1,12 +1,17 @@
+import 'package:awesome_dialog/awesome_dialog.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:halan/Control/shared_data_provider.dart';
 import 'package:halan/Modules/SettingScreen/setting_controller.dart';
+import 'package:halan/Modules/UserAuth/ForgotPasswordScreen/forgot_password_screen.dart';
 import 'package:halan/Utilities/helper.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:awesome_dialog/awesome_dialog.dart';
-
-import 'package:flutter/material.dart';
-
+import 'package:provider/provider.dart';
+import '../../Control/app_languages.dart';
 import '../../Theme/theme.dart';
+import '../../Widgets/custom_alert_dialog.dart';
+import '../../Widgets/language_dialog_widget.dart';
+import '../EditProfileScreen/edit_profile_screen.dart';
 
 class SettingScreen extends StatefulWidget {
   static const String routeName = "/SettingScreen";
@@ -26,6 +31,9 @@ class _SettingScreenState extends StateMVC<SettingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final appLan = Provider.of<AppLanguage>(context);
+    final provider = Provider.of<SharedDataProvider>(context);
+
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
@@ -131,20 +139,26 @@ class _SettingScreenState extends StateMVC<SettingScreen> {
                   SizedBox(
                     height: 16.h,
                   ),
-                  Container(
-                    width: 296.w,
-                    height: 36.h,
-                    decoration: BoxDecoration(
-                        color: ThemeClass.primaryColor,
-                        borderRadius: BorderRadius.circular(5)),
-                    alignment: Alignment.center,
-                    child: Text(
-                      'Edit Profile'.tr,
-                      style: TextStyle(
-                          fontSize: 14.sp,
-                          fontWeight: FontWeight.w500,
-                          color: ThemeClass.whiteColor),
-                    ),
+              FadeIn(
+                delay: 1,
+                from: SlideFrom.BOTTOM,
+                child:      InkWell(
+                    onTap: ()=> Navigator.pushNamed(context, EditProfileScreen.routeName),
+                    child: Container(
+                      width: 296.w,
+                      height: 36.h,
+                      decoration: BoxDecoration(
+                          color: ThemeClass.primaryColor,
+                          borderRadius: BorderRadius.circular(5)),
+                      alignment: Alignment.center,
+                      child: Text(
+                        'Edit Profile'.tr,
+                        style: TextStyle(
+                            fontSize: 14.sp,
+                            fontWeight: FontWeight.w500,
+                            color: ThemeClass.whiteColor),
+                      ),
+                    ),),
                   ),
                 ],
               ),
@@ -155,7 +169,8 @@ class _SettingScreenState extends StateMVC<SettingScreen> {
             SettingItems(
               name: 'Change Password'.tr,
               image: 'assets/images/lock-pen.png',
-              onTap: () {},
+              onTap: ()=> Navigator.pushNamed(context, ForgotPasswordScreen.routeName),
+
             ),
             Divider(
               indent: 17.w,
@@ -167,7 +182,22 @@ class _SettingScreenState extends StateMVC<SettingScreen> {
             SettingItems(
               name: 'Change Language'.tr,
               image: 'assets/images/globe.png',
-              onTap: () {},
+              onTap: () {
+
+                CustomDialog(
+                    context: context,
+                    buttonName: "Selection",
+                    onContinuePressed: () async {
+                      appLan.changeLanguage(Locale(
+                          provider.choiceLanguage ?? 'ar'));
+                      Navigator.of(context).pop();
+                    },
+                    des: StatefulBuilder(builder:
+                        (BuildContext context, setState) {
+                      return const LanguageDialogWidget();
+                    }),
+                    title: 'اختار لغه');
+              },
             ),
             Divider(
               indent: 17.w,
@@ -242,7 +272,9 @@ class _SettingScreenState extends StateMVC<SettingScreen> {
             SettingItems(
               name: 'Log Out'.tr,
               image: 'assets/images/exit.png',
-              onTap: () {},
+              onTap: () {
+                Navigator.of(context).pop();
+              },
             ),
             SizedBox(
               height: 30.h,

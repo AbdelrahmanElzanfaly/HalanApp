@@ -45,7 +45,7 @@
   "pin_code": "رمز التحقق",
   "Verify": "تحقق",
   "Send_otp": "ارسل كود التحقق",
-  "Registered_Get_OTP": "الرجاء إدخال عنوان بريدك الإلكتروني المسجل. إشعار بالبريد الإلكتروني مع رمز إعادة تعيين كلمة المرور ثم يتم إرسالها إليك.",
+  "Registered_Get_OTP": "الرجاء إدخال رقم هاتفك المحمول المسجل. سيتم بعد ذلك إرسال رسالة إليك بها رمز إعادة تعيين كلمة المرور.",
   "Not_Received_your_Code": "لم تستلم الرمز الخاص بك؟",
   "No_Data_Found": "لا يوجد بيانات",
   "confirm_pin_code": "رمز التحقق",
@@ -96,11 +96,18 @@
   "Years Of Experience": "سنوات من الخبرة",
   "Full Name": "الاسم كامل",
   "Complete your profile": "أكمل ملفك الشخصي",
+  "SendOTP": "أرسل OTP",
+  "Location": "موقع :",
+  "Special Mark": "علامة خاصة :",
 
   "choose_image_source": "اختيار صوره",
   "from_gallery": "المعرض",
   "from_camera": "الكاميرا",
   "Please choose": "اختر من فضلك",
   "Sign In now to enjoy our privalges, and get the best of our app.": "قم بتسجيل الدخول الآن للاستمتاع بامتيازاتنا والحصول على أفضل ما في تطبيقنا.",
-  "please add photo": "الرجاء إضافة الصورة"
+  "please add photo": "الرجاء إضافة الصورة",
+  "Basic Info": "معلومات أساسية",
+  "Add Address": "اضاف عنوان",
+  "Saved Addresses": "العناوين المحفوظة",
+  "Service Details": "تفاصيل الخدمة"
 }

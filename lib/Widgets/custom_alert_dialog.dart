@@ -5,32 +5,61 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import '../../Theme/theme.dart';
 
 class CustomDialog {
-  final String? title;
+  final String title;
+  final String buttonName;
   final Widget des;
+  final double? buttonWidth;
+  final Color? color;
   final Function() onContinuePressed;
+  final BuildContext context;
 
-  const CustomDialog({
+  CustomDialog( {
     Key? key,
-     this.title,
+    required this.title,
+    this.buttonWidth,
+    this.color,
+    required this.buttonName,
     required this.des,
     required this.onContinuePressed,
-  });
+    required this.context
+  }){
+    _showDeleteDialog(context);
+  }
 
-  showDeleteDialog(BuildContext context) {
-
-
+  _showDeleteDialog(BuildContext context) {
+    Widget continueButton = TextButton(
+      child: Center(
+        child: Container(
+          width: buttonWidth??double.infinity,
+          padding: EdgeInsets.all(10.w),
+          decoration: BoxDecoration(
+            color: ThemeClass.primaryColor,
+            borderRadius: BorderRadius.circular(10),
+          ),
+          child: Center(
+            child: Text(
+              buttonName,
+              style: const TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+          ),
+        ),
+      ),
+      onPressed: () => onContinuePressed(),
+    );
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
       shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(20.0))),
-      backgroundColor: Colors.white,
+      backgroundColor: color?? Colors.white,
       title: Row(
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          title == null ? const SizedBox() :Text(
-            title!,
+          Text(
+            title,
             style: TextStyle(
-              color: ThemeClass.primaryColor,
+              color: ThemeClass.secondPrimaryColor,
               fontSize: 16.sp,
               fontWeight: FontWeight.w700,
             ),
@@ -41,12 +70,14 @@ class CustomDialog {
 
                 Navigator.of(context).pop();
               },
-              child: const Icon(Icons.close_sharp))
+              child:  Icon(Icons.close_sharp,color: color !=null? Colors.white:null,))
         ],
       ),
       content: des,
-
-
+      actions: [
+        //  cancelButton,
+        continueButton,
+      ],
     );
 
     // show the dialog

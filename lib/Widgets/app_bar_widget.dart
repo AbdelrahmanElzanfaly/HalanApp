@@ -20,7 +20,7 @@ class AppBarWidget extends StatelessWidget {
         color: ThemeClass.backgroundAppBar,
         // padding: EdgeInsets.symmetric(horizontal: 25.w),
         child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
+          // crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
               child: GestureDetector(

@@ -15,6 +15,8 @@ import './locale/locales.dart';
 import 'Control/app_languages.dart';
 import 'Control/shared_data_provider.dart';
 import 'Modules/HomeScreen/home_screen.dart';
+import 'Modules/SettingScreen/setting_screen.dart';
+import 'Modules/SingleReservation/ServiceDetails/service_details_step1.dart';
 import 'Modules/Splash/splash_screen.dart';
 import 'Modules/UserAuth/AddressDetails/address_details_screen.dart';
 import 'Modules/UserAuth/CompleteProfile/complete_profile_screen.dart';
@@ -73,7 +75,7 @@ class EntryPoint extends StatelessWidget {
         navigatorKey: SharedObj.navigatorKey,
         debugShowCheckedModeBanner: false,
         title: 'Mwardi',
-        initialRoute: SplashScreen.routeName,
+        initialRoute: ServiceDetailsStep1Screen.routeName,
         locale: appLan.appLocal,
         supportedLocales: const [
           Locale('en', 'US'),

@@ -19,7 +19,7 @@ class QuestionCardWidget extends StatelessWidget {
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 5.w),
         child: Container(
-          height: 36.w,
+          height: 36.h,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(40),
               color: isSelected

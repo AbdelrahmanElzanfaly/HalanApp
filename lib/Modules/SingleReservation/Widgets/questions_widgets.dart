@@ -1,14 +1,19 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:halan/Modules/SingleReservation/Widgets/question_card_widget.dart';
 import 'package:halan/Theme/theme.dart';
 import 'package:intl/intl.dart';
+
+import '../../ReservationsScreen/reservations_screen.dart';
 
 class QuestionsWidgets extends StatefulWidget {
   final int? length, start;
   final Function(int index) onTap;
   final String? title;
   final bool isTime, isSelected;
+  final List? model;
+
 
   const QuestionsWidgets(
       {Key? key,
@@ -17,7 +22,7 @@ class QuestionsWidgets extends StatefulWidget {
         required this.onTap,
         this.title,
         required this.isTime,
-        required this.isSelected})
+        required this.isSelected, this.model})
       : super(key: key);
 
   @override
@@ -52,6 +57,7 @@ class _QuestionsWidgetsState extends State<QuestionsWidgets> {
         SizedBox(
           height: 16.h,
         ),
+       if(widget.model == null)
         widget.isTime
             ? SingleChildScrollView(
           scrollDirection: Axis.horizontal,
@@ -153,6 +159,9 @@ class _QuestionsWidgetsState extends State<QuestionsWidgets> {
             }),
           ),
         ),
+
+
+
       ],
     );
   }

@@ -2,6 +2,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:halan/Modules/SingleReservation/ServiceDetails/service_details_controller.dart';
+import 'package:halan/Modules/SingleReservation/ServiceDetails/service_details_step2.dart';
 import 'package:halan/Modules/SingleReservation/Widgets/questions_widgets.dart';
 import 'package:halan/Utilities/helper.dart';
 import 'package:halan/Widgets/service_steps_widget.dart';
@@ -34,7 +35,7 @@ class _ServiceDetailsStep1ScreenState
     return WillPopScope(
         onWillPop: () async => false,
         child: Scaffold(
-            bottomNavigationBar:  ButtonActionWidget(onNext: (){print('next');}, totalPrice: 'AED 97.00',),
+            bottomNavigationBar:  ButtonActionWidget(onNext: (){Navigator.pushNamed(context, ServiceDetailsStep2Screen.routeName);}, totalPrice: 'AED 97.00',),
             body: Container(
               padding: EdgeInsets.symmetric(horizontal: 24.w),
               child: Column(

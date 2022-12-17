@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:country_picker/country_picker.dart';
@@ -53,7 +54,8 @@ class CompleteProfileController extends ControllerMVC {
       context: context,
       showPhoneCode: false,
       onSelect: (Country country) {
-        countryName = country.displayNameNoCountryCode;
+        countryName = country.name;
+        log(countryName.toString());
         setState(() {});
       },
       countryListTheme: CountryListThemeData(

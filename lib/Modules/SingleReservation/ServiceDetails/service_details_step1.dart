@@ -3,13 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:halan/Modules/SingleReservation/ServiceDetails/service_details_controller.dart';
 import 'package:halan/Modules/SingleReservation/Widgets/questions_widgets.dart';
-import 'package:halan/Theme/theme.dart';
 import 'package:halan/Utilities/helper.dart';
 import 'package:halan/Widgets/service_steps_widget.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import '../../../Widgets/app_bar_widget.dart';
-import 'package:intl/intl.dart';
-
 import '../Widgets/button_action_widget.dart';
 import '../Widgets/question_card_title_widget.dart';
 

@@ -235,6 +235,18 @@ class _SettingScreenState extends StateMVC<SettingScreen> {
               image: 'assets/images/person-add.png',
               onTap: () {},
             ),
+                Divider(
+                  indent: 17.w,
+                  endIndent: 17.w,
+                  thickness: 1,
+                  height: 10.h,
+                  color: ThemeClass.hint,
+                ),
+                SettingItems(
+                  name: 'Saved Addresses'.tr,
+                  image: 'assets/images/location.png',
+                  onTap: () {},
+                ),
             Divider(
               indent: 17.w,
               endIndent: 17.w,
@@ -247,18 +259,7 @@ class _SettingScreenState extends StateMVC<SettingScreen> {
               image: 'assets/images/help-circle.png',
               onTap: () {},
             ),
-            Divider(
-              indent: 17.w,
-              endIndent: 17.w,
-              thickness: 1,
-              height: 10.h,
-              color: ThemeClass.hint,
-            ),
-            SettingItems(
-              name: 'About app'.tr,
-              image: 'assets/images/information-circle.png',
-              onTap: () {},
-            ),
+
             Divider(
               indent: 17.w,
               endIndent: 17.w,

@@ -9,6 +9,7 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 import '../../Theme/theme.dart';
 import '../../Widgets/carosel_widget.dart';
 import '../../Widgets/no_reservations_widget.dart';
+import '../SingleReservation/ServiceDetails/service_details_step1.dart';
 import 'home_controller.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -116,22 +117,23 @@ class _HomeScreenState extends StateMVC<HomeScreen> {
                     height: 25.h,
                   ),
                   ReservationButton(
+
                     image: 'assets/images/Group 513875-2.png',
-                    name: 'Single Reservation'.tr,
+                    name: 'Single Reservation'.tr, onTap: () { Navigator.of(context).pushNamed(ServiceDetailsStep1Screen.routeName); },
                   ),
                   SizedBox(
                     height: 14.h,
                   ),
                   ReservationButton(
                     image: 'assets/images/Group 513876.png',
-                    name: 'Package Reservation'.tr,
+                    name: 'Package Reservation'.tr, onTap: () {  },
                   ),
                   SizedBox(
                     height: 14.h,
                   ),
                   ReservationButton(
                     image: 'assets/images/Group 513877.png',
-                    name: 'Contract Reservation'.tr,
+                    name: 'Contract Reservation'.tr, onTap: () {  },
                   ),
                   SizedBox(
                     height: 25.h,
@@ -161,43 +163,46 @@ class _HomeScreenState extends StateMVC<HomeScreen> {
 
 class ReservationButton extends StatelessWidget {
   final String image, name;
-
-  const ReservationButton({Key? key, required this.image, required this.name})
+final Function() onTap;
+  const ReservationButton({Key? key, required this.image, required this.name, required this.onTap})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 327.w,
-      height: 40.h,
-      decoration: BoxDecoration(
-        color: ThemeClass.secondPrimaryColor,
-        borderRadius: BorderRadius.circular(5.sp),
-      ),
-      alignment: Alignment.center,
-      child: FadeIn(
-        delay: 1,
-        from: SlideFrom.LEFT,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Image.asset(
-              image,
-              width: 24.w,
-              height: 24.h,
-            ),
-            SizedBox(
-              width: 5.w,
-            ),
-            Text(
-              name,
-              style: TextStyle(
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w600,
-                  color: ThemeClass.whiteColor),
-            ),
-          ],
+    return InkWell(
+      onTap: onTap,
+      child: Container(
+        width: 327.w,
+        height: 40.h,
+        decoration: BoxDecoration(
+          color: ThemeClass.secondPrimaryColor,
+          borderRadius: BorderRadius.circular(5.sp),
+        ),
+        alignment: Alignment.center,
+        child: FadeIn(
+          delay: 1,
+          from: SlideFrom.LEFT,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Image.asset(
+                image,
+                width: 24.w,
+                height: 24.h,
+              ),
+              SizedBox(
+                width: 5.w,
+              ),
+              Text(
+                name,
+                style: TextStyle(
+                    fontSize: 14.sp,
+                    fontWeight: FontWeight.w600,
+                    color: ThemeClass.whiteColor),
+              ),
+            ],
+          ),
         ),
       ),
     );

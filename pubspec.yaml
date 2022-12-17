@@ -95,6 +95,7 @@ dev_dependencies:
   geocoding:
   location: ^4.3.0
   animated_text_kit: ^4.2.2
+  intl: ^0.17.0
 
 
 

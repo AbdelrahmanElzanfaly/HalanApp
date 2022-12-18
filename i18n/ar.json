@@ -18,7 +18,6 @@
   "Please Enter PhoneNumber": "الرجاء إدخال رقم الهاتف",
   "Please Enter Email": "الرجاء إدخال البريد الالكتروني",
   "Please Enter Confirm Password": "الرجاء إدخال تأكيد الرقم السري",
-
   "Service_Provider": "مقدم الخدمة.",
   "Ok": "مواقق",
   "Have An Account": "لديك حساب ؟",
@@ -66,7 +65,6 @@
   "Home": "الصفحة الرئيسية",
   "Reservations": "الحجز",
   "Log Out": "تسجيل خروج",
-
   "About app": "حول التطبيق",
   "Support Center": "مركز الدعم",
   "Refer to a friend": "قم بالإشارة إلى صديق",
@@ -79,6 +77,7 @@
   "Settings": "إعدادات",
   "Address Details": "تفاصيل العنوان",
   "Pick Location": "اختر الموقع",
+  "Pick Language": "اختر اللغة",
   "Postal/Zip code": "الرمز البريدي",
   "Street Address": "عنوان الشارع",
   "Address Name": "اسم العنوان",
@@ -99,7 +98,6 @@
   "SendOTP": "أرسل OTP",
   "Location": "موقع :",
   "Special Mark": "علامة خاصة :",
-
   "choose_image_source": "اختيار صوره",
   "from_gallery": "المعرض",
   "from_camera": "الكاميرا",
@@ -109,5 +107,6 @@
   "Basic Info": "معلومات أساسية",
   "Add Address": "اضاف عنوان",
   "Saved Addresses": "العناوين المحفوظة",
-  "Service Details": "تفاصيل الخدمة"
+  "Service Details": "تفاصيل الخدمة",
+  "Offers Reservation": "عروض الحجز"
 }

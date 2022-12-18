@@ -79,6 +79,7 @@
   "Address Details": "Address Details",
 
   "Pick Location": "Pick Location",
+  "Pick Language": "Pick Language",
   "Postal/Zip code": "Postal/Zip code",
   "Street Address": "Street Address",
   "Address Name": "Address Name",
@@ -112,5 +113,6 @@
   "Basic Info": "Basic Info",
   "Add Address": "Add Address",
   "Saved Addresses": "Saved Addresses",
-  "Service Details": "Service Details"
+  "Service Details": "Service Details",
+  "Offers Reservation": "Offers Reservation"
 }

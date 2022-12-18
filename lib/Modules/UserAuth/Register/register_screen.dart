@@ -14,7 +14,6 @@ import '../../../Widgets/app_bar_widget.dart';
 import '../../../Widgets/custom_button.dart';
 import '../../../Widgets/custom_textfeild_widget.dart';
 import '../OTP/otp_screen.dart';
-import '../Widgets/textWithField.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const String routeName = "/register";

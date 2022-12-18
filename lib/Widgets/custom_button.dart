@@ -11,6 +11,7 @@ class CustomButton extends StatelessWidget {
   final double? width;
   final double? fontsize;
   final double? height;
+  final double? borderRadius;
 
   CustomButton(
       { this.name,
@@ -19,7 +20,7 @@ class CustomButton extends StatelessWidget {
       this.height ,
       this.fontsize ,
       Key? key,
-      this.icon})
+      this.icon, this.borderRadius})
       : super(key: key);
 
   @override
@@ -36,7 +37,7 @@ class CustomButton extends StatelessWidget {
           height: height??60.h,
           decoration: BoxDecoration(
             color: ThemeClass.secondPrimaryColor,
-            borderRadius: BorderRadius.circular(25.w),
+            borderRadius: BorderRadius.circular(borderRadius??25),
             // boxShadow: [
             //   BoxShadow(
             //     color:

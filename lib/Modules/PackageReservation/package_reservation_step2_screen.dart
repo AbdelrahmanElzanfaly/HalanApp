@@ -1,7 +1,8 @@
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:halan/Modules/SingleReservation/ServiceDetails/service_details_controller.dart';
+import 'package:halan/Modules/PackageReservation/package_reservation_controller.dart';
+import 'package:halan/Modules/SingleReservation/service_details_controller.dart';
 import 'package:halan/Theme/theme.dart';
 import 'package:halan/Utilities/helper.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
@@ -9,36 +10,36 @@ import 'package:provider/provider.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:halan/Modules/SingleReservation/ServiceDetails/service_details_controller.dart';
+import 'package:halan/Modules/SingleReservation/service_details_controller.dart';
 import 'package:halan/Modules/SingleReservation/Widgets/questions_widgets.dart';
 import 'package:halan/Utilities/helper.dart';
 import 'package:halan/Widgets/service_steps_widget.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import '../../../Widgets/app_bar_widget.dart';
 import '../../../Widgets/custom_textfeild_widget.dart';
-import '../Widgets/button_action_widget.dart';
-import '../Widgets/question_card_title_widget.dart';
-import '../Widgets/question_card_widget.dart';
+import '../../modules/SingleReservation/Widgets/button_action_widget.dart';
+import '../../modules/SingleReservation/Widgets/question_card_title_widget.dart';
+import '../AdditionalInformation/additional_information_screen.dart';
+import '../SingleReservation/Widgets/question_card_widget.dart';
 
-class ServiceDetailsStep2Screen extends StatefulWidget {
-  static const String routeName = "/ServiceDetailsStep2Screen";
+class PackageReservationStep2Screen extends StatefulWidget {
+  static const String routeName = "/PackageReservationStep2Screen";
 
-  const ServiceDetailsStep2Screen({Key? key}) : super(key: key);
+  const PackageReservationStep2Screen({Key? key}) : super(key: key);
 
   @override
-  _ServiceDetailsStep2ScreenState createState() =>
-      _ServiceDetailsStep2ScreenState();
+  _PackageReservationStep2ScreenState createState() =>
+      _PackageReservationStep2ScreenState();
 }
 
-class _ServiceDetailsStep2ScreenState
-    extends StateMVC<ServiceDetailsStep2Screen> {
-  _ServiceDetailsStep2ScreenState() : super(ServiceDetailsController()) {
-    con = ServiceDetailsController();
+class _PackageReservationStep2ScreenState
+    extends StateMVC<PackageReservationStep2Screen> {
+  _PackageReservationStep2ScreenState()
+      : super(PackageReservationController()) {
+    con = PackageReservationController();
   }
 
-  late ServiceDetailsController con;
-  int indexNationality = 0;
-  int indexMade =0;
+  late PackageReservationController con;
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +48,7 @@ class _ServiceDetailsStep2ScreenState
         child: Scaffold(
             bottomNavigationBar: ButtonActionWidget(
               onNext: () {
-                print('next');
+                Navigator.pushNamed(context, AdditionalInformationScreen.routeName,arguments: 'Package Reservation'.tr);
               },
               totalPrice: 'AED 97.00',
             ),
@@ -58,18 +59,19 @@ class _ServiceDetailsStep2ScreenState
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        height: 70.h,
+                        height: 50.h,
                       ),
                       FadeIn(
                           delay: 1,
                           from: SlideFrom.LEFT,
                           child: AppBarWidget(
-                            title: 'Single Reservation'.tr,
+                            title: 'Package Reservation'.tr,
                           )),
                       SizedBox(
                         height: 23.h,
                       ),
-                      const ServiceStepsWidget(
+                      ServiceStepsWidget(
+                        title: 'Service Details'.tr,
                         step: 2,
                       ),
                       SizedBox(
@@ -101,11 +103,12 @@ class _ServiceDetailsStep2ScreenState
                           itemBuilder: (context, index) {
                             return InkWell(
                                 onTap: () {
-                                  indexNationality = index;
+                                  con.indexNationality = index;
                                   setState(() {});
                                 },
                                 child: QuestionCardWidget(
-                                    isSelected: index == indexNationality, title: 'Egyptian'));
+                                    isSelected: index == con.indexNationality,
+                                    title: 'Egyptian'));
                           },
                         ),
                       ),
@@ -118,7 +121,7 @@ class _ServiceDetailsStep2ScreenState
                           delay: 1,
                           from: SlideFrom.TOP,
                           child: Text(
-                            'Pick the professional of your choice ..',
+                            'The period is from hour to hour ..',
                             style: TextStyle(
                                 fontSize: 14.sp,
                                 fontWeight: FontWeight.w400,
@@ -130,7 +133,7 @@ class _ServiceDetailsStep2ScreenState
                         height: 16.h,
                       ),
                       SizedBox(
-                        height: 130.h,
+                        height: 36.h,
                         child: ListView.builder(
                           itemCount: 12,
                           scrollDirection: Axis.horizontal,
@@ -138,17 +141,19 @@ class _ServiceDetailsStep2ScreenState
                           itemBuilder: (context, index) {
                             return InkWell(
                                 onTap: () {
-                                  indexMade= index;
+                                  con.indexHour = index;
                                   setState(() {});
                                 },
-                                child: MadeWidget(
-                                  isSelected: indexMade==index,
-                                  image:
-                                      'https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg',
-                                ));
+                                child: QuestionCardWidget(
+                                    isSelected: index == con.indexHour,
+                                    title: '8:00 - 8:30'));
                           },
                         ),
                       ),
+                      SizedBox(
+                        height: 36.h,
+                      ),
+                      QuestionCardTitleWidget(),
                       SizedBox(
                         height: 36.h,
                       ),
@@ -177,10 +182,11 @@ class _ServiceDetailsStep2ScreenState
                           suffixIcon: const SizedBox(),
                           isDense: false,
                           maxLine: 100,
-                            backGroundColor:ThemeClass.containerBackground,
+                          backGroundColor: ThemeClass.containerBackground,
                           borderColor: Colors.grey.shade400.withOpacity(0.2),
                           // controller: con.aboutYourSelfController,
-                          hint: "Example : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+                          hint:
+                          "Example : Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
                           validator: (String? v) {
                             if (v == null || v.isEmpty) return "";
                             return null;
@@ -193,87 +199,5 @@ class _ServiceDetailsStep2ScreenState
                     ]),
               ),
             )));
-  }
-}
-
-class MadeWidget extends StatelessWidget {
-  final bool isSelected;
-  final String image;
-
-  const MadeWidget({Key? key, required this.isSelected, required this.image})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 5.w),
-      child: Container(
-        width: 100.w,
-        height: 130.h,
-        decoration: BoxDecoration(
-          color: ThemeClass.containerBackground,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-              color: isSelected
-                  ? ThemeClass.primaryColor
-                  : ThemeClass.containerBackground),
-        ),
-        alignment: Alignment.center,
-        child: Column(
-          children: [
-            SizedBox(
-              height: 10.h,
-            ),
-            SizedBox(
-              height: 50.h,
-              width: 50.w,
-              child: FadeIn(
-                  delay: 1,
-                  from: SlideFrom.BOTTOM,
-                  child: CircleAvatar(backgroundImage: NetworkImage(image))),
-            ),
-            SizedBox(
-              height: 6.h,
-            ),
-            SizedBox(
-              width: 80,
-              child: Center(
-                child: FadeIn(
-                  delay: 1,
-                  from: SlideFrom.TOP,
-                  child: Text(
-                    'Jane Doe',
-                    style: TextStyle(
-                        fontSize: 12.sp,
-                        fontWeight: FontWeight.w600,
-                        color: ThemeClass.blackColor),
-                  ),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: 6.h,
-            ),
-            SizedBox(
-              width: 80,
-              child: Center(
-                child: FadeIn(
-                  delay: 1,
-                  from: SlideFrom.TOP,
-                  child: Text(
-                    'Recommended in your area',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.w400,
-                        color: ThemeClass.hintColor),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
   }
 }

@@ -11,7 +11,7 @@ class QuestionsWidgets extends StatefulWidget {
   final int? length, start;
   final Function(int index) onTap;
   final String? title;
-  final bool isTime, isSelected;
+  final bool isTime;
   final List? model;
 
 
@@ -21,8 +21,7 @@ class QuestionsWidgets extends StatefulWidget {
         this.start,
         required this.onTap,
         this.title,
-        required this.isTime,
-        required this.isSelected, this.model})
+        required this.isTime, this.model})
       : super(key: key);
 
   @override

@@ -4,8 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:halan/Models/offer_items.dart';
-
-import '../Theme/theme.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:halan/Modules/AdditionalInformation/additional_information_screen.dart';
+import 'package:halan/Utilities/helper.dart';
+import '../../../Theme/theme.dart';
 
 class CarouselWidget extends StatefulWidget {
   final List<OfferItem>? productItem;
@@ -46,7 +48,7 @@ class _CarouselWidgetState extends State<CarouselWidget> {
           items: widget.productItem?.map((e) {
             return GestureDetector(
               onTap: () {
-                // Navigator.pushNamed(context, ProductDetailsScreen.routeName);
+                 Navigator.pushNamed(context, AdditionalInformationScreen.routeName,arguments: 'Offers Reservation'.tr);
               },
               child: Container(
                 width: 327.w,
@@ -56,17 +58,33 @@ class _CarouselWidgetState extends State<CarouselWidget> {
                 ),
                 child: Row(
                   children: [
-                  FadeIn(
-                  delay: 1,
-                  from: SlideFrom.RIGHT,
-                  child:  ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.network(
-                        "https://cdn.shopify.com/s/files/1/0554/0737/8621/files/Espresso_Beans_Mobile_Header_900_x_1500_px_1600x.png?v=1655845308",
-                        fit: BoxFit.fill,
-                        height: 170.h,
+                    FadeIn(
+                      delay: 1,
+                      from: SlideFrom.RIGHT,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: CachedNetworkImage(
+                          height: 170.h,
+                          width: 76.w,
+                          fit: BoxFit.fill,
+                          imageUrl:
+                              "https://cdn2.hubspot.net/hubfs/53/parts-url.jpg",
+                          placeholder: (context, url) =>
+                              const Center(child: CircularProgressIndicator()),
+                          errorWidget: (context, url, error) =>
+                              const Icon(Icons.error),
+                        ),
+
+                        // Image.network(
+                        //   "https://cdn.shopify.com/s/files/1/0554/0737/8621/files/Espresso_Beans_Mobile_Header_900_x_1500_px_1600x.png?v=1655845308",
+                        //   fit: BoxFit.fill,
+                        //   height: 170.h,
+                        //   errorBuilder: (BuildContext, Object, StackTrace) {
+                        //     return Text('Your error widget...');
+                        //   },
+                        // ),
                       ),
-                    ),),
+                    ),
                     // const Spacer(),
                     SizedBox(
                       width: 245.w,

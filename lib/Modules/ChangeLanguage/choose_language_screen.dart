@@ -38,78 +38,80 @@ class _ChooseLanguageScreenState extends StateMVC<ChooseLanguageScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             SizedBox(
-              height: 115.h,
+              height: 154.h,
             ),
             Image.asset(
-              "assets/images/language.png",
-              width: 80.w,
-              height: 80.h,
+              "assets/images/Frame.png",
+              width: 264.w,
+              height: 172.h,
               fit: BoxFit.contain,
             ),
             SizedBox(
               height: 44.h,
             ),
             Text(
-              'Choose_your_Language'.tr,
+              'Pick Language'.tr,
               style: TextStyle(
                   color: ThemeClass.textColor,
-                  fontSize: 24.sp,
+                  fontSize: 18.sp,
                   fontWeight: FontWeight.bold),
             ),
             SizedBox(
               height: 70.h,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: IntroductionController.supportedLanguage.map((e) {
-                return InkWell(
-                  onTap: () => setState(() {
-                    con.selectedLanguage = e;
-                  }),
-                  child: Container(
-                    height: 110.w,
-                    width: 110.w,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(60.w),
-                      color: Colors.white,
-                      border: Border.all(
-                          color: con.selectedLanguage != e
-                              ? Colors.grey.shade400
-                              : ThemeClass.primaryColor,
-                          width: 1.w),
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(8.w),
-                          child: Image.asset(
-                            "assets/images/${e == "ar" ? "arabic_flag.jpg" : "english_flag.jpg"}",
-                            width: 30.w,
-                            height: 30.w,
-                            fit: BoxFit.fill,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 25.w),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: IntroductionController.supportedLanguage.map((e) {
+                  return InkWell(
+                    onTap: () => setState(() {
+                      con.selectedLanguage = e;
+                    }),
+                    child: Container(
+                      height: 110.w,
+                      width: 110.w,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(60.w),
+                        color: Colors.white,
+                        border: Border.all(
+                            color: con.selectedLanguage != e
+                                ? Colors.grey.shade400
+                                : ThemeClass.primaryColor,
+                            width: 1.w),
+                      ),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(8.w),
+                            child: Image.asset(
+                              "assets/images/${e == "ar" ? "arabic_flag.jpg" : "english_flag.jpg"}",
+                              width: 30.w,
+                              height: 30.w,
+                              fit: BoxFit.fill,
+                            ),
                           ),
-                        ),
-                        Text(
-                          e == "ar" ? "العربية" : "English",
-                          style:
-                              TextStyle(color: Colors.black87, fontSize: 18.sp),
-                        ),
-                      ],
+                          Text(
+                            e == "ar" ? "العربية" : "English",
+                            style: TextStyle(
+                                color: Colors.black87, fontSize: 18.sp),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              }).toList(),
+                  );
+                }).toList(),
+              ),
             ),
             const Spacer(),
             CustomButton(
               height: 50,
               width: 250.w,
               ontap: () async => await con.selectLanguage(context),
-              name: "continue".tr,
+              name: "Next".tr,
             ),
             const Spacer(),
-
           ],
         ),
         // bottomNavigationBar: SharedPref.isUserLogIn() ?CustomNavigatorBar(currentIndex: context.watch<SharedDataProvider>().curruntNavIndex,):null,

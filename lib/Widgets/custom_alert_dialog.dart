@@ -33,7 +33,7 @@ class CustomDialog {
           width: buttonWidth??double.infinity,
           padding: EdgeInsets.all(10.w),
           decoration: BoxDecoration(
-            color: ThemeClass.primaryColor,
+            color: ThemeClass.secondPrimaryColor,
             borderRadius: BorderRadius.circular(10),
           ),
           child: Center(

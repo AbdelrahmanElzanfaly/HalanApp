@@ -12,6 +12,10 @@ import '../../Theme/theme.dart';
 import '../../Widgets/custom_alert_dialog.dart';
 import '../../Widgets/language_dialog_widget.dart';
 import '../EditProfileScreen/edit_profile_screen.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
+import '../ReferToFriend/refer_to_friend_screen.dart';
+import '../SavedAddresses/saved_addresses_screen.dart';
 
 class SettingScreen extends StatefulWidget {
   static const String routeName = "/SettingScreen";
@@ -76,11 +80,16 @@ class _SettingScreenState extends StateMVC<SettingScreen> {
                         from: SlideFrom.RIGHT,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
-                          child: Image.network(
-                            'https://cdn.shopify.com/s/files/1/0554/0737/8621/files/Espresso_Beans_Mobile_Header_900_x_1500_px_1600x.png?v=1655845308',
-                            fit: BoxFit.fill,
-                            height: 82.h,
+                          child: CachedNetworkImage(
+                            height: 82.w,
                             width: 61.w,
+                            fit: BoxFit.fill,
+                            imageUrl:
+                                "https://cdn2.hubspot.net/hubfs/53/parts-url.jpg",
+                            placeholder: (context, url) => const Center(
+                                child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
                           ),
                         ),
                       ),
@@ -139,26 +148,28 @@ class _SettingScreenState extends StateMVC<SettingScreen> {
                   SizedBox(
                     height: 16.h,
                   ),
-              FadeIn(
-                delay: 1,
-                from: SlideFrom.BOTTOM,
-                child:      InkWell(
-                    onTap: ()=> Navigator.pushNamed(context, EditProfileScreen.routeName),
-                    child: Container(
-                      width: 296.w,
-                      height: 36.h,
-                      decoration: BoxDecoration(
-                          color: ThemeClass.primaryColor,
-                          borderRadius: BorderRadius.circular(5)),
-                      alignment: Alignment.center,
-                      child: Text(
-                        'Edit Profile'.tr,
-                        style: TextStyle(
-                            fontSize: 14.sp,
-                            fontWeight: FontWeight.w500,
-                            color: ThemeClass.whiteColor),
+                  FadeIn(
+                    delay: 1,
+                    from: SlideFrom.BOTTOM,
+                    child: InkWell(
+                      onTap: () => Navigator.pushNamed(
+                          context, EditProfileScreen.routeName),
+                      child: Container(
+                        width: 296.w,
+                        height: 36.h,
+                        decoration: BoxDecoration(
+                            color: ThemeClass.primaryColor,
+                            borderRadius: BorderRadius.circular(5)),
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Edit Profile'.tr,
+                          style: TextStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w500,
+                              color: ThemeClass.whiteColor),
+                        ),
                       ),
-                    ),),
+                    ),
                   ),
                 ],
               ),
@@ -169,8 +180,8 @@ class _SettingScreenState extends StateMVC<SettingScreen> {
             SettingItems(
               name: 'Change Password'.tr,
               image: 'assets/images/lock-pen.png',
-              onTap: ()=> Navigator.pushNamed(context, ForgotPasswordScreen.routeName),
-
+              onTap: () =>
+                  Navigator.pushNamed(context, ForgotPasswordScreen.routeName),
             ),
             Divider(
               indent: 17.w,
@@ -183,17 +194,16 @@ class _SettingScreenState extends StateMVC<SettingScreen> {
               name: 'Change Language'.tr,
               image: 'assets/images/globe.png',
               onTap: () {
-
                 CustomDialog(
                     context: context,
                     buttonName: "Selection",
                     onContinuePressed: () async {
-                      appLan.changeLanguage(Locale(
-                          provider.choiceLanguage ?? 'ar'));
+                      appLan.changeLanguage(
+                          Locale(provider.choiceLanguage ?? 'ar'));
                       Navigator.of(context).pop();
                     },
-                    des: StatefulBuilder(builder:
-                        (BuildContext context, setState) {
+                    des: StatefulBuilder(
+                        builder: (BuildContext context, setState) {
                       return const LanguageDialogWidget();
                     }),
                     title: 'اختار لغه');
@@ -233,20 +243,22 @@ class _SettingScreenState extends StateMVC<SettingScreen> {
             SettingItems(
               name: 'Refer to a friend'.tr,
               image: 'assets/images/person-add.png',
-              onTap: () {},
+              onTap: () =>
+                  Navigator.pushNamed(context, ReferAndEarnScreen.routeName),
             ),
-                Divider(
-                  indent: 17.w,
-                  endIndent: 17.w,
-                  thickness: 1,
-                  height: 10.h,
-                  color: ThemeClass.hint,
-                ),
-                SettingItems(
-                  name: 'Saved Addresses'.tr,
-                  image: 'assets/images/location.png',
-                  onTap: () {},
-                ),
+            Divider(
+              indent: 17.w,
+              endIndent: 17.w,
+              thickness: 1,
+              height: 10.h,
+              color: ThemeClass.hint,
+            ),
+            SettingItems(
+              name: 'Saved Addresses'.tr,
+              image: 'assets/images/location.png',
+              onTap: () =>
+                  Navigator.pushNamed(context, SavedAddressesScreen.routeName),
+            ),
             Divider(
               indent: 17.w,
               endIndent: 17.w,
@@ -259,7 +271,6 @@ class _SettingScreenState extends StateMVC<SettingScreen> {
               image: 'assets/images/help-circle.png',
               onTap: () {},
             ),
-
             Divider(
               indent: 17.w,
               endIndent: 17.w,

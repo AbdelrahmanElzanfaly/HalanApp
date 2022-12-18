@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,27 +8,19 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:in_app_update/in_app_update.dart';
 import 'package:provider/provider.dart';
-
 import './Shared/shared_obj.dart';
 import './locale/locales.dart';
 import 'Control/app_languages.dart';
 import 'Control/shared_data_provider.dart';
-import 'Modules/HomeScreen/home_screen.dart';
-import 'Modules/SettingScreen/setting_screen.dart';
-import 'Modules/SingleReservation/ServiceDetails/service_details_step1.dart';
+import 'Modules/ContractReservation/contract_reservation_screen.dart';
+import 'Modules/ContractReservation/service_provider_profile_screen.dart';
 import 'Modules/Splash/splash_screen.dart';
-import 'Modules/UserAuth/AddressDetails/address_details_screen.dart';
-import 'Modules/UserAuth/CompleteProfile/complete_profile_screen.dart';
-import 'Modules/UserAuth/OTP/otp_screen.dart';
-import 'Modules/UserAuth/UserType/user_type.dart';
 import 'Theme/theme.dart';
 import 'Utilities/firebase_operation.dart';
-import 'Utilities/helper.dart';
 import 'Utilities/routing.dart';
 import 'firebase_options.dart';
 
 Future<void> main() async {
-
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -55,7 +46,6 @@ Future<void> main() async {
     ),
   ));
 }
-
 
 class EntryPoint extends StatelessWidget {
   const EntryPoint({Key? key}) : super(key: key);
@@ -101,13 +91,14 @@ class MyHttpOverrides extends HttpOverrides {
           (X509Certificate cert, String host, int port) => true;
   }
 }
+
 Future<void> startFlexibleUpdate() async {
-  if(!Platform.isAndroid) return;
-  try{
+  if (!Platform.isAndroid) return;
+  try {
     final checker = await InAppUpdate.checkForUpdate();
-    if(checker.updateAvailability > 0){
+    if (checker.updateAvailability > 0) {
       await InAppUpdate.startFlexibleUpdate();
       await InAppUpdate.completeFlexibleUpdate();
     }
-  }catch(e){}
+  } catch (e) {}
 }

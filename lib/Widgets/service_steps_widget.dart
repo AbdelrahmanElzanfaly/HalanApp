@@ -5,9 +5,11 @@ import 'package:halan/Theme/theme.dart';
 import 'package:halan/Utilities/helper.dart';
 
 class ServiceStepsWidget extends StatelessWidget {
-  final int step;
+  final double step;
+  final String title;
 
-  const ServiceStepsWidget({Key? key, required this.step}) : super(key: key);
+  const ServiceStepsWidget({Key? key, required this.step, required this.title})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,7 @@ class ServiceStepsWidget extends StatelessWidget {
           delay: 1,
           from: SlideFrom.LEFT,
           child: Text(
-            'Service Details'.tr,
+            title,
             style: TextStyle(
                 fontSize: 16.sp,
                 fontWeight: FontWeight.w400,

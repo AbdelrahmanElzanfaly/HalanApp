@@ -59,7 +59,7 @@ class _EditProfileScreenState extends StateMVC<EditProfileScreen> {
                       height: 70.h,
                     ),
                     AppBarWidget(
-                      title: 'reset_password'.tr,
+                      title: 'Edit Profile'.tr,
                     ),
                     SizedBox(
                       height: 35.h,
@@ -73,6 +73,7 @@ class _EditProfileScreenState extends StateMVC<EditProfileScreen> {
                           width: 100.w,
                           decoration: BoxDecoration(
                             // border: Border.all(color: Colors.blueAccent),
+                            color: ThemeClass.hint,
                             borderRadius: BorderRadius.circular(100),
                             image: DecorationImage(
                                 image: con.userImage == null
@@ -202,58 +203,7 @@ class _EditProfileScreenState extends StateMVC<EditProfileScreen> {
                     SizedBox(
                       height: 28.h,
                     ),
-                    Row(
-                      children: [
-                        FadeIn(
-                          delay: 1,
-                          from: SlideFrom.LEFT,
-                          child: Text(
-                            "Saved Addresses".tr,
-                            style: TextStyle(
-                                fontSize: 14.sp,
-                                fontWeight: FontWeight.w500,
-                                color: ThemeClass.textColor),
-                          ),
-                        ),
-                        const Spacer(),
-                        FadeIn(
-                          delay: 1,
-                          from: SlideFrom.RIGHT,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Row(
-                              children: [
-                                Icon(
-                                  Icons.add,
-                                  color: ThemeClass.primaryColor,
-                                ),
-                                Text(
-                                  "Add Address".tr,
-                                  style: TextStyle(
-                                      fontSize: 10.sp,
-                                      fontWeight: FontWeight.w400,
-                                      color: ThemeClass.primaryColor),
-                                ),
-                              ],
-                            ),
-                          ),
-                        )
-                      ],
-                    ),
-                    SizedBox(
-                      height: 25.h,
-                    ),
-                    ...[1, 2, 3].map(
-                      (e) => AddressDetailsWidget(
-                        onEdit: () {},
-                        onDelete: () {},
-                        title: "Home Address",
-                        fullAddress:
-                            '7th Street Zakaria Moustafa, Bolak Eldakrour, Giza.Appartment No. 15, 5th Floor.',
-                        specialMark: ' Next to Abdelnaser Mosque.',
-                        location: 'https://goo.gl/maps/1XgFKbDdFJx5MyQV9',
-                      ),
-                    ),
+
                     SizedBox(
                       height: 41.h,
                     ),

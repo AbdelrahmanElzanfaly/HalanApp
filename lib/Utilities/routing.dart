@@ -2,15 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:halan/Modules/UserAuth/Register/register_screen.dart';
 
+import '../Modules/AdditionalInformation/additional_information_screen.dart';
 import '../Modules/BottomNavigationBarScreen/bottom_navigation_bar_screen.dart';
 import '../Modules/ChangeLanguage/choose_language_screen.dart';
+import '../Modules/ContractReservation/contract_reservation_screen.dart';
+import '../Modules/ContractReservation/service_provider_profile_screen.dart';
 import '../Modules/EditProfileScreen/edit_profile_screen.dart';
 import '../Modules/HomeScreen/home_screen.dart';
 import '../Modules/IntroductionPages/introduction_screen.dart';
+import '../Modules/PackageReservation/package_reservation_step1_screen.dart';
+import '../Modules/PackageReservation/package_reservation_step2_screen.dart';
+import '../Modules/ReferToFriend/refer_to_friend_screen.dart';
 import '../Modules/ReservationsScreen/reservations_screen.dart';
+import '../Modules/SavedAddresses/saved_addresses_screen.dart';
 import '../Modules/SettingScreen/setting_screen.dart';
-import '../Modules/SingleReservation/ServiceDetails/service_details_step1.dart';
-import '../Modules/SingleReservation/ServiceDetails/service_details_step2.dart';
+import '../Modules/SingleReservation/service_details_step1.dart';
+import '../Modules/SingleReservation/service_details_step2.dart';
 import '../Modules/Splash/splash_screen.dart';
 import '../Modules/UserAuth/AddressDetails/PickLocationScreen/pick_location_screen.dart';
 import '../Modules/UserAuth/AddressDetails/address_details_screen.dart';
@@ -20,6 +27,7 @@ import '../Modules/UserAuth/Login/login_screen.dart';
 import '../Modules/UserAuth/OTP/otp_screen.dart';
 import '../Modules/UserAuth/ResetPasswordScreen/reset_password_screen.dart';
 import '../Modules/UserAuth/UserType/user_type.dart';
+import '../Modules/WaitingForConfirmationScreen/waiting_for_confirmation_screen.dart';
 
 class AppModule extends Module {
   @override
@@ -107,6 +115,38 @@ class AppModule extends Module {
         duration: const Duration(milliseconds: 300)),
     ChildRoute(ServiceDetailsStep1Screen.routeName,
         child: (_, args) => ServiceDetailsStep1Screen(),
+        transition: TransitionType.fadeIn,
+        duration: const Duration(milliseconds: 300)),
+    ChildRoute(AdditionalInformationScreen.routeName,
+        child: (_, args) => AdditionalInformationScreen(appBarTitle: args.data,),
+        transition: TransitionType.fadeIn,
+        duration: const Duration(milliseconds: 300)),
+    ChildRoute(WaitingForConfirmationScreen.routeName,
+        child: (_, args) => const WaitingForConfirmationScreen(),
+        transition: TransitionType.fadeIn,
+        duration: const Duration(milliseconds: 300)),
+    ChildRoute(PackageReservationStep1Screen.routeName,
+        child: (_, args) => const PackageReservationStep1Screen(),
+        transition: TransitionType.fadeIn,
+        duration: const Duration(milliseconds: 300)),
+    ChildRoute(PackageReservationStep2Screen.routeName,
+        child: (_, args) => const PackageReservationStep2Screen(),
+        transition: TransitionType.fadeIn,
+        duration: const Duration(milliseconds: 300)),
+    ChildRoute(ContractReservationScreen.routeName,
+        child: (_, args) => const ContractReservationScreen(),
+        transition: TransitionType.fadeIn,
+        duration: const Duration(milliseconds: 300)),
+    ChildRoute(ServiceProviderProfileScreen.routeName,
+        child: (_, args) => const ServiceProviderProfileScreen(),
+        transition: TransitionType.fadeIn,
+        duration: const Duration(milliseconds: 300)),
+    ChildRoute(SavedAddressesScreen.routeName,
+        child: (_, args) => const SavedAddressesScreen(),
+        transition: TransitionType.fadeIn,
+        duration: const Duration(milliseconds: 300)),
+    ChildRoute(ReferAndEarnScreen.routeName,
+        child: (_, args) => const ReferAndEarnScreen(),
         transition: TransitionType.fadeIn,
         duration: const Duration(milliseconds: 300)),
   ];

@@ -8,7 +8,7 @@ import '../Theme/theme.dart';
 class AddressDetailsWidget extends StatelessWidget {
   final Function() onEdit, onDelete;
   final String title, fullAddress, specialMark, location;
-
+final bool isSelected;
   const AddressDetailsWidget(
       {Key? key,
       required this.onEdit,
@@ -16,7 +16,7 @@ class AddressDetailsWidget extends StatelessWidget {
       required this.title,
       required this.fullAddress,
       required this.specialMark,
-      required this.location})
+      required this.location, required this.isSelected})
       : super(key: key);
 
   @override
@@ -26,7 +26,7 @@ class AddressDetailsWidget extends StatelessWidget {
       margin: EdgeInsets.symmetric(vertical: 5.h),
       padding: EdgeInsets.all(13.w),
       decoration: BoxDecoration(
-        border:Border.all(color: ThemeClass.hint),
+        border:Border.all(color: isSelected?ThemeClass.primaryColor:ThemeClass.hint),
           borderRadius: BorderRadius.circular(10),
           color: ThemeClass.backgroundAppBar),
       child: Row(

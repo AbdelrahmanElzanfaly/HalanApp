@@ -1,9 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:halan/API/api.dart';
-import 'package:halan/Modules/UserAuth/AddressDetails/address_details_screen.dart';
-import 'package:halan/Modules/UserAuth/CompleteProfile/complete_profile_screen.dart';
-import 'package:halan/Modules/UserAuth/OTP/otp_screen.dart';
+
 import 'package:halan/Utilities/helper.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
@@ -65,8 +63,7 @@ class RegistrationController extends ControllerMVC {
     });
 
     // if (result) {
-    Navigator.of(context).pushNamed(OtpScreen.routeName,
-        arguments: [onConfirmOtp, phoneController.text]);
+
     // }
   }
 
@@ -81,11 +78,9 @@ class RegistrationController extends ControllerMVC {
     // );
     // if (result) {
 
-    if (type == 0) {
-      Modular.to.pushNamed(AddressDetailsScreen.routeName);
-    } else if (type == 1) {
-      Modular.to.pushNamed(CompleteProfileScreen.routeName);
-    }
+
+      // Modular.to.pushNamed(AddressDetailsScreen.routeName);
+
     // }
   }
 

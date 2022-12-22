@@ -3,11 +3,16 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:halan/Modules/Notifications/notifications_screen.dart';
+import 'package:halan/Modules/SingleReservation/service_details_step1.dart';
 import 'package:halan/Utilities/helper.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
 import '../../Theme/theme.dart';
+import '../../Modules/HomeScreen/widgets/carosel_widget.dart';
 import '../../Widgets/no_reservations_widget.dart';
+import '../ContractReservation/contract_reservation_screen.dart';
+import '../PackageReservation/package_reservation_step1_screen.dart';
 import 'home_controller.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -68,7 +73,7 @@ class _HomeScreenState extends StateMVC<HomeScreen> {
                           delay: 1,
                           from: SlideFrom.RIGHT,
                           child: GestureDetector(
-                            // onTap: onTapNotification,
+                            onTap: ()=> Navigator.pushNamed(context, NotificationsScreen.routeName),
                             child: Badge(
                               elevation: 1,
                               position: BadgePosition.topStart(),
@@ -94,7 +99,9 @@ class _HomeScreenState extends StateMVC<HomeScreen> {
                   SizedBox(
                     height: 30.h,
                   ),
-
+                  CarouselWidget(
+                    productItem: con.contents,
+                  ),
                   SizedBox(
                     height: 35.h,
                   ),
@@ -112,12 +119,29 @@ class _HomeScreenState extends StateMVC<HomeScreen> {
                   SizedBox(
                     height: 25.h,
                   ),
-
+                  ReservationButton(
+                    image: 'assets/images/Group 513875-2.png',
+                    name: 'Single Reservation'.tr,
+                    onTap: () => Navigator.of(context)
+                          .pushNamed(ServiceDetailsStep1Screen.routeName),
+                  ),
+                  SizedBox(
+                    height: 14.h,
+                  ),
+                  ReservationButton(
+                    image: 'assets/images/Group 513876.png',
+                    name: 'Package Reservation'.tr,
+                    onTap: () => Navigator.of(context)
+                          .pushNamed(PackageReservationStep1Screen.routeName),
+                  ),
+                  SizedBox(
+                    height: 14.h,
+                  ),
                   ReservationButton(
                     image: 'assets/images/Group 513877.png',
                     name: 'Contract Reservation'.tr,
-                    onTap: () {},
-
+                    onTap: () => Navigator.of(context)
+                        .pushNamed(ContractReservationScreen.routeName),
                   ),
                   SizedBox(
                     height: 25.h,

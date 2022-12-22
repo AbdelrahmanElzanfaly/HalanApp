@@ -12,7 +12,8 @@ import '../../Theme/theme.dart';
 import '../../Utilities/Layout/connectivity_checker.dart';
 import '../../Utilities/toast_helper.dart';
 import '../../modules/HomeScreen/home_screen.dart';
-
+import '../ReservationsScreen/reservations_screen.dart';
+import '../SettingScreen/setting_screen.dart';
 import 'bottomn_navigation_bar_controller.dart';
 
 class BottomNavigationBarScreen extends StatefulWidget
@@ -118,8 +119,8 @@ class _BottomNavigationBarScreenState
               // ignore: prefer_const_literals_to_create_immutables
               children: [
                 const HomeScreen(),
-                const HomeScreen(),
-                const HomeScreen(),
+                const ReservationsScreen(),
+                const SettingScreen(),
               ],
             ),
           ),

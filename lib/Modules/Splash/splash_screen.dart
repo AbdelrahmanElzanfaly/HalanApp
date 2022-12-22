@@ -9,7 +9,9 @@ import '../../Shared/shared_preferances.dart';
 import '../../Utilities/connection_status.dart';
 import '../../Utilities/toast_helper.dart';
 import '../BottomNavigationBarScreen/bottom_navigation_bar_screen.dart';
-
+import '../ChangeLanguage/choose_language_screen.dart';
+import '../IntroductionPages/introduction_controller.dart';
+import '../IntroductionPages/introduction_screen.dart';
 import '../UserAuth/Login/login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -41,7 +43,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future init() async {
     await Future.delayed(const Duration(milliseconds: 3500));
-   if (SharedPref.isUserLogIn()) {
+    if (!SharedPref.isWatchIntro()) {
+      Navigator.of(context).pushNamed(ChooseLanguageScreen.routeName);
+    } else if (SharedPref.isUserLogIn()) {
       Navigator.of(context)
           .pushReplacementNamed(BottomNavigationBarScreen.routeName);
     } else {

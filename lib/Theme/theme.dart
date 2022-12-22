@@ -9,6 +9,9 @@ class ThemeClass {
   static Color whiteColor = const Color(0xffFFFFFF);
   static Color textColor = const Color(0xff606060);
   static Color hintColor = const Color(0xff919396);
+
+  static Color greenWColor = const Color(0x3d88c770);
+  static Color greenTColor = const Color(0xff88C770);
   static Color hint = const Color(0x13919396);
 
   static Color blackColor = const Color(0xff292929);

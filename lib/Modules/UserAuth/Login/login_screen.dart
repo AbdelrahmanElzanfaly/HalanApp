@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:halan/Modules/UserAuth/Register/register_screen.dart';
+import 'package:halan/Modules/UserAuth/UserType/user_type.dart';
 import 'package:halan/Utilities/helper.dart';
 import 'package:halan/Widgets/app_bar_widget.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
@@ -10,6 +10,8 @@ import '../../../Theme/theme.dart';
 import '../../../Utilities/Layout/loading_screen.dart';
 import '../../../Widgets/custom_button.dart';
 import '../../../Widgets/custom_textfeild_widget.dart';
+import '../../../modules/UserAuth/Register/register_screen.dart';
+import '../ForgotPasswordScreen/forgot_password_screen.dart';
 import 'login_controller.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -77,7 +79,7 @@ class _LoginScreenState extends StateMVC<LoginScreen> {
                         delay: 1,
                         from: SlideFrom.LEFT,
                         child: Text(
-                          "signin"    ,
+                          "signin".tr,
                           style: TextStyle(
                               fontSize: 24.sp,
                               fontWeight: FontWeight.w700,
@@ -91,7 +93,7 @@ class _LoginScreenState extends StateMVC<LoginScreen> {
                           delay: 1,
                           from: SlideFrom.LEFT,
                           child: Text(
-                            "Sign In now to enjoy our privalges, and get the best of our app."    ,
+                            "Sign In now to enjoy our privalges, and get the best of our app.".tr,
                             style: TextStyle(
                                 fontSize: 14.sp,
                                 color: ThemeClass.hintColor,
@@ -133,7 +135,7 @@ class _LoginScreenState extends StateMVC<LoginScreen> {
                           textInputType: TextInputType.number,
                           borderColor: Colors.grey.shade400,
                           controller: con.phoneController,
-                          hint: "Please Enter PhoneNumber"    ,
+                          hint: "Please Enter PhoneNumber".tr,
                           validator: (String? v) {
                             if (v == null || v.isEmpty) return "";
                             return null;
@@ -192,7 +194,7 @@ class _LoginScreenState extends StateMVC<LoginScreen> {
                               ),
                             ),
                           ),
-                          hint: "Please Enter Password"    ,
+                          hint: "Please Enter Password".tr,
                           validator: (String? v) {
                             if (v == null || v.isEmpty) return "";
                             return null;
@@ -202,7 +204,16 @@ class _LoginScreenState extends StateMVC<LoginScreen> {
                       SizedBox(
                         height: 12.h,
                       ),
-
+                      InkWell(
+                          onTap: () => Navigator.of(context)
+                              .pushNamed(ForgotPasswordScreen.routeName),
+                          child: Text(
+                            "forgot_password".tr,
+                            style: TextStyle(
+                                color: ThemeClass.primaryColor,
+                                fontSize: 13.sp,
+                                fontWeight: FontWeight.w500),
+                          )),
                       SizedBox(
                         height: 18.h,
                       ),
@@ -214,7 +225,7 @@ class _LoginScreenState extends StateMVC<LoginScreen> {
                       //     child: Padding(
                       //       padding: const EdgeInsets.only(left: 25.0),
                       //       child: Text(
-                      //         "forgot_password"    ,
+                      //         "forgot_password".tr,
                       //         style: TextStyle(
                       //             color: ThemeClass.primaryColor,
                       //             fontSize: 12.sp,
@@ -230,7 +241,7 @@ class _LoginScreenState extends StateMVC<LoginScreen> {
                       CustomButton(
                         width: 250.w,
                         height: 50.h,
-                        name: "signin"    ,
+                        name: "signin".tr,
                         ontap: () async {
                           if (_formKey.currentState?.validate() ?? false) {
                             await con.logIn(context);
@@ -255,7 +266,7 @@ class _LoginScreenState extends StateMVC<LoginScreen> {
                             Align(
                                 alignment: Alignment.center,
                                 child: Text(
-                                  "Don’t have an account?"    ,
+                                  "Don’t have an account?".tr,
                                   style: TextStyle(
                                     color: const Color(0xff97ADB6),
                                     fontSize: 15.sp,
@@ -267,11 +278,11 @@ class _LoginScreenState extends StateMVC<LoginScreen> {
                             ),
                             InkWell(
                               onTap: () => Navigator.of(context)
-                                  .pushNamed(RegisterScreen.routeName),
+                                  .pushNamed(UserType.routeName),
                               child: Align(
                                   alignment: Alignment.center,
                                   child: Text(
-                                    "signUp"    ,
+                                    "signUp".tr,
                                     style: TextStyle(
                                       color: ThemeClass.primaryColor,
                                       fontSize: 15.sp,

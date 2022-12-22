@@ -12,6 +12,11 @@ import './Shared/shared_obj.dart';
 import './locale/locales.dart';
 import 'Control/app_languages.dart';
 import 'Control/shared_data_provider.dart';
+import 'Modules/ContractReservation/contract_reservation_screen.dart';
+import 'Modules/ContractReservation/service_provider_profile_screen.dart';
+import 'Modules/MadeScreens/HomeMadeScreen/home_made_screen.dart';
+import 'Modules/Notifications/notifications_screen.dart';
+import 'Modules/PromoCode/promo_code_screen.dart';
 import 'Modules/Splash/splash_screen.dart';
 import 'Theme/theme.dart';
 import 'Utilities/firebase_operation.dart';
@@ -63,7 +68,7 @@ class EntryPoint extends StatelessWidget {
         navigatorKey: SharedObj.navigatorKey,
         debugShowCheckedModeBanner: false,
         title: 'Mwardi',
-        initialRoute: SplashScreen.routeName,
+        initialRoute: HomeMadeScreen.routeName,
         locale: appLan.appLocal,
         supportedLocales: const [
           Locale('en', 'US'),

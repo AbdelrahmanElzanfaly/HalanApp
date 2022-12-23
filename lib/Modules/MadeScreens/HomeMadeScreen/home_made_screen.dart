@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:halan/Control/shared_data_provider.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:halan/Modules/ChangeLanguage/choose_language_screen.dart';
 import 'package:halan/Modules/UserAuth/ForgotPasswordScreen/forgot_password_screen.dart';
 import 'package:halan/Utilities/helper.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
@@ -249,7 +250,7 @@ class _HomeMadeScreenState extends StateMVC<HomeMadeScreen> {
                   name: 'Log Out'.tr,
                   image: 'assets/images/exit.png',
                   onTap: () {
-                    Navigator.of(context).pop();
+                    Navigator.pushNamed(context, ChooseLanguageScreen.routeName);
                   },
                 ),
                 SizedBox(

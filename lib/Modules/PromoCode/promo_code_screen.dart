@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:halan/Theme/theme.dart';
@@ -59,7 +60,7 @@ class PromoCodeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 110.h,
+      height: 120.h,
       width: 327.w,
       margin: EdgeInsets.symmetric(vertical: 6.h),
       padding: EdgeInsets.symmetric(horizontal: 18.h),
@@ -131,6 +132,51 @@ class PromoCodeWidget extends StatelessWidget {
                 fontSize: 10.sp,
                 fontWeight: FontWeight.w400,
                 color: ThemeClass.hintColor),
+          ),
+          SizedBox(
+            height: 8.w,
+          ),
+          InkWell(
+            onTap: () async {
+              Clipboard.setData(
+                const ClipboardData(
+                  text:
+                  // con.referAndEarnModel ??
+                  // con.referAndEarnModel?.myReferCode ??
+                  '',
+                ),
+              ).then(
+                    (_) =>
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      SnackBar(
+                        backgroundColor: ThemeClass.primaryColor,
+                        elevation: 100,
+                        behavior: SnackBarBehavior.floating,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16.r),
+                          side: BorderSide(
+                              color: Colors.black, width: 3.w),
+                        ),
+                        content: const Text(
+                          "copied",
+                          textAlign: TextAlign.center,
+                        ),
+                        duration:
+                        (const Duration(milliseconds: 700)),
+                      ),
+                    ),
+              );
+            },
+            child:  Text(
+              'Copy Code',
+              style: TextStyle(
+                  fontSize: 10.sp,
+                  fontWeight: FontWeight.w400,
+                  color: ThemeClass.secondPrimaryColor),
+            ),
+          ),
+          SizedBox(
+            height: 5.w,
           ),
         ],
       ),

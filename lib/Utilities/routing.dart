@@ -13,6 +13,7 @@ import '../Modules/IntroductionPages/introduction_screen.dart';
 import '../Modules/MadeScreens/EditMadeScreen/edit_made_screen.dart';
 import '../Modules/MadeScreens/HomeMadeScreen/home_made_screen.dart';
 import '../Modules/Notifications/notifications_screen.dart';
+import '../Modules/OrderDetails/order_details_screen.dart';
 import '../Modules/PackageReservation/package_reservation_step1_screen.dart';
 import '../Modules/PackageReservation/package_reservation_step2_screen.dart';
 import '../Modules/PromoCode/promo_code_screen.dart';
@@ -167,6 +168,10 @@ class AppModule extends Module {
         duration: const Duration(milliseconds: 300)),
     ChildRoute(EditMadeScreen.routeName,
         child: (_, args) => const EditMadeScreen(),
+        transition: TransitionType.fadeIn,
+        duration: const Duration(milliseconds: 300)),
+    ChildRoute(OrderDetailsScreen.routeName,
+        child: (_, args) => const OrderDetailsScreen(),
         transition: TransitionType.fadeIn,
         duration: const Duration(milliseconds: 300)),
   ];

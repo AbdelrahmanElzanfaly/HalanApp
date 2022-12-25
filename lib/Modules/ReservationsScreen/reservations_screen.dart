@@ -7,6 +7,7 @@ import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:flutter/material.dart';
 
 import '../../Theme/theme.dart';
+import '../OrderDetails/order_details_screen.dart';
 
 class ReservationsScreen extends StatefulWidget {
   static const String routeName = "/ReservationsScreen";
@@ -104,20 +105,20 @@ class _ReservationsScreenState extends StateMVC<ReservationsScreen> {
                           title: '#33333333',
                           date: 'Date : 12-03-2022',
                           price: 'AED 1000.00',
-                          onDetails: () {},
+                          onDetails: () => Navigator.pushNamed(context, OrderDetailsScreen.routeName),
                         )
                       : con.index == 1
                           ? ReservationsItemList(
                               title: '#2222222',
                               date: 'Date : 12-03-2022',
                               price: 'AED 1000.00',
-                              onDetails: () {},
+                              onDetails: () => Navigator.pushNamed(context, OrderDetailsScreen.routeName),
                             )
                           : ReservationsItemList(
                               title: '#1111111',
                               date: 'Date : 01-03-2022',
                               price: 'AED 2000.00',
-                              onDetails: () {},
+                              onDetails: () => Navigator.pushNamed(context, OrderDetailsScreen.routeName),
                             );
                 },
               ),

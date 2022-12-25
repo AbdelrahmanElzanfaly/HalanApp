@@ -68,7 +68,7 @@ class EntryPoint extends StatelessWidget {
         navigatorKey: SharedObj.navigatorKey,
         debugShowCheckedModeBanner: false,
         title: 'Mwardi',
-        initialRoute: HomeMadeScreen.routeName,
+        initialRoute: SplashScreen.routeName,
         locale: appLan.appLocal,
         supportedLocales: const [
           Locale('en', 'US'),

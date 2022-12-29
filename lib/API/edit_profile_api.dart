@@ -65,21 +65,21 @@ class EditProfileApi {
     }
   }
 
-  static Future<bool> updatePicture({
-    File? file,
-  }) async {
-    var decodeData = await API
-        .postRequest(url: API.updatePicture, body: {}, files: [
-      if (file != null) await http.MultipartFile.fromPath("profile", file.path)
-    ]);
-    if (decodeData == null) return false;
-    if (decodeData['status'] == true) {
-      // await SharedPref.saveUserObj(
-      //     user: SharedPref.getUserObg()!
-      //       ..employee = Employee.fromJson(decodeData['data']['employee']));
-      return true;
-    } else {
-      return false;
-    }
-  }
+  // static Future<bool> updatePicture({
+  //   File? file,
+  // }) async {
+  //   var decodeData = await API
+  //       .postRequest(url: API.updatePicture, body: {}, files: [
+  //     if (file != null) await http.MultipartFile.fromPath("profile", file.path)
+  //   ]);
+  //   if (decodeData == null) return false;
+  //   if (decodeData['status'] == true) {
+  //     // await SharedPref.saveUserObj(
+  //     //     user: SharedPref.getUserObg()!
+  //     //       ..employee = Employee.fromJson(decodeData['data']['employee']));
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // }
 }

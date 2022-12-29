@@ -4,6 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:halan/Control/shared_data_provider.dart';
 import 'package:halan/Modules/SettingScreen/setting_controller.dart';
 import 'package:halan/Modules/UserAuth/ForgotPasswordScreen/forgot_password_screen.dart';
+import 'package:halan/Modules/UserAuth/Login/login_screen.dart';
+import 'package:halan/Shared/shared_preferances.dart';
 import 'package:halan/Utilities/helper.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 import 'package:provider/provider.dart';
@@ -286,7 +288,11 @@ class _SettingScreenState extends StateMVC<SettingScreen> {
               name: 'Log Out'.tr,
               image: 'assets/images/exit.png',
               onTap: () {
-                Navigator.of(context).pop();
+                SharedPref.logOut();
+                Navigator.of(context).pushNamedAndRemoveUntil(
+                  LoginScreen.routeName,
+                      (Route<dynamic> route) => false,
+                );
               },
             ),
             SizedBox(

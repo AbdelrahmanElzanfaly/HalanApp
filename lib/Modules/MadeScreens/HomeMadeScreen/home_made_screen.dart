@@ -12,14 +12,14 @@ import 'package:provider/provider.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
 import '../../../Control/app_languages.dart';
+import '../../../Shared/shared_preferances.dart';
 import '../../../Theme/theme.dart';
 import '../../../Widgets/custom_alert_dialog.dart';
 import '../../../Widgets/language_dialog_widget.dart';
 import '../../../Widgets/setting_items_widget.dart';
+import '../../UserAuth/Login/login_screen.dart';
 import '../EditMadeScreen/edit_made_screen.dart';
 import 'home_made_controller.dart';
-
-
 
 class HomeMadeScreen extends StatefulWidget {
   static const String routeName = "/HomeMadeScreen";
@@ -46,218 +46,214 @@ class _HomeMadeScreenState extends StateMVC<HomeMadeScreen> {
         onWillPop: () async => false,
         child: Scaffold(
             body: Container(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child:
+          padding: EdgeInsets.symmetric(horizontal: 24.w),
+          child:
               Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                SizedBox(
-                  height: 70.h,
-                ),
-
-
-
-                FadeIn(
-                  delay: 1,
-                  from: SlideFrom.LEFT,
-                  child: AnimatedTextKit(
-                    animatedTexts: [
-                      TypewriterAnimatedText(
-                        'Hello, John Doe',
-                        textStyle: TextStyle(
-                            fontSize: 18.sp,
-                            fontWeight: FontWeight.w700,
-                            color: ThemeClass.textColor),
-                        speed: const Duration(milliseconds: 200),
-                      ),
-                    ],
-                    totalRepeatCount: 3,
-                    pause: const Duration(milliseconds: 100),
-                    displayFullTextOnTap: true,
-                    stopPauseOnTap: true,
+            SizedBox(
+              height: 70.h,
+            ),
+            FadeIn(
+              delay: 1,
+              from: SlideFrom.LEFT,
+              child: AnimatedTextKit(
+                animatedTexts: [
+                  TypewriterAnimatedText(
+                    'Hello, John Doe',
+                    textStyle: TextStyle(
+                        fontSize: 18.sp,
+                        fontWeight: FontWeight.w700,
+                        color: ThemeClass.textColor),
+                    speed: const Duration(milliseconds: 200),
                   ),
-                ),
-
-
-
-                SizedBox(
-                  height: 35.h,
-                ),
-                Container(
-                  width: 327.w,
-                  height: 162.h,
-                  padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
-                  decoration: BoxDecoration(
-                      color: ThemeClass.whiteColor,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Column(
+                ],
+                totalRepeatCount: 3,
+                pause: const Duration(milliseconds: 100),
+                displayFullTextOnTap: true,
+                stopPauseOnTap: true,
+              ),
+            ),
+            SizedBox(
+              height: 35.h,
+            ),
+            Container(
+              width: 327.w,
+              height: 162.h,
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
+              decoration: BoxDecoration(
+                  color: ThemeClass.whiteColor,
+                  borderRadius: BorderRadius.circular(10)),
+              child: Column(
+                children: [
+                  Row(
                     children: [
-                      Row(
-                        children: [
-                          FadeIn(
-                            delay: 1,
-                            from: SlideFrom.RIGHT,
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(8.0),
-                              child: CachedNetworkImage(
-                                height: 82.w,
-                                width: 61.w,
-                                fit: BoxFit.fill,
-                                imageUrl:
-                                "https://cdn2.hubspot.net/hubfs/53/parts-url.jpg",
-                                placeholder: (context, url) => const Center(
-                                    child: CircularProgressIndicator()),
-                                errorWidget: (context, url, error) =>
-                                const Icon(Icons.error),
-                              ),
-                            ),
-                          ),
-                          SizedBox(
-                            width: 16.w,
-                          ),
-                          FadeIn(
-                              delay: 1,
-                              from: SlideFrom.RIGHT,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'John Doe',
-                                    style: TextStyle(
-                                        fontSize: 18.sp,
-                                        fontWeight: FontWeight.w700,
-                                        color: ThemeClass.textColor),
-                                  ),
-                                  SizedBox(
-                                    height: 5.h,
-                                  ),
-                                  Text(
-                                    'John.doe@gmail.com',
-                                    style: TextStyle(
-                                        fontSize: 14.sp,
-                                        fontWeight: FontWeight.w300,
-                                        color: ThemeClass.hintColor),
-                                  ),
-                                  SizedBox(
-                                    height: 10.h,
-                                  ),
-                                  FadeIn(
-                                    delay: 1,
-                                    from: SlideFrom.BOTTOM,
-                                    child: Container(
-                                      width: 100.w,
-                                      height: 23.h,
-                                      decoration: BoxDecoration(
-                                          color: ThemeClass.containerWBackground,
-                                          borderRadius: BorderRadius.circular(10)),
-                                      alignment: Alignment.center,
-                                      child: Text(
-                                        'Verified'.tr,
-                                        style: TextStyle(
-                                            fontSize: 12.sp,
-                                            fontWeight: FontWeight.w400,
-                                            color: ThemeClass.secondPrimaryColor),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              )),
-                        ],
-                      ),
-                      SizedBox(
-                        height: 16.h,
-                      ),
                       FadeIn(
                         delay: 1,
-                        from: SlideFrom.BOTTOM,
-                        child: InkWell(
-                          onTap: () => Navigator.pushNamed(
-                              context, EditMadeScreen.routeName),
-                          child: Container(
-                            width: 296.w,
-                            height: 36.h,
-                            decoration: BoxDecoration(
-                                color: ThemeClass.primaryColor,
-                                borderRadius: BorderRadius.circular(5)),
-                            alignment: Alignment.center,
-                            child: Text(
-                              'Edit Profile'.tr,
-                              style: TextStyle(
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w500,
-                                  color: ThemeClass.whiteColor),
-                            ),
+                        from: SlideFrom.RIGHT,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: CachedNetworkImage(
+                            height: 82.w,
+                            width: 61.w,
+                            fit: BoxFit.fill,
+                            imageUrl:
+                                "https://cdn2.hubspot.net/hubfs/53/parts-url.jpg",
+                            placeholder: (context, url) => const Center(
+                                child: CircularProgressIndicator()),
+                            errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
                           ),
                         ),
                       ),
+                      SizedBox(
+                        width: 16.w,
+                      ),
+                      FadeIn(
+                          delay: 1,
+                          from: SlideFrom.RIGHT,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'John Doe',
+                                style: TextStyle(
+                                    fontSize: 18.sp,
+                                    fontWeight: FontWeight.w700,
+                                    color: ThemeClass.textColor),
+                              ),
+                              SizedBox(
+                                height: 5.h,
+                              ),
+                              Text(
+                                'John.doe@gmail.com',
+                                style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w300,
+                                    color: ThemeClass.hintColor),
+                              ),
+                              SizedBox(
+                                height: 10.h,
+                              ),
+                              FadeIn(
+                                delay: 1,
+                                from: SlideFrom.BOTTOM,
+                                child: Container(
+                                  width: 100.w,
+                                  height: 23.h,
+                                  decoration: BoxDecoration(
+                                      color: ThemeClass.containerWBackground,
+                                      borderRadius: BorderRadius.circular(10)),
+                                  alignment: Alignment.center,
+                                  child: Text(
+                                    'Verified'.tr,
+                                    style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w400,
+                                        color: ThemeClass.secondPrimaryColor),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          )),
                     ],
                   ),
-                ),
-                SizedBox(
-                  height: 44.h,
-                ),
-                SettingItems(
-                  name: 'Change Password'.tr,
-                  image: 'assets/images/lock-pen.png',
-                  onTap: () =>
-                      Navigator.pushNamed(context, ForgotPasswordScreen.routeName),
-                ),
-                Divider(
-                  indent: 17.w,
-                  endIndent: 17.w,
-                  thickness: 1,
-                  height: 10.h,
-                  color: ThemeClass.hint,
-                ),
-                SettingItems(
-                  name: 'Change Language'.tr,
-                  image: 'assets/images/globe.png',
-                  onTap: () {
-                    CustomDialog(
-                        context: context,
-                        buttonName: "Selection",
-                        onContinuePressed: () async {
-                          appLan.changeLanguage(
-                              Locale(provider.choiceLanguage ?? 'ar'));
-                          Navigator.of(context).pop();
-                        },
-                        des: StatefulBuilder(
-                            builder: (BuildContext context, setState) {
-                              return const LanguageDialogWidget();
-                            }),
-                        title: 'اختار لغه');
+                  SizedBox(
+                    height: 16.h,
+                  ),
+                  FadeIn(
+                    delay: 1,
+                    from: SlideFrom.BOTTOM,
+                    child: InkWell(
+                      onTap: () => Navigator.pushNamed(
+                          context, EditMadeScreen.routeName),
+                      child: Container(
+                        width: 296.w,
+                        height: 36.h,
+                        decoration: BoxDecoration(
+                            color: ThemeClass.primaryColor,
+                            borderRadius: BorderRadius.circular(5)),
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Edit Profile'.tr,
+                          style: TextStyle(
+                              fontSize: 14.sp,
+                              fontWeight: FontWeight.w500,
+                              color: ThemeClass.whiteColor),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(
+              height: 44.h,
+            ),
+            SettingItems(
+              name: 'Change Password'.tr,
+              image: 'assets/images/lock-pen.png',
+              onTap: () =>
+                  Navigator.pushNamed(context, ForgotPasswordScreen.routeName),
+            ),
+            Divider(
+              indent: 17.w,
+              endIndent: 17.w,
+              thickness: 1,
+              height: 10.h,
+              color: ThemeClass.hint,
+            ),
+            SettingItems(
+              name: 'Change Language'.tr,
+              image: 'assets/images/globe.png',
+              onTap: () => CustomDialog(
+                  context: context,
+                  buttonName: "Selection",
+                  onContinuePressed: () async {
+                    appLan.changeLanguage(
+                        Locale(provider.choiceLanguage ?? 'ar'));
+                    Navigator.of(context).pop();
                   },
-                ),
-                Divider(
-                  indent: 17.w,
-                  endIndent: 17.w,
-                  thickness: 1,
-                  height: 10.h,
-                  color: ThemeClass.hint,
-                ),
-                SettingItems(
-                  name: 'Support Center'.tr,
-                  image: 'assets/images/help-circle.png',
-                  onTap: () {},
-                ),
-                Divider(
-                  indent: 17.w,
-                  endIndent: 17.w,
-                  thickness: 1,
-                  height: 10.h,
-                  color: ThemeClass.hint,
-                ),
-             const Spacer(),
-                SettingItems(
-                  name: 'Log Out'.tr,
-                  image: 'assets/images/exit.png',
-                  onTap: () {
-                    Navigator.pushNamed(context, ChooseLanguageScreen.routeName);
-                  },
-                ),
-                SizedBox(
-                  height: 120.h,
-                ),
-              ]),
-            )));
+                  des: StatefulBuilder(
+                      builder: (BuildContext context, setState) {
+                    return const LanguageDialogWidget();
+                  }),
+                  title: 'اختار لغه'),
+            ),
+            Divider(
+              indent: 17.w,
+              endIndent: 17.w,
+              thickness: 1,
+              height: 10.h,
+              color: ThemeClass.hint,
+            ),
+            SettingItems(
+              name: 'Support Center'.tr,
+              image: 'assets/images/help-circle.png',
+              onTap: () {},
+            ),
+            Divider(
+              indent: 17.w,
+              endIndent: 17.w,
+              thickness: 1,
+              height: 10.h,
+              color: ThemeClass.hint,
+            ),
+            const Spacer(),
+            SettingItems(
+              name: 'Log Out'.tr,
+              image: 'assets/images/exit.png',
+              onTap: () {
+                SharedPref.logOut();
+
+                return Navigator.of(context).pushNamedAndRemoveUntil(
+                LoginScreen.routeName,
+                (Route<dynamic> route) => false,
+              );
+              },
+            ),
+            SizedBox(
+              height: 120.h,
+            ),
+          ]),
+        )));
   }
 }
-

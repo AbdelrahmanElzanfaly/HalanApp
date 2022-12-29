@@ -21,17 +21,18 @@ class AuthApi {
       deviceToken = '';
     }
     var response = await API.postRequest(url: API.login, body: {
-      // 'code': code,
-      'login_id': userName,
+      'username': userName,
       'password': password,
-      'fcm_token': deviceToken.toString()
+      // 'fcm_token': deviceToken.toString()
+    }, headers: {
+      "Accept": "application/json",
+      "Accept-Language": SharedPref.getCurrentLang() ?? "en",
     });
     print('pop: login: ---> ${response.toString()}<-------');
     if (response == null) return false;
     if (response['status'] == true) {
       ToastHelper.showSuccess(message: response['message']);
       await SharedPref.saveUserObj(user: UserModel.fromJson(response['data']));
-
       return true;
     } else {
       if (response["message"] != null) Helper.handleError(response['message']);

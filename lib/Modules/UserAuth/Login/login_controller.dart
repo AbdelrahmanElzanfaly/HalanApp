@@ -1,8 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:halan/Modules/BottomNavigationBarScreen/bottom_navigation_bar_screen.dart';
+import 'package:halan/Modules/MadeScreens/HomeMadeScreen/home_made_screen.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
 
+import '../../../API/auth_api.dart';
+import '../../../Shared/shared_preferances.dart';
 import 'login_screen.dart';
 
 class LoginController extends ControllerMVC {
@@ -25,10 +28,9 @@ class LoginController extends ControllerMVC {
       authenticated = false,
       isHavePin = false;
 
-  late TextEditingController userNameController,
+  late TextEditingController
       phoneController,
       passwordController,
-      pinCodeController,
       confirmPinCodeController,
       codeController,
       confirmPasswordController;
@@ -36,9 +38,7 @@ class LoginController extends ControllerMVC {
   @override
   void initState() {
     phoneController = TextEditingController();
-    userNameController = TextEditingController();
     passwordController = TextEditingController();
-    pinCodeController = TextEditingController();
     confirmPinCodeController = TextEditingController();
     codeController = TextEditingController();
     confirmPasswordController = TextEditingController();
@@ -49,7 +49,6 @@ class LoginController extends ControllerMVC {
   void dispose() {
     phoneController.dispose();
     passwordController.dispose();
-    pinCodeController.dispose();
     confirmPinCodeController.dispose();
     codeController.dispose();
     confirmPasswordController.dispose();
@@ -64,14 +63,24 @@ class LoginController extends ControllerMVC {
     });
     await Future.delayed(const Duration(seconds: 2));
 
-    // bool result = await AuthApi.login(
-    //     userName: userEmailController.text,
-    //     password: passwordController.text);
-    // if (result) {
-    Navigator.of(context).pushNamedAndRemoveUntil(
-      BottomNavigationBarScreen.routeName,
-          (Route<dynamic> route) => false,
-    );    // }
+    bool result = await AuthApi.login(
+        userName: phoneController.text,
+        password: passwordController.text);
+    if (result) {
+      if(SharedPref.getUserObg()?.role=='maid') {
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          HomeMadeScreen.routeName,
+              (Route<dynamic> route) => false,
+        );
+
+      }else{
+        Navigator.of(context).pushNamedAndRemoveUntil(
+          BottomNavigationBarScreen.routeName,
+              (Route<dynamic> route) => false,
+        );
+      }
+
+    }
 
     setState(() {
       loading = false;

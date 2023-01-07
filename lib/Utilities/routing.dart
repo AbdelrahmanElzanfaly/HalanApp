@@ -57,8 +57,7 @@ class AppModule extends Module {
         transition: TransitionType.fadeIn,
         duration: const Duration(milliseconds: 300)),
     ChildRoute(OtpScreen.routeName,
-        child: (_, args) =>
-            OtpScreen(onConfirm: args.data[0], phoneNumber: args.data[1]),
+        child: (_, args) => OtpScreen(onConfirm: args.data),
         transition: TransitionType.fadeIn,
         duration: const Duration(milliseconds: 300)),
     ChildRoute(LoginScreen.routeName,

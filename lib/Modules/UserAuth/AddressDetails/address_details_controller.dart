@@ -2,9 +2,12 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:halan/Control/shared_data_provider.dart';
 import 'package:halan/Modules/UserAuth/OTP/otp_screen.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
+import 'package:provider/provider.dart';
 
+import '../../../API/address_api.dart';
 import '../../../Theme/theme.dart';
 import '../../BottomNavigationBarScreen/bottom_navigation_bar_screen.dart';
 import 'PickLocationScreen/pick_location_screen.dart';
@@ -27,6 +30,7 @@ class AddressDetailsController extends ControllerMVC {
       streetController,
       cityController,
       zipCodeController,
+      specialMarkController,
       stateProvinceController;
 
   @override
@@ -36,6 +40,7 @@ class AddressDetailsController extends ControllerMVC {
     cityController = TextEditingController();
     zipCodeController = TextEditingController();
     stateProvinceController = TextEditingController();
+    specialMarkController = TextEditingController();
     super.initState();
   }
 
@@ -46,19 +51,17 @@ class AddressDetailsController extends ControllerMVC {
     cityController.dispose();
     zipCodeController.dispose();
     stateProvinceController.dispose();
+    specialMarkController.dispose();
     super.dispose();
   }
 
   getLocationName(context) {
- Modular.to.pushNamed(PickLocationScreen.routeName);
-
-
+    Modular.to.pushNamed(PickLocationScreen.routeName);
   }
 
   getCountry(context) {
     showCountryPicker(
       context: context,
-
       showPhoneCode: false,
       onSelect: (Country country) {
         countryName = country.displayNameNoCountryCode;
@@ -69,7 +72,6 @@ class AddressDetailsController extends ControllerMVC {
           topLeft: Radius.circular(40.0),
           topRight: Radius.circular(40.0),
         ),
-
         inputDecoration: InputDecoration(
           focusedBorder: OutlineInputBorder(
             borderSide: BorderSide(color: ThemeClass.primaryColor),
@@ -98,10 +100,36 @@ class AddressDetailsController extends ControllerMVC {
     );
   }
 
+  Future onSave(BuildContext context) async {
+    final provider = Provider.of<SharedDataProvider>(context,listen: false);
 
+    setState(() {
+      loading = true;
+    });
 
-  Future onSave(BuildContext context)async {
-    Modular.to.pushNamed(BottomNavigationBarScreen.routeName);
+    bool result = await AddressApi.addAddress(
+      addressName: addressNameController.text,
+      street: streetController.text,
+      city: cityController.text,
+      stateProvince: stateProvinceController.text,
+      specialMark: specialMarkController.text,
+      country: countryName ?? '',
+      locationName:
+          provider.placesDetailsResponse?.result.formattedAddress.toString() ??
+              '',
+      lat: provider.placesDetailsResponse?.result.geometry?.location.lat
+              .toString() ??
+          '',
+      lng: provider.placesDetailsResponse?.result.geometry?.location.lng
+              .toString() ??
+          '',
+    );
+    setState(() {
+      loading = false;
+    });
 
+    if (result) {
+      Modular.to.pushNamed(BottomNavigationBarScreen.routeName);
+    }
   }
 }

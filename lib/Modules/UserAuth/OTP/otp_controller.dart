@@ -79,7 +79,6 @@ class OtpController extends ControllerMVC {
     setState(() {
       loading = true;
     });
-    await Future.delayed(const Duration(seconds: 2));
 
     if (onConfirm != null) {
       log('sddswwwwwdssdww');

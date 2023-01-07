@@ -23,15 +23,16 @@ class API {
   // static const String authToken = "check_token";
 
   static const String login = "login";
-  static const String sendOtp = "sendOtp";
-  static const String chat = "message/get-messages-user/";
-  static const String sendMessage = "message/push-message-user";
+  static const String sendOtp = "valid-otp";
+  static const String addAddress = "add-address";
+  static const String sendMessage = "";
 
-  static const String loginSocial = "user/social-login";
-  static const String logout = "employee/logout";
+  static const String loginSocial = "";
+  static const String logout = "";
+
   static const String changePassword = "employee/reset_password";
   static const String reChangePassword = "employee/rechangepass";
-  static const String register = "user/register";
+  static const String register = "signup";
   static const String forgetPassword = "employee/forgetpassword";
 
   static const String verifyForgetPassCode = "employee/activcode";
@@ -62,8 +63,8 @@ class API {
         request.headers.addAll(headers);
       } else {
         request.headers.addAll({
-          "Accept": "application/json",
-          "Accept-Language": SharedPref.getCurrentLang() ?? "en",
+          // "Accept": "application/json",
+          "access-language": SharedPref.getCurrentLang() ?? "en",
           "Authorization": 'Bearer ${SharedPref.getUserObg()?.token}',
         });
       }
@@ -96,7 +97,7 @@ class API {
       } else {
         request.headers.addAll({
           "Accept": "application/json",
-          "Accept-Language": SharedPref.getCurrentLang() ?? "en",
+          "accept-language": SharedPref.getCurrentLang() ?? "en",
           "Authorization": 'Bearer ${SharedPref.getUserObg()?.token}',
         });
       }

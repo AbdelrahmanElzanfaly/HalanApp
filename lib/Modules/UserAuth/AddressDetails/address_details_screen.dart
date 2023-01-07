@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 
 import '../../../Control/shared_data_provider.dart';
 import '../../../Theme/theme.dart';
+import '../../../Utilities/toast_helper.dart';
 import '../../../Widgets/app_bar_widget.dart';
 import '../../../Widgets/custom_button.dart';
 import '../../../Widgets/custom_textfeild_widget.dart';
@@ -85,7 +86,7 @@ class _AddressDetailsScreenState extends StateMVC<AddressDetailsScreen> {
                             from: SlideFrom.LEFT,
                             child: CustomTextFieldWidget(
                               suffixIcon: const SizedBox(),
-                              textInputType: TextInputType.emailAddress,
+                              textInputType: TextInputType.text,
                               borderColor: Colors.grey.shade400,
                               controller: con.addressNameController,
                               hint: "Address Name".tr,
@@ -104,7 +105,7 @@ class _AddressDetailsScreenState extends StateMVC<AddressDetailsScreen> {
                             child: CustomTextFieldWidget(
                               suffixIcon: const SizedBox(),
                               isDense: true,
-                              textInputType: TextInputType.number,
+                              textInputType: TextInputType.text,
                               borderColor: Colors.grey.shade400,
                               controller: con.streetController,
                               hint: "Street Address".tr,
@@ -126,7 +127,7 @@ class _AddressDetailsScreenState extends StateMVC<AddressDetailsScreen> {
                                   width: 156.w,
                                   suffixIcon: const SizedBox(),
                                   isDense: true,
-                                  textInputType: TextInputType.number,
+                                  textInputType: TextInputType.text,
                                   borderColor: Colors.grey.shade400,
                                   controller: con.cityController,
                                   hint: "city".tr,
@@ -214,6 +215,7 @@ class _AddressDetailsScreenState extends StateMVC<AddressDetailsScreen> {
                             child: CustomTextFieldWidget(
                               suffixIcon: const SizedBox(),
                               isDense: true,
+                              textInputType: TextInputType.number,
                               borderColor: Colors.grey.shade400,
                               controller: con.zipCodeController,
                               hint: "Postal/Zip code".tr,
@@ -248,7 +250,7 @@ class _AddressDetailsScreenState extends StateMVC<AddressDetailsScreen> {
                                   child: Row(
                                     children: [
                                       SizedBox(
-                                        width: 10.w,
+                                        width: 7.w,
                                       ),
                                       provider.placesDetailsResponse?.result
                                                   .addressComponents ==
@@ -287,6 +289,25 @@ class _AddressDetailsScreenState extends StateMVC<AddressDetailsScreen> {
                             }),
                           ),
                           SizedBox(
+                            height: 12.h,
+                          ),
+                          FadeIn(
+                            delay: 1,
+                            from: SlideFrom.LEFT,
+                            child: CustomTextFieldWidget(
+                              suffixIcon: const SizedBox(),
+                              isDense: true,
+                              borderColor: Colors.grey.shade400,
+                              textInputType: TextInputType.text,
+                              controller: con.specialMarkController,
+                              hint: "Special Mark".tr,
+                              validator: (String? v) {
+                                if (v == null || v.isEmpty) return "";
+                                return null;
+                              },
+                            ),
+                          ),
+                          SizedBox(
                             height: 40.h,
                           ),
                           CustomButton(
@@ -295,7 +316,12 @@ class _AddressDetailsScreenState extends StateMVC<AddressDetailsScreen> {
                             name: "Save & Continue".tr,
                             ontap: () async {
                               if (_formKey.currentState?.validate() ?? false) {
-                                await con.onSave(context);
+                                if (con.countryName == null) {
+                                  ToastHelper.showError(
+                                      message: 'Please add country');
+                                } else {
+                                  await con.onSave(context);
+                                }
                               } else {
                                 setState(() {
                                   con.autoValidate = true;

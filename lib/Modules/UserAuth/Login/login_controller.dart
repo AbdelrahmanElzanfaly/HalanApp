@@ -3,7 +3,6 @@ import 'package:halan/Modules/BottomNavigationBarScreen/bottom_navigation_bar_sc
 import 'package:halan/Modules/MadeScreens/HomeMadeScreen/home_made_screen.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
-
 import '../../../API/auth_api.dart';
 import '../../../Shared/shared_preferances.dart';
 import 'login_screen.dart';
@@ -28,8 +27,7 @@ class LoginController extends ControllerMVC {
       authenticated = false,
       isHavePin = false;
 
-  late TextEditingController
-      phoneController,
+  late TextEditingController phoneController,
       passwordController,
       confirmPinCodeController,
       codeController,
@@ -56,40 +54,30 @@ class LoginController extends ControllerMVC {
   }
 
   Future logIn(BuildContext context) async {
-    // final provider = Provider.of<SharedDataProvider>(context, listen: false);
-
     setState(() {
       loading = true;
     });
-    await Future.delayed(const Duration(seconds: 2));
 
     bool result = await AuthApi.login(
-        userName: phoneController.text,
-        password: passwordController.text);
+        userName: phoneController.text, password: passwordController.text);
     if (result) {
-      if(SharedPref.getUserObg()?.role=='maid') {
+      if (SharedPref.getUserObg()?.user?.role == 'maid') {
         Navigator.of(context).pushNamedAndRemoveUntil(
           HomeMadeScreen.routeName,
-              (Route<dynamic> route) => false,
+          (Route<dynamic> route) => false,
         );
-
-      }else{
+      } else if (SharedPref.getUserObg()?.user?.role == 'client') {
         Navigator.of(context).pushNamedAndRemoveUntil(
           BottomNavigationBarScreen.routeName,
-              (Route<dynamic> route) => false,
+          (Route<dynamic> route) => false,
         );
       }
-
     }
 
     setState(() {
       loading = false;
     });
   }
-
-
-
-
 
   Future resetPassword(BuildContext context) async {
     setState(() {
@@ -101,6 +89,4 @@ class LoginController extends ControllerMVC {
     });
     Navigator.of(context).pushNamed(LoginScreen.routeName);
   }
-
-
 }

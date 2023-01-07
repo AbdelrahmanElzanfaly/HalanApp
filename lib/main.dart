@@ -34,7 +34,6 @@ Future<void> main() async {
   );
   await SharedObj().init();
   await FireBaseOperations.init();
-
   startFlexibleUpdate();
 
   runApp(MultiProvider(

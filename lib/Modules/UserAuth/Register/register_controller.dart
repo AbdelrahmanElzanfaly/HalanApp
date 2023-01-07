@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:halan/API/api.dart';
+import 'package:halan/API/opt_api.dart';
 import 'package:halan/Modules/UserAuth/AddressDetails/address_details_screen.dart';
 import 'package:halan/Modules/UserAuth/CompleteProfile/complete_profile_screen.dart';
 import 'package:halan/Modules/UserAuth/OTP/otp_screen.dart';
 import 'package:halan/Utilities/helper.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
+import '../../../API/auth_api.dart';
+import '../../../Shared/shared_preferances.dart';
 import '../../../Utilities/toast_helper.dart';
 import '../../BottomNavigationBarScreen/bottom_navigation_bar_screen.dart';
 
@@ -51,60 +54,41 @@ class RegistrationController extends ControllerMVC {
     setState(() {
       loading = true;
     });
-    await Future.delayed(const Duration(seconds: 2));
 
-    // bool result = await AuthApi.register(
-    //
-    //   password: passwordController.text,
-    //   phone: phoneController.text,
-    //   email: emailController.text, name: '',
-    //   // referCode: referCodeController.text,
-    // );
+    bool result = await AuthApi.register(
+      password: passwordController.text,
+      phone: phoneController.text,
+      email: emailController.text,
+      api: API.register,
+    );
     setState(() {
       loading = false;
     });
 
-    // if (result) {
-    Navigator.of(context).pushNamed(OtpScreen.routeName,
-        arguments: [onConfirmOtp, phoneController.text]);
-    // }
+    if (result) {
+      Navigator.of(context).pushNamed(
+        OtpScreen.routeName,
+        arguments: onConfirmOtp,
+      );
+    }
   }
 
   Future onConfirmOtp(String otp) async {
-    // bool result = await OptApi.otp(
-    //   // name: userNameController.text,
-    //   password: passwordController.text,
-    //   phone: phoneController.text,
-    //   email: emailController.text,
-    //   otpCode: otp, name: '',
-    //   // referCode: referCodeController.text,
-    // );
-    // if (result) {
-
-    if (type == 0) {
-      Modular.to.pushNamed(AddressDetailsScreen.routeName);
-    } else if (type == 1) {
-      Modular.to.pushNamed(CompleteProfileScreen.routeName);
-    }
-    // }
-  }
-
-  Future registration() async {
-    var response = await API.postRequest(
-      url: API.register,
-      body: {
-        'email': emailController.text ?? '',
-        'phoneNumber': phoneController.text ?? '',
-        'password': passwordController.text ?? '',
-        'confirm_password': confirmPasswordController.text ?? '',
-      },
+    bool result = await OptApi.otp(
+      otpCode: otp,
     );
-    if (response == null) return false;
-    debugPrint(response.toString());
-    if (response["status"] == "success") {
-      ToastHelper.showSuccess(message: "otp_sent".tr);
-    } else {
-      ToastHelper.showError(message: response["message"]);
+    if (result) {
+      if (SharedPref.getUserObg()?.user?.role == 'maid') {
+        Modular.to.pushNamedAndRemoveUntil(
+          CompleteProfileScreen.routeName,
+          (Route<dynamic> route) => false,
+        );
+      } else if (SharedPref.getUserObg()?.user?.role == 'client') {
+        Modular.to.pushNamedAndRemoveUntil(
+          AddressDetailsScreen.routeName,
+          (Route<dynamic> route) => false,
+        );
+      }
     }
   }
 }

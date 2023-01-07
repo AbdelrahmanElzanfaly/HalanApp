@@ -69,7 +69,7 @@ class _SettingScreenState extends StateMVC<SettingScreen> {
             ),
             Container(
               width: 327.w,
-              height: 162.h,
+              height: 165.h,
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 12.h),
               decoration: BoxDecoration(
                   color: ThemeClass.whiteColor,

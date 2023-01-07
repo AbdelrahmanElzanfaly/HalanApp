@@ -21,9 +21,8 @@ class OtpScreen extends StatefulWidget {
   static String routeName = "/otpScreen";
 
   final Function(String)? onConfirm;
-  final String? phoneNumber;
 
-  const OtpScreen({Key? key, this.phoneNumber,  this.onConfirm,}) : super(key: key);
+  const OtpScreen({Key? key, this.onConfirm,}) : super(key: key);
 
   @override
   // ignore: library_private_types_in_public_api
@@ -40,7 +39,6 @@ class _OtpScreenState extends StateMVC<OtpScreen> {
   @override
   void initState() {
     con.onConfirm = widget.onConfirm;
-    con.phoneNumber = widget.phoneNumber;
     super.initState();
   }
 

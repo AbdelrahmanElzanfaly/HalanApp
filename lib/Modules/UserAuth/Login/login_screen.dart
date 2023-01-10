@@ -137,7 +137,7 @@ class _LoginScreenState extends StateMVC<LoginScreen> {
                           controller: con.phoneController,
                           hint: "Please Enter PhoneNumber".tr,
                           validator: (String? v) {
-                            if (v == null || v.isEmpty) return "";
+                            if (v == null || v.isEmpty) return "Phone Number cannot be Empty";
                             return null;
                           },
                         ),
@@ -196,7 +196,10 @@ class _LoginScreenState extends StateMVC<LoginScreen> {
                           ),
                           hint: "Please Enter Password".tr,
                           validator: (String? v) {
-                            if (v == null || v.isEmpty) return "";
+                            if (v == null || v.isEmpty) return "Password cannot be Empty";
+
+                            if (v.length < 6) return 'Password must be at least 6 characters';
+
                             return null;
                           },
                         ),

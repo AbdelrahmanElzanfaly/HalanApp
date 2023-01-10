@@ -28,12 +28,11 @@ class _UserTypeState extends State<UserType> {
           SizedBox(
             height: 130.h,
           ),
-
           FadeIn(
             delay: 1,
             from: SlideFrom.LEFT,
             child: Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 50.w),
+              padding: EdgeInsets.symmetric(horizontal: 50.w),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
@@ -76,11 +75,8 @@ class _UserTypeState extends State<UserType> {
             height: 50.h,
             name: 'Next'.tr,
             ontap: () {
-              index == 0
-                  ? Navigator.of(context)
-                      .pushNamed(RegisterScreen.routeName, arguments: 0)
-                  : Navigator.of(context)
-                      .pushNamed(RegisterScreen.routeName, arguments: 1);
+              Navigator.of(context).pushNamed(RegisterScreen.routeName,
+                  arguments: index == 0 ? 0 : 1);
             },
           ),
           const Spacer(),
@@ -113,7 +109,6 @@ class UserTypeWidget extends StatelessWidget {
           width: 276.w,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8.w),
-
             border: Border.all(
                 color: isSelected
                     ? ThemeClass.primaryColor
@@ -123,27 +118,29 @@ class UserTypeWidget extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-              FadeIn(
-              delay: 1,
-              from: SlideFrom.LEFT,
-              child:   Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 14.w),
-                  child: Text(
-                    title,
-                    style:
-                        TextStyle(fontSize: 12.sp, fontWeight: FontWeight.w400),
+                FadeIn(
+                  delay: 1,
+                  from: SlideFrom.LEFT,
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 14.w),
+                    child: Text(
+                      title,
+                      style: TextStyle(
+                          fontSize: 12.sp, fontWeight: FontWeight.w400),
+                    ),
                   ),
-                ),),
-          FadeIn(
-              delay: 1,
-              from: SlideFrom.RIGHT,
-              child:  Center(
-                  child: Image.asset(
-                    image,
-                    width: 188.w,
-                    height: 140.h,
+                ),
+                FadeIn(
+                  delay: 1,
+                  from: SlideFrom.RIGHT,
+                  child: Center(
+                    child: Image.asset(
+                      image,
+                      width: 188.w,
+                      height: 140.h,
+                    ),
                   ),
-                ),),
+                ),
               ]),
         ),
       ),

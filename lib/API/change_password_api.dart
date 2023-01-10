@@ -19,7 +19,7 @@ class ChangePasswordApi {
       if (response == null) return false;
       if (response['status'] == true) {
         ToastHelper.showSuccess(message: response['message']);
-        await SharedPref.saveUserObj(user: UserModel.fromJson(response['data']));
+        // await SharedPref.saveUserObj(user: UserModel.fromJson(response['data']));
 
         return true;
       } else {

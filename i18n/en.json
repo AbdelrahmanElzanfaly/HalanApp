@@ -104,6 +104,7 @@
   "Location": "Location :",
   "Promotions": "Promotions",
   "Special Mark": "Special Mark :",
+  "Special_Mark": "Special Mark",
 
   "choose_image_source": "choose image source ",
   "from_gallery": "Gallery",
@@ -115,5 +116,6 @@
   "Add Address": "Add Address",
   "Saved Addresses": "Saved Addresses",
   "Service Details": "Service Details",
-  "Offers Reservation": "Offers Reservation"
+  "Offers Reservation": "Offers Reservation",
+  "please add country": "please add country"
 }

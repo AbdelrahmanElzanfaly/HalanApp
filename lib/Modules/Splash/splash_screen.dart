@@ -43,9 +43,15 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future init() async {
     await Future.delayed(const Duration(milliseconds: 3500));
+
+    if(SharedPref.getIsLogin()){
+
+    }
+
+
     if (!SharedPref.isWatchIntro()) {
       Navigator.of(context).pushNamed(ChooseLanguageScreen.routeName);
-    } else if (SharedPref.isUserLogIn()) {
+    } else if (SharedPref.getIsLogin()) {
       Navigator.of(context)
           .pushReplacementNamed(BottomNavigationBarScreen.routeName);
     } else {

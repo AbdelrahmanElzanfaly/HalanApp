@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:awesome_dialog/awesome_dialog.dart';
@@ -88,7 +89,9 @@ class _CompleteProfileScreenState extends StateMVC<CompleteProfileScreen> {
                               controller: con.fullNameController,
                               hint: "Full Name".tr,
                               validator: (String? v) {
-                                if (v == null || v.isEmpty) return "";
+                                if (v == null || v.isEmpty)
+                                  return "Full Name cannot be Empty";
+
                                 return null;
                               },
                             ),
@@ -103,9 +106,9 @@ class _CompleteProfileScreenState extends StateMVC<CompleteProfileScreen> {
                             from: SlideFrom.LEFT,
                             child: InkWell(
                               onTap: () async {
-
-                                  await con.updateImage(context);
-
+                                con.userImage =
+                                    await Helper.pickImage(context: context);
+                                setState(() {});
                               },
                               child: Container(
                                 width: 350.w,
@@ -211,7 +214,8 @@ class _CompleteProfileScreenState extends StateMVC<CompleteProfileScreen> {
                               controller: con.yearsExperienceController,
                               hint: "Years Of Experience".tr,
                               validator: (String? v) {
-                                if (v == null || v.isEmpty) return "";
+                                if (v == null || v.isEmpty)
+                                  return "Years Of Experience cannot be Empty";
                                 return null;
                               },
                             ),
@@ -223,17 +227,12 @@ class _CompleteProfileScreenState extends StateMVC<CompleteProfileScreen> {
                             delay: 1,
                             from: SlideFrom.LEFT,
                             child: CustomTextFieldWidget(
-                              height: 130.h,
                               suffixIcon: const SizedBox(),
                               isDense: false,
-                              maxLine: 100,
+                              maxLine: 5,
                               borderColor: Colors.grey.shade400,
                               controller: con.aboutYourSelfController,
                               hint: "Tell Us About Your Self".tr,
-                              validator: (String? v) {
-                                if (v == null || v.isEmpty) return "";
-                                return null;
-                              },
                             ),
                           ),
                           SizedBox(
@@ -246,13 +245,16 @@ class _CompleteProfileScreenState extends StateMVC<CompleteProfileScreen> {
                             ontap: () async {
                               if (_formKey.currentState?.validate() ?? false) {
                                 if (con.userImage != null) {
-                                  await con.onSave(context);
-
+                                  if (con.countryName != null) {
+                                    await con.onSave(context);
+                                  } else {
+                                    ToastHelper.showError(
+                                        message: 'please add country'.tr);
+                                  }
                                 } else {
                                   ToastHelper.showError(
                                       message: 'please add photo'.tr);
                                 }
-
                               } else {
                                 setState(() {
                                   con.autoValidate = true;

@@ -31,6 +31,7 @@ class UserModel {
 class User {
   User({
     this.id,
+    this.name,
     this.photo,
     this.email,
     this.phone,
@@ -46,6 +47,7 @@ class User {
   });
 
   final int? id;
+  final String? name;
   final String? photo;
   final String? email;
   final String? phone;
@@ -62,22 +64,24 @@ class User {
   factory User.fromJson(Map<String, dynamic> json) => User(
     id: json["id"],
     photo: json["photo"],
+    name: json["name"],
     email: json["email"],
     phone: json["phone"],
     enabled: json["enabled"],
     language: json["language"],
-    address: json["address"] == null ? [] : List<Address?>.from(json["address"]!.map((x) => Address.fromJson(x))),
+    address: json["address"] == null? []: List<Address?>.from(json["address"]!.map((x) => Address.fromJson(x))),
     payment: json["payment"],
     completedProfile: json["CompletedProfile"],
     otpCode: json["otpCode"],
     role: json["role"],
-    createdAt: DateTime.parse(json["createdAt"]),
-    updatedAt: DateTime.parse(json["updatedAt"]),
+    createdAt: json["createdAt"] != null ?DateTime.parse(json["createdAt"]):null,
+    updatedAt: json["updatedAt"] != null ?DateTime.parse(json["updatedAt"]):null,
   );
 
   Map<String, dynamic> toJson() => {
     "id": id,
     "photo": photo,
+    "name": name,
     "email": email,
     "phone": phone,
     "enabled": enabled,

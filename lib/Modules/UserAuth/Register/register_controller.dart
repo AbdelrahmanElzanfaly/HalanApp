@@ -26,7 +26,7 @@ class RegistrationController extends ControllerMVC {
   bool loading = false, autoValidate = false, showPassword = false;
 
   // final GlobalKey<FormState> formKey = GlobalKey();
-  int type = 2;
+  int type = 0;
   late TextEditingController passwordController,
       confirmPasswordController,
       emailController,
@@ -59,7 +59,7 @@ class RegistrationController extends ControllerMVC {
       password: passwordController.text,
       phone: phoneController.text,
       email: emailController.text,
-      api: API.register,
+      api: type == 1 ? API.registerMaid : API.register,
     );
     setState(() {
       loading = false;
@@ -78,12 +78,13 @@ class RegistrationController extends ControllerMVC {
       otpCode: otp,
     );
     if (result) {
-      if (SharedPref.getUserObg()?.user?.role == 'maid') {
+      SharedPref.setIsLogin(isLogin:true);
+      if (SharedPref.getUserObg()?.role == 'maid') {
         Modular.to.pushNamedAndRemoveUntil(
           CompleteProfileScreen.routeName,
           (Route<dynamic> route) => false,
         );
-      } else if (SharedPref.getUserObg()?.user?.role == 'client') {
+      } else if (SharedPref.getUserObg()?.role == 'client') {
         Modular.to.pushNamedAndRemoveUntil(
           AddressDetailsScreen.routeName,
           (Route<dynamic> route) => false,

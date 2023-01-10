@@ -16,7 +16,8 @@ class OptApi {
     });
     if (response == null) return false;
     if (response['status'] == true) {
-      await SharedPref.saveUserObj(user: UserModel.fromJson(response["data"]));
+      await SharedPref.setToken(token: response["data"]["token"]);
+      await SharedPref.saveUserObj(user: User.fromJson(response["data"]["user"]));
       ToastHelper.showSuccess(message: response['message']);
       return true;
     } else {

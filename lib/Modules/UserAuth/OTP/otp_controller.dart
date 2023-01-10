@@ -81,7 +81,7 @@ class OtpController extends ControllerMVC {
     });
 
     if (onConfirm != null) {
-      log('sddswwwwwdssdww');
+
 
       await onConfirm!(codeController.text);
     }

@@ -23,13 +23,6 @@ class AddressApi {
     required String lat,
     required String lng,
   }) async {
-    // String? deviceToken = await SharedObj().firebaseMessaging.getToken();
-    String? deviceToken;
-    try {
-      deviceToken = await FirebaseMessaging.instance.getToken();
-    } catch (e) {
-      deviceToken = '';
-    }
 
     final location = {
       "fullName": locationName,
@@ -48,12 +41,11 @@ class AddressApi {
         "location": json.encode(location).toString()
       },
     );
-
     if (response == null) return false;
+
     if (response['status'] == true) {
       ToastHelper.showSuccess(message: response['message']);
-      await SharedPref.saveUserObj(user: UserModel.fromJson(response["data"]));
-
+      await SharedPref.saveUserObj(user: User.fromJson(response["data"]["user"]));
       return true;
     } else {
       if (response["message"] != null) Helper.handleError(response['message']);

@@ -1,61 +1,49 @@
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
 
+import '../Models/user_model.dart';
 import '../Shared/shared_preferances.dart';
 import '../Utilities/helper.dart';
+import '../Utilities/toast_helper.dart';
 import 'api.dart';
 
 class EditProfileApi {
   static Future<bool> editProfile({
-    String? email,
     String? name,
-    String? password,
-    File? img,
+    String? email,
     String? phone,
-    otp,
+    String? nationality,
+    String? experience,
+    File? img,
+    String? notes,
   }) async {
-    print(name);
-    print(email);
-
     try {
       List<http.MultipartFile> files = [
-        if (img != null) await http.MultipartFile.fromPath('image', img.path)
+        if (img != null) await http.MultipartFile.fromPath('photo', img.path)
       ];
 
-      var response = await API.postRequest(
-          url: API.editProfile,
-          files: files,
-          body: phone != null && otp == null
-              ? {
-                  'phone': phone.toString(),
-                  'email': email.toString(),
-                  'name': name.toString(),
-                  'password': password.toString(),
-                }
-              : phone != null && otp != null
-                  ? {
-                      'phone': phone.toString(),
-                      'email': email.toString(),
-                      'name': name.toString(),
-                      'password': password.toString(),
-                      'otp_number': otp.toString()
-                    }
-                  : {
-                      'email': email.toString(),
-                      'name': name.toString(),
-                      'password': password.toString()
-                    });
+      var response =
+          await API.patchRequest(url: API.editProfile, files: files, body: {
+        if (name != null) 'name': name,
+        if (email != null) 'email': email,
+        if (phone != null) 'phone': phone,
+        if (nationality != null) 'nationality': nationality,
+        if (experience != null) 'experience': experience,
+        if (notes != null) 'notes': notes,
+      },);
       if (response == null) return false;
-      if (response['status'] == 200) {
-        // ToastHelper.showSuccess(message: response['msg']);
-        return true;
-      } else if (response['status'] == 422) {
-        Helper.handleError(response['msg']);
+      if (response['status'] == true) {
 
-        return false;
+
+        await SharedPref.saveUserObj(user: User.fromJson(response['data']));
+
+        ToastHelper.showSuccess(message: response['message']);
+        return true;
       } else {
-        if (response["msg"] != null) Helper.handleError(response['msg']);
+        if (response["msg"] != null) Helper.handleError(response['message']);
 
         return false;
       }
@@ -65,21 +53,21 @@ class EditProfileApi {
     }
   }
 
-  // static Future<bool> updatePicture({
-  //   File? file,
-  // }) async {
-  //   var decodeData = await API
-  //       .postRequest(url: API.updatePicture, body: {}, files: [
-  //     if (file != null) await http.MultipartFile.fromPath("profile", file.path)
-  //   ]);
-  //   if (decodeData == null) return false;
-  //   if (decodeData['status'] == true) {
-  //     // await SharedPref.saveUserObj(
-  //     //     user: SharedPref.getUserObg()!
-  //     //       ..employee = Employee.fromJson(decodeData['data']['employee']));
-  //     return true;
-  //   } else {
-  //     return false;
-  //   }
-  // }
+// static Future<bool> updatePicture({
+//   File? file,
+// }) async {
+//   var decodeData = await API
+//       .postRequest(url: API.updatePicture, body: {}, files: [
+//     if (file != null) await http.MultipartFile.fromPath("profile", file.path)
+//   ]);
+//   if (decodeData == null) return false;
+//   if (decodeData['status'] == true) {
+//     // await SharedPref.saveUserObj(
+//     //     user: SharedPref.getUserObg()!
+//     //       ..employee = Employee.fromJson(decodeData['data']['employee']));
+//     return true;
+//   } else {
+//     return false;
+//   }
+// }
 }

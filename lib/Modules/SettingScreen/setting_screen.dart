@@ -84,7 +84,7 @@ class _SettingScreenState extends StateMVC<SettingScreen> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
                           child: CachedNetworkImage(
-                            height: 82.w,
+                            height: 82.h,
                             width: 61.w,
                             fit: BoxFit.fill,
                             imageUrl:

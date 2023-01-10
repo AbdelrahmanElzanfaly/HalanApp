@@ -58,7 +58,7 @@ class IntroductionController extends ControllerMVC {
     await Future.delayed(const Duration(milliseconds: 100));
     setState(() {});
     await SharedPref.saveWatchIntro();
-    if (SharedPref.isUserLogIn()) {
+    if (!SharedPref.isUserLogIn()) {
       Navigator.of(context).pushNamed(UserType.routeName);
     } else {
       Navigator.of(context).pushNamed(IntroductionPagesScreen.routeName);

@@ -99,6 +99,7 @@
   "Location": "موقع :",
   "Promotions": "العروض الترويجية :",
   "Special Mark": "علامة خاصة :",
+  "Special_Mark": "علامة خاصة",
   "choose_image_source": "اختيار صوره",
   "from_gallery": "المعرض",
   "from_camera": "الكاميرا",
@@ -109,5 +110,6 @@
   "Add Address": "اضاف عنوان",
   "Saved Addresses": "العناوين المحفوظة",
   "Service Details": "تفاصيل الخدمة",
-  "Offers Reservation": "عروض الحجز"
+  "Offers Reservation": "عروض الحجز",
+  "please add country": "الرجاء إضافة الدولة"
 }

@@ -4,8 +4,13 @@ import 'package:halan/Modules/MadeScreens/HomeMadeScreen/home_made_screen.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
 import '../../../API/auth_api.dart';
+import '../../../API/opt_api.dart';
 import '../../../Shared/shared_preferances.dart';
+import '../../../modules/UserAuth/OTP/otp_screen.dart';
+import '../AddressDetails/address_details_screen.dart';
+import '../CompleteProfile/complete_profile_screen.dart';
 import 'login_screen.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class LoginController extends ControllerMVC {
   // singleton
@@ -61,24 +66,54 @@ class LoginController extends ControllerMVC {
     bool result = await AuthApi.login(
         userName: phoneController.text, password: passwordController.text);
     if (result) {
-      if (SharedPref.getUserObg()?.user?.role == 'maid') {
-        Navigator.of(context).pushNamedAndRemoveUntil(
-          HomeMadeScreen.routeName,
-          (Route<dynamic> route) => false,
-        );
-      } else if (SharedPref.getUserObg()?.user?.role == 'client') {
-        Navigator.of(context).pushNamedAndRemoveUntil(
-          BottomNavigationBarScreen.routeName,
-          (Route<dynamic> route) => false,
+      SharedPref.setIsLogin(isLogin:true);
+
+      if(SharedPref.getUserObg()?.enabled == true){
+        if (SharedPref.getUserObg()?.role == 'maid') {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+            HomeMadeScreen.routeName,
+                (Route<dynamic> route) => false,
+          );
+        } else if (SharedPref.getUserObg()?.role == 'client') {
+          Navigator.of(context).pushNamedAndRemoveUntil(
+            BottomNavigationBarScreen.routeName,
+                (Route<dynamic> route) => false,
+          );
+        }
+      }
+      else{
+        Navigator.of(context).pushNamed(
+          OtpScreen.routeName,
+          arguments: onConfirmOtp,
         );
       }
+
     }
 
     setState(() {
       loading = false;
     });
   }
+  Future onConfirmOtp(String otp) async {
+    bool result = await OptApi.otp(
+      otpCode: otp,
+    );
+    if (result) {
+      SharedPref.setIsLogin(isLogin:true);
 
+      if (SharedPref.getUserObg()?.role == 'maid') {
+        Modular.to.pushNamedAndRemoveUntil(
+          CompleteProfileScreen.routeName,
+              (Route<dynamic> route) => false,
+        );
+      } else if (SharedPref.getUserObg()?.role == 'client') {
+        Modular.to.pushNamedAndRemoveUntil(
+          AddressDetailsScreen.routeName,
+              (Route<dynamic> route) => false,
+        );
+      }
+    }
+  }
   Future resetPassword(BuildContext context) async {
     setState(() {
       loading = true;

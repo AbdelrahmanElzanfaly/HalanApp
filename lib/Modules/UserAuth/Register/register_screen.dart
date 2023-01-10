@@ -135,7 +135,13 @@ class _RegisterScreenState extends StateMVC<RegisterScreen> {
                               controller: con.emailController,
                               hint: "Please Enter Email".tr,
                               validator: (String? v) {
-                                if (v == null || v.isEmpty) return "";
+                                if (v == null || v.isEmpty)
+                                  return 'Email Cannot be Empty';
+
+                                if (!v.contains('@') || !v.contains('.')) {
+                                  return 'Invalid Email';
+                                }
+
                                 return null;
                               },
                             ),
@@ -178,7 +184,8 @@ class _RegisterScreenState extends StateMVC<RegisterScreen> {
                               controller: con.phoneController,
                               hint: "Please Enter PhoneNumber".tr,
                               validator: (String? v) {
-                                if (v == null || v.isEmpty) return "";
+                                if (v == null || v.isEmpty) return "Phone Number cannot be Empty";
+
                                 return null;
                               },
                             ),
@@ -237,7 +244,10 @@ class _RegisterScreenState extends StateMVC<RegisterScreen> {
                               ),
                               hint: "Please Enter Password".tr,
                               validator: (String? v) {
-                                if (v == null || v.isEmpty) return "";
+                                if (v == null || v.isEmpty) return "Password cannot be Empty";
+
+                                if (v.length < 6) return 'Password must be at least 6 characters';
+
                                 return null;
                               },
                             ),
@@ -296,7 +306,13 @@ class _RegisterScreenState extends StateMVC<RegisterScreen> {
                               ),
                               hint: "Please Enter Confirm Password".tr,
                               validator: (String? v) {
-                                if (v == null || v.isEmpty) return "";
+                                if (v == null || v.isEmpty) return "Confirm Password cannot be Empty";
+
+                                if (v.length < 6) return 'Password must be at least 6 characters';
+
+                                if (con.confirmPasswordController.text !=
+                                    con.passwordController.text)
+                                  return 'Confirm Password not match';
                                 return null;
                               },
                             ),

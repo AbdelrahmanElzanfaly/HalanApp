@@ -147,7 +147,7 @@ class _AddressDetailsScreenState extends StateMVC<AddressDetailsScreen> {
                                   width: 156.w,
                                   suffixIcon: const SizedBox(),
                                   isDense: true,
-                                  textInputType: TextInputType.number,
+                                  textInputType: TextInputType.text,
                                   borderColor: Colors.grey.shade400,
                                   controller: con.stateProvinceController,
                                   hint: "State/Province".tr,
@@ -215,7 +215,7 @@ class _AddressDetailsScreenState extends StateMVC<AddressDetailsScreen> {
                             child: CustomTextFieldWidget(
                               suffixIcon: const SizedBox(),
                               isDense: true,
-                              textInputType: TextInputType.number,
+                              textInputType: TextInputType.text,
                               borderColor: Colors.grey.shade400,
                               controller: con.zipCodeController,
                               hint: "Postal/Zip code".tr,
@@ -300,7 +300,7 @@ class _AddressDetailsScreenState extends StateMVC<AddressDetailsScreen> {
                               borderColor: Colors.grey.shade400,
                               textInputType: TextInputType.text,
                               controller: con.specialMarkController,
-                              hint: "Special Mark".tr,
+                              hint: "Special_Mark".tr,
                               validator: (String? v) {
                                 if (v == null || v.isEmpty) return "";
                                 return null;

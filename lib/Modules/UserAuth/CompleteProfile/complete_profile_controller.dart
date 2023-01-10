@@ -5,6 +5,8 @@ import 'package:country_picker/country_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:halan/API/edit_profile_api.dart';
+import 'package:halan/Modules/MadeScreens/HomeMadeScreen/home_made_screen.dart';
 import 'package:halan/Modules/UserAuth/OTP/otp_screen.dart';
 import 'package:mvc_pattern/mvc_pattern.dart';
 
@@ -92,27 +94,27 @@ class CompleteProfileController extends ControllerMVC {
   }
 
   Future onSave(BuildContext context) async {
-    Modular.to.pushNamed(BottomNavigationBarScreen.routeName);
-  }
-
-  updateImage(BuildContext context) async {
-    userImage = await Helper.pickImage(context: context);
-
     setState(() {
       loading = true;
     });
 
-    // bool result = await EditProfileApi.updatePicture(
-    //   file: userImage,
-    // );
-
+    bool result = await EditProfileApi.editProfile(
+      name: fullNameController.text,
+      experience: yearsExperienceController.text,
+      img: userImage,
+      notes: aboutYourSelfController.text,
+      nationality: countryName,
+    );
     setState(() {
       loading = false;
     });
-    // if (result) {
 
-    // }
+    if (result) {
+      Modular.to.pushNamed(HomeMadeScreen.routeName);
+    }
   }
+
+
 
 //  con.userImage == null? NetworkImage(
 //                               SharedPref.getUserObg()?.employee?.profile ??

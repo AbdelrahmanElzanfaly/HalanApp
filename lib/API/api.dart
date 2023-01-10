@@ -33,14 +33,14 @@ class API {
   static const String changePassword = "employee/reset_password";
   static const String reChangePassword = "employee/rechangepass";
   static const String register = "signup";
+  static const String registerMaid = "signup-maid";
   static const String forgetPassword = "employee/forgetpassword";
 
   static const String verifyForgetPassCode = "employee/activcode";
   static const String resetForgetPassword =
       "user/forget-password/change-password";
 
-  static const String editProfile =
-      "user/update-user-profile?include=user_details";
+  static const String editProfile = "profile";
 
   static Future postRequest({
     required String url,
@@ -49,6 +49,7 @@ class API {
     Map<String, String>? headers,
   }) async {
     debugPrint("$_baseURL$url");
+    debugPrint(SharedPref.getToken().toString());
     debugPrint(body.toString());
     try {
       var request = http.MultipartRequest('POST', Uri.parse('$_baseURL$url'));
@@ -65,7 +66,50 @@ class API {
         request.headers.addAll({
           // "Accept": "application/json",
           "access-language": SharedPref.getCurrentLang() ?? "en",
-          "Authorization": 'Bearer ${SharedPref.getUserObg()?.token}',
+          "Authorization": 'Bearer ${SharedPref.getToken().toString()}',
+        });
+      }
+      print(request.headers);
+      http.StreamedResponse response = await request.send();
+      print('code : ' + response.statusCode.toString());
+      debugPrint('statusCode : ${response.statusCode.toString()}');
+      var res = await response.stream.bytesToString();
+      debugPrint('response : ${res.toString()}');
+
+      return json.decode(res);
+    } catch (e) {
+      ToastHelper.showError(message: 'please try again later');
+      log('error : ' + e.toString());
+      return null;
+    }
+  }
+
+
+  static Future patchRequest({
+    required String url,
+    required Map<String, String> body,
+    List<http.MultipartFile> files = const [],
+    Map<String, String>? headers,
+  }) async {
+    debugPrint("$_baseURL$url");
+    debugPrint(SharedPref.getToken().toString());
+    debugPrint(body.toString());
+    try {
+      var request = http.MultipartRequest('PATCH', Uri.parse('$_baseURL$url'));
+      request.fields.addAll(body);
+      for (int i = 0; i < files.length; i++) {
+        request.files.add(files[i]);
+      }
+      if (SharedPref.getDeviceData() != null) {
+        request.headers.addAll(SharedPref.getDeviceData()!.toMap());
+      }
+      if (headers != null) {
+        request.headers.addAll(headers);
+      } else {
+        request.headers.addAll({
+          // "Accept": "application/json",
+          "access-language": SharedPref.getCurrentLang() ?? "en",
+          "Authorization": 'Bearer ${SharedPref.getToken().toString()}',
         });
       }
       print(request.headers);
@@ -97,8 +141,8 @@ class API {
       } else {
         request.headers.addAll({
           "Accept": "application/json",
-          "accept-language": SharedPref.getCurrentLang() ?? "en",
-          "Authorization": 'Bearer ${SharedPref.getUserObg()?.token}',
+          "access-language": SharedPref.getCurrentLang() ?? "en",
+          "Authorization": 'Bearer ${SharedPref.getToken().toString()}',
         });
       }
 

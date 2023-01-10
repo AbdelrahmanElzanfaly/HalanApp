@@ -11,6 +11,7 @@ import '../../../Theme/theme.dart';
 import '../../../Utilities/Layout/loading_screen.dart';
 import '../../../Widgets/custom_button.dart';
 import '../../../Widgets/custom_textfeild_widget.dart';
+import '../../Shared/shared_preferances.dart';
 import '../../Widgets/address_details_widget.dart';
 import 'edit_profile_controller.dart';
 
@@ -77,7 +78,7 @@ class _EditProfileScreenState extends StateMVC<EditProfileScreen> {
                             borderRadius: BorderRadius.circular(100),
                             image: DecorationImage(
                                 image: con.userImage == null
-                                    ? const NetworkImage(
+                                    ?  NetworkImage( SharedPref.getUserObg() ?.photo??
                                         'https://www.generationsforpeace.org/wp-content/uploads/2018/03/empty.jpg')
                                     : FileImage(File(con.userImage!.path))
                                         as ImageProvider,
@@ -134,7 +135,7 @@ class _EditProfileScreenState extends StateMVC<EditProfileScreen> {
                             textInputType: TextInputType.number,
                             borderColor: Colors.grey.shade400,
                             controller: con.firstNameController,
-                            hint: "John",
+                            hint: SharedPref.getUserObg() ?.name??'',
                             validator: (String? v) {
                               if (v == null || v.isEmpty) return "";
                               return null;
@@ -154,7 +155,7 @@ class _EditProfileScreenState extends StateMVC<EditProfileScreen> {
                             textInputType: TextInputType.number,
                             borderColor: Colors.grey.shade400,
                             controller: con.endNameController,
-                            hint: "Doe",
+                            hint: '',
                             validator: (String? v) {
                               if (v == null || v.isEmpty) return "";
                               return null;
@@ -174,11 +175,13 @@ class _EditProfileScreenState extends StateMVC<EditProfileScreen> {
                         textInputType: TextInputType.emailAddress,
                         borderColor: Colors.grey.shade400,
                         controller: con.emailController,
-                        hint: "John.doe@gmail.com",
-                        validator: (String? v) {
-                          if (v == null || v.isEmpty) return "";
-                          return null;
-                        },
+                        hint: SharedPref.getUserObg() ?.email??'',
+                        // validator: (String? v) {
+                        //   // if (!v!.contains('@') || !v.contains('.')) {
+                        //     return 'Invalid Email';
+                        //   }
+                          // return null;
+                        // },
                       ),
                     ),
                     SizedBox(
@@ -193,7 +196,7 @@ class _EditProfileScreenState extends StateMVC<EditProfileScreen> {
                         textInputType: TextInputType.number,
                         borderColor: Colors.grey.shade400,
                          controller: con.phoneController,
-                        hint: "01000395841",
+                        hint: SharedPref.getUserObg()?.phone??'',
                         validator: (String? v) {
                           if (v == null || v.isEmpty) return "";
                           return null;
@@ -215,6 +218,7 @@ class _EditProfileScreenState extends StateMVC<EditProfileScreen> {
                         width: 250.w,
                         ontap: () async {
                           if (_formKey.currentState?.validate() ?? false) {
+                            con.onSave(context);
                           } else {
                             setState(() {
                               con.autoValidate = true;

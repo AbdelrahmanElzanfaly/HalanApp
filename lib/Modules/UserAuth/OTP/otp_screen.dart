@@ -115,7 +115,6 @@ class _OtpScreenState extends StateMVC<OtpScreen> {
                         name: "Verify",
                         ontap: () async {
                           if (con.codeController.text.length == 4) {
-
                             await con.onConfirmPin();
                           } else {
                             ToastHelper.showError(message: "write_otp_desc".tr);
